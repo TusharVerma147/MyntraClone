@@ -71,6 +71,10 @@ const styles = StyleSheet.create({
         marginTop: vh(5),
         paddingRight:vh(10)
       },
+      buttontext:
+      {fontWeight: '700', fontSize:20},
+    custombuttonview:
+      {marginTop:10}
 });
 
 export default styles;

@@ -3,13 +3,16 @@ import React, {useState,useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import {colors} from '../../theme';
-import {vh, vw} from '../../theme/dimensions';
 import styles from './styles';
 import {Icons, Images} from '../../assets';
 import CustomButton from '../../components/customButton';
-import strings from '../../utils/strings';
 import {emailRegex,specialCharacterRegex} from '../../utils/regex';
 import CustomTextInput from '../../components/customTextInput';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import Toast from 'react-native-simple-toast';
+
 
 type NavigationProps = {
     navigate: (screen: string) => void;
@@ -28,6 +31,50 @@ type NavigationProps = {
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
     const [nameError, setNameError] = useState<string | null>(null);
+
+
+    useEffect(() => {
+      GoogleSignin.configure({
+        webClientId:
+          '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
+        offlineAccess: true,
+      });
+  
+      const subscriber = auth().onAuthStateChanged(user => {
+        if (user) {
+          // Toast.show('User is  signed in', Toast.SHORT);
+          navigation.replace('BottomTab');
+        } else {
+          // Toast.show('User is not signed in', Toast.SHORT);
+        }
+      });
+  
+      return () => subscriber();
+    }, [navigation]);
+  
+    const onGoogleButtonPress = async () => {
+      try {
+        await GoogleSignin.hasPlayServices();
+        const response = await GoogleSignin.signIn();
+        console.log('id token', response);
+  
+        const idToken = response?.data?.idToken;
+        if (!idToken) {
+          throw new Error('Google sign-in did not return an ID token.');
+        }
+  
+        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+        await auth().signInWithCredential(googleCredential);
+        await AsyncStorage.setItem('key', 'true');
+        Toast.show('User logged in successfully!', Toast.SHORT);
+        navigation.replace('BottomTab');
+      } catch (error: any) {
+        Alert.alert('Error signing in: ', error.message);
+      }
+    };
+
+   
+
 
     const validateSignUp = () => {
       let flag = true;
@@ -64,9 +111,24 @@ type NavigationProps = {
       }
     };
 
-const handleSignUp=() =>{
+    const handleSignUp = async () => {
+      try {
+        const userCredential = await auth().createUserWithEmailAndPassword(
+          email,
+          password,
+        );
+        Toast.show('User Registered successfully!', Toast.SHORT);
+        navigation.navigate('Login');
+      } catch (error: any) {
+        Alert.alert('Error', error.message);
+      }
+    };
 
-}
+
+  
+
+  
+  
 
 const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -84,7 +146,9 @@ const togglePasswordVisibility = () => {
         <ScrollView  contentContainerStyle={styles.scroll}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}>
-      <AppHeader rightIcon1={Icons.cross} rightHeight={20} rightWidth={20} backicon={Icons.splash_img} backWidth={42} backHeight={40}/>
+      <AppHeader 
+      // rightIcon1={Icons.cross} rightHeight={20} rightWidth={20} 
+      backicon={Icons.splash_img} backWidth={42} backHeight={40}/>
       <View style={styles.header}>
               <Image style={styles.banner} source={Images.banner5} />
             </View>
@@ -123,11 +187,10 @@ const togglePasswordVisibility = () => {
                 onIconPress={togglePasswordVisibility}
                 errorMessage={passwordError}
               />
-             <View style={{marginTop:10}}>
+             <View style={styles.custombuttonview}>
               <CustomButton
                 title="Sign Up"
-                style={styles.custombutton}
-                textStyle={{fontWeight: '700', fontSize:20}}
+                textStyle={styles.buttontext}
                 borderRadius={50}
                 backgroundColor={colors.zeptored}
                 textColor={colors.white}
@@ -143,8 +206,8 @@ const togglePasswordVisibility = () => {
               <CustomButton
                 icon={Icons.google}
                 title="Sign in with Google"
-                // onPress={onGoogleButtonPress}
-                textStyle={{fontWeight: '700', fontSize:20}}
+                onPress={onGoogleButtonPress}
+                textStyle={styles.buttontext}
                 borderRadius={50}
                 backgroundColor={colors.white}
                 textColor={colors.black}

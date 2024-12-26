@@ -15,6 +15,7 @@ interface CustomButtonProps {
   paddingHorizontal?: number; 
   borderColor?:string;
   borderWidth?:number;
+  tintColor?:string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -28,7 +29,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   backgroundColor,
   paddingHorizontal=vh(15),
   borderColor,
-  borderWidth
+  borderWidth,
+  tintColor
 }) => {
   return (
     <TouchableOpacity
@@ -43,7 +45,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       ]}
       activeOpacity={0.8}
       onPress={onPress}>
-      {icon && <Image source={icon} style={styles.icon} />}
+      {icon && <Image source={icon} style={[styles.icon,  tintColor!== undefined && { tintColor },]} />}
       <Text
         style={[styles.buttonText, textStyle, textColor && {color: textColor}]}>
         {title}

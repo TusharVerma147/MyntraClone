@@ -1,4 +1,5 @@
 import LoginSign from "../screens/loginSignup";
+import Wishlist from "../screens/wishlist";
 
 const ScreenNames = {
    
@@ -11,14 +12,17 @@ const ScreenNames = {
     Minis:'Minis',
     Trends:'Trends',
     Bag:'Bag',
+    Items:'Items',
     Details:'Details',
+    Wishlist:'Wishlist',
+    CouponScreen:'CouponScreen',
     Search:'Search',
     BottomTab: 'BottomTab',
-    Category:'Category',
     Settings:'Settings',
     Payment:'Payment',
     Order:'Order',
     OrderHistory:'OrderHistory',
+
   };
   
   export {ScreenNames};

@@ -4,48 +4,61 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  StatusBar,
   ImageSourcePropType,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import colors from '../../theme/colors';
 import styles from './styles';
-import { Icons } from '../../assets';
-import { vh, vw, SCREEN_HEIGHT, SCREEN_WIDTH } from '../../theme/dimensions';
+import {vh} from '../../theme/dimensions';
 
 interface AppHeaderProps {
   title?: string;
   backgroundColor?: string;
-  marginLeft?:number,
+  marginLeft?: number;
+  marginHorizontal?: number;
   titleColor?: string;
   subtitle?: string;
   subtitleColor?: string;
   titleSize?: number;
   backWidth?: number;
   backHeight?: number;
+  leftWidth?: number;
+  leftHeight?: number;
   backColor?: string;
-  backicon?:ImageSourcePropType;
+  backicon?: ImageSourcePropType;
+  iconleft?: ImageSourcePropType;
   rightIcon1?: ImageSourcePropType;
   rightIcon2?: ImageSourcePropType;
   rightWidth?: number;
   rightHeight?: number;
+  titletop?: number;
+  onPressRightIcon1?: () => void; 
+  onPressRightIcon2?: () => void; 
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({
   title,
   titleColor = colors.grey,
+  backgroundColor,
   subtitle,
   subtitleColor = colors.textGrey,
   titleSize = vh(19),
-  marginLeft=vh(15),
+  marginLeft = vh(15),
+  marginHorizontal = vh(5),
   backWidth,
-  backHeight ,
+  backHeight,
+  leftWidth,
+  leftHeight,
   backColor,
   backicon,
   rightIcon1,
   rightIcon2,
-  rightHeight=vh(25),
-  rightWidth=vh(25)
+  iconleft,
+  titletop,
+  rightHeight = vh(25),
+  rightWidth = vh(25),
+  onPressRightIcon1,
+  onPressRightIcon2,
 }) => {
   const navigation = useNavigation();
 
@@ -54,33 +67,42 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   };
 
   return (
-    <View style={[styles.header]}>
+    <View style={[styles.header, {backgroundColor}]}>
       <View style={styles.titleContainer}>
- 
-          <TouchableOpacity onPress={handleGoBack} style={styles.backContainer}>
-            <Image
-              source={backicon}
-              style={{
-                height: backHeight,
-                width: backWidth,
-                tintColor: backColor,
-                marginLeft:marginLeft
-              }}
-            />
-          </TouchableOpacity>
-        
+        <TouchableOpacity onPress={handleGoBack} style={styles.backContainer}>
+          <Image
+            source={backicon}
+            style={{
+              height: backHeight,
+              width: backWidth,
+              tintColor: backColor,
+              marginLeft: marginLeft,
+            }}
+          />
+        </TouchableOpacity>
+        {iconleft && (
+          <Image
+            source={iconleft}
+            style={{
+              height: leftHeight,
+              width: leftWidth,
+              marginHorizontal: marginHorizontal,
+            }}
+          />
+        )}
+
         <View>
           {title && (
             <Text
               style={[
                 styles.categoryText,
-                { color: titleColor, fontSize: titleSize },
+                {color: titleColor, fontSize: titleSize, marginTop: titletop},
               ]}>
               {title}
             </Text>
           )}
           {subtitle && (
-            <Text style={[styles.subtitleText, { color: subtitleColor }]}>
+            <Text style={[styles.subtitleText, {color: subtitleColor}]}>
               {subtitle}
             </Text>
           )}
@@ -89,13 +111,23 @@ const AppHeader: React.FC<AppHeaderProps> = ({
 
       <View style={styles.rightIconsContainer}>
         {rightIcon1 && (
-          <TouchableOpacity style={[styles.rightIcon]}>
-            <Image source={rightIcon1} style={[styles.icon,{height:rightHeight,width:rightWidth}]} />
+          <TouchableOpacity
+            style={[styles.rightIcon]}
+            onPress={onPressRightIcon1}>
+            <Image
+              source={rightIcon1}
+              style={[styles.icon, {height: rightHeight, width: rightWidth}]}
+            />
           </TouchableOpacity>
         )}
         {rightIcon2 && (
-          <TouchableOpacity style={[styles.rightIcon]}>
-            <Image source={rightIcon2} style={[styles.icon,{height:rightHeight,width:rightWidth}]} />
+          <TouchableOpacity
+            style={[styles.rightIcon]}
+            onPress={onPressRightIcon2}>
+            <Image
+              source={rightIcon2}
+              style={[styles.icon, {height: rightHeight, width: rightWidth}]}
+            />
           </TouchableOpacity>
         )}
       </View>

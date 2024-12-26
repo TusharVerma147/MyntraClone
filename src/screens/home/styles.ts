@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../theme';
-import {vh} from '../../theme/dimensions';
+import {vh, SCREEN_WIDTH} from '../../theme/dimensions';
 
 const styles = StyleSheet.create({
   header: {
@@ -47,6 +47,10 @@ const styles = StyleSheet.create({
     width: 40,
     marginLeft: 2,
   },
+  category:{flexDirection: 'row', marginVertical: vh(5), marginHorizontal:vh(5)},
+  categorylist:{marginVertical: vh(10), marginHorizontal: vh(5)},
+  banner:{width:SCREEN_WIDTH,resizeMode:'contain', height:SCREEN_WIDTH/5 }
+
 });
 
 export default styles;

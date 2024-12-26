@@ -16,6 +16,14 @@ end
 
 target 'MyntraClone' do
   config = use_native_modules!
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
+
+    # Add RNGoogleSignin pod
+    pod 'RNGoogleSignin', :path => '../node_modules/@react-native-google-signin/google-signin'
+
+    # Explicitly add GTMSessionFetcher/Core to avoid conflicts
+    pod 'GTMSessionFetcher/Core', '~> 3.3'
 
   use_react_native!(
     :path => config[:reactNativePath],

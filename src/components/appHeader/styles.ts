@@ -1,24 +1,24 @@
 import { StyleSheet, Platform } from 'react-native';
 import colors from '../../theme/colors';
-import { vh, vw, SCREEN_HEIGHT, SCREEN_WIDTH } from '../../theme/dimensions';
+import { vh} from '../../theme/dimensions';
 
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === 'android' ? vh(20) : vh(10),
+    paddingTop: Platform.OS === 'android' ? vh(5) : vh(5),
     paddingBottom: 20,
     flexDirection: 'row', 
     justifyContent: 'space-between',
     alignItems: 'center', 
   },
   backContainer: {
-    marginRight: vh(15),
+    marginRight: vh(10),
     marginTop: vh(0),
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1, 
+   flex: 1, 
   },
   rightIconsContainer: {
     flexDirection: 'row',
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   subtitleText: {
-    fontSize: vh(15), 
+    fontSize: vh(12), 
     fontWeight: '400',
     color: colors.textGrey,
   },

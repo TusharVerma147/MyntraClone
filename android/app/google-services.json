@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "697757617336",
+    "project_id": "myntra-2dfdd",
+    "storage_bucket": "myntra-2dfdd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697757617336:android:83ddbe1f3aabb0d95f784d",
+        "android_client_info": {
+          "package_name": "com.myntraclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC36ZFpj-wpkn2dkTQ18Kyh6vhjVO4I8Rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "697757617336-4tp7ogjv0v40vh5rb3cv07urrcd6ol7h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.MyntraClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

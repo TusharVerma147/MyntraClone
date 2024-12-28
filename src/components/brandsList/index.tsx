@@ -6,7 +6,6 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  GestureResponderEvent,
 } from 'react-native';
 import {vh, SCREEN_WIDTH, vw} from '../../theme/dimensions';
 import {useNavigation} from '@react-navigation/native';
@@ -28,7 +27,7 @@ const BrandList: React.FC<BrandListProps> = ({data}) => {
   const navigation = useNavigation<NavigationProp>();
 
   const gotoItem = (item: Item) => {
-    navigation.navigate('Items', {categoryTitle: 'BrandList'});
+    navigation.navigate('Items', {categoryTitle: 'Products'});
   };
 
   const renderItem = ({item}: {item: Item}) => (

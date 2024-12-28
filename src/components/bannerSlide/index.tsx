@@ -1,16 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Image, FlatList, NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
+import { View, Image, FlatList, NativeScrollEvent, NativeSyntheticEvent,TouchableOpacity } from 'react-native';
 import {SCREEN_WIDTH } from '../../theme/dimensions';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import styles from './styles';
-
-
 
 
 interface ImageSliderProps {
   images: { id: string; source: any }[];
 }
 
+type NavigationProp = StackNavigationProp<any>;
+
 const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
+
+  const navigation = useNavigation<NavigationProp>();
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(1); 
 
@@ -51,7 +55,11 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   }, [currentIndex, infiniteImages.length]);
 
   const renderSliderItem = ({ item }: { item: { id: string; source: any } }) => (
+    <TouchableOpacity activeOpacity={0.8}
+    onPress={() => navigation.navigate('Items', { categoryTitle: 'Products' })} 
+  >
     <Image source={item.source} style={styles.sliderImage} />
+    </TouchableOpacity>
   );
 
   const getItemLayout = (_: any, index: number) => ({

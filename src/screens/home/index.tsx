@@ -1,5 +1,12 @@
-import {View, Text, Image, StatusBar, TouchableOpacity, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import {colors} from '../../theme';
 import {Icons, Images} from '../../assets';
@@ -12,13 +19,14 @@ import {
   fashionlist,
   beautylist,
   homelist,
-  fashionbrand
+  fashionbrand,
 } from '../../utils/mockdata';
 import CategoryCard from '../../components/category';
 import CategoryList from '../../components/categoryList';
-import { useNavigation } from '@react-navigation/native'; 
-import { StackNavigationProp } from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import BrandList from '../../components/brandsList';
+import AnimatedTextInput from '../../components/animatedTextInput';
 
 type HomeProps = {
   navigation: {
@@ -27,15 +35,7 @@ type HomeProps = {
 };
 type NavigationProp = StackNavigationProp<any>;
 
-type DataItem = {
-  image: string;
-  title: string;
-  subtitle: string;
-};
-
-
 const Home: React.FC<HomeProps> = () => {
-
   const navigation = useNavigation<NavigationProp>();
 
   const [selectedCategory, setSelectedCategory] = useState('Fashion');
@@ -62,12 +62,10 @@ const Home: React.FC<HomeProps> = () => {
       default:
         return {
           categoryList: null,
-          bannerImage: null
+          bannerImage: null,
         };
     }
   };
-
-  
 
   const {categoryList, bannerImage} = renderCategoryContent();
   return (
@@ -91,11 +89,12 @@ const Home: React.FC<HomeProps> = () => {
         <View style={styles.rightview}>
           <Image source={Icons.bell} style={styles.righticon} />
           <Image source={Icons.wishlist} style={styles.righticon} />
-          <TouchableOpacity onPress={()=>navigation.navigate('LoginSign')} >
+          <TouchableOpacity onPress={() => navigation.navigate('LoginSign')}>
             <Image source={Icons.userpro} style={styles.righticon} />
           </TouchableOpacity>
         </View>
       </View>
+      <AnimatedTextInput />
       <View style={styles.category}>
         <CategoryCard
           text="Fashion"
@@ -116,19 +115,17 @@ const Home: React.FC<HomeProps> = () => {
           onSelect={() => setSelectedCategory('Home')}
         />
       </View>
-      < ScrollView>
-      <View style={styles.categorylist}>
-        {categoryList}
-      </View>
-      {bannerImage}
-      {selectedCategory === 'Fashion' && <ImageSlider images={fashion} />}
-      {selectedCategory === 'Beauty' && <ImageSlider images={beauty} />}
-      {selectedCategory === 'Home' && <ImageSlider images={home} />}
-<Image source={Images.brandstobrowse} style={styles.banner}/>
-    <BrandList data={fashionbrand} />
-    <Image source={Images.blinkandmiss} style={styles.banner}/>
-    <BrandList data={fashionbrand} />
-    </ScrollView>
+      <ScrollView>
+        <View style={styles.categorylist}>{categoryList}</View>
+        {bannerImage}
+        {selectedCategory === 'Fashion' && <ImageSlider images={fashion} />}
+        {selectedCategory === 'Beauty' && <ImageSlider images={beauty} />}
+        {selectedCategory === 'Home' && <ImageSlider images={home} />}
+        <Image source={Images.brandstobrowse} style={styles.banner} />
+        <BrandList data={fashionbrand} />
+        <Image source={Images.blinkandmiss} style={styles.banner} />
+        <BrandList data={fashionbrand} />
+      </ScrollView>
     </AppWrapper>
   );
 };

@@ -173,11 +173,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  couponcontainer: {padding: vh(20), backgroundColor: colors.white},
+  couponcontainer: {padding: vh(20), backgroundColor: colors.white,  marginVertical:vh(10)},
   couponbutton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  
   },
   applycoupon: {
     fontSize: vh(16),

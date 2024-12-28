@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import styles from './styles';
+import { colors } from '../../theme';
 
 interface AppWrapperProps {
   children: ReactNode; 
@@ -21,6 +22,7 @@ const AppWrapper: React.FC<AppWrapperProps> = ({ children, backgroundColor, padd
         }]
       }
     >
+      {/* <StatusBar backgroundColor={colors.white}/> */}
       {children}
     </SafeAreaView>
   );

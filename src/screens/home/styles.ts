@@ -49,7 +49,34 @@ const styles = StyleSheet.create({
   },
   category:{flexDirection: 'row', marginVertical: vh(5), marginHorizontal:vh(5)},
   categorylist:{marginVertical: vh(10), marginHorizontal: vh(5)},
-  banner:{width:SCREEN_WIDTH,resizeMode:'contain', height:SCREEN_WIDTH/5 }
+  banner:{width:SCREEN_WIDTH,resizeMode:'contain', height:SCREEN_WIDTH/5 },
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 25,
+    paddingHorizontal: 10,
+    height: 40,
+    marginHorizontal:20
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: '#000',
+  },
+  placeholder: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  hiddenInput: {
+    color: 'transparent',
+  }
 
 });
 

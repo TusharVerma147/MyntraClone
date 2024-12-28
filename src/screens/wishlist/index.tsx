@@ -64,7 +64,7 @@ const Wishlist = () => {
           <Text style={styles.emptysubMessage}>
           Save items that you like in your wishlist. Review them anytime and easily move them to the bag.
           </Text>
-          <CustomButton title='SHOP NOW' borderWidth={1} borderRadius={5} borderColor={colors.zeptored} textColor={colors.zeptored}/>
+          <CustomButton title='SHOP NOW' borderWidth={1} borderRadius={5} borderColor={colors.zeptored} textColor={colors.zeptored} onPress={() => navigation.navigate('BottomTab',{screen: 'Home'})} />
         </View>
       ) : (
         <ItemList

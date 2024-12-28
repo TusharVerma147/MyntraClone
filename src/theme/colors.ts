@@ -16,5 +16,6 @@ export default {
     crown:'#bf9647',
     crown1:'#ffbf00',
     backyellow:'#ffecc7',
+    textinput:'#999'
 
   };

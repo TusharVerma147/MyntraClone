@@ -3688,6 +3688,7 @@ __metadata:
     react-native-safe-area-context: ^5.0.0
     react-native-screens: ^4.3.0
     react-native-simple-toast: ^3.3.1
+    react-native-swiper-flatlist: ^3.2.5
     react-native-video: ^6.8.2
     react-redux: ^9.2.0
     react-test-renderer: 18.3.1
@@ -8909,6 +8910,15 @@ __metadata:
     react: "*"
     react-native: ">=0.71.0"
   checksum: 0f535a469b9519f761ee0224828df8e531fb92ad5e9accefdc04aafcd896da4c6fead488fe6911ccc11592f325707499f4b696768afd8c20cefe06fa6cdac50f
+  languageName: node
+  linkType: hard
+
+"react-native-swiper-flatlist@npm:^3.2.5":
+  version: 3.2.5
+  resolution: "react-native-swiper-flatlist@npm:3.2.5"
+  peerDependencies:
+    react-native: ">=0.59.0"
+  checksum: 1fc8dad8cec01d28ca54061bb50c26514ae3a3e88a1be4d5f181d90ae7fd72e2707b78dcc1d3ae07ecf34ea0d8f0a76eded53804b403d0905146955ebcd22815
   languageName: node
   linkType: hard
 

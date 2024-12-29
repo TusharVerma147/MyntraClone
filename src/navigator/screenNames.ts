@@ -18,7 +18,7 @@ const ScreenNames = {
     CouponScreen:'CouponScreen',
     Search:'Search',
     BottomTab: 'BottomTab',
-    Settings:'Settings',
+    Address:'Address',
     Payment:'Payment',
     Order:'Order',
     OrderHistory:'OrderHistory',

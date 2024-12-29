@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,31 +9,44 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   removeFromBag,
   updateQuantity,
   clearCart,
 } from '../../redux/slice/bagSlice';
-import {vh} from '../../theme/dimensions';
-import {colors} from '../../theme';
+import { vh } from '../../theme/dimensions';
+import { colors } from '../../theme';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
-import {Icons} from '../../assets';
+import { Icons } from '../../assets';
 import CustomButton from '../../components/customButton';
 import QuantityModal from '../../components/quantityModal';
 import styles from './styles';
+import Toast from 'react-native-simple-toast';
+import ProgressIndicator from '../../components/progressIndicator';
 
-const Bag = ({navigation}: any) => {
+const Bag = ({ navigation, route }: any) => {
   const dispatch = useDispatch();
   const bagItems = useSelector((state: any) => state.bag.items);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedQty, setSelectedQty] = useState<number>(1);
   const [itemIdForModal, setItemIdForModal] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
-  const [selectedCoupon, setSelectedCoupon] = useState(null);
+  const [selectedCoupon, setSelectedCoupon] = useState<any>(null); 
 
-  const renderItem = ({item}: any) => {
+  useEffect(() => {
+    if (route.params?.selectedCoupon) {
+      const coupon = route.params.selectedCoupon;
+      const discountPercentage = parseFloat(coupon.discount.replace('%', '')) / 100;
+      setSelectedCoupon({
+        ...coupon,
+        discountPercentage,  
+      });
+    }
+  }, [route.params?.selectedCoupon]);
+
+  const renderItem = ({ item }: any) => {
     const isSelected = selectedItems.includes(item.id);
 
     return (
@@ -43,7 +56,7 @@ const Bag = ({navigation}: any) => {
           <TouchableOpacity
             style={[
               styles.selectButton,
-              isSelected && {backgroundColor: colors.zeptored},
+              isSelected && { backgroundColor: colors.zeptored },
             ]}
             onPress={() => {
               if (isSelected) {
@@ -91,11 +104,19 @@ const Bag = ({navigation}: any) => {
 
   const handleQtyChange = (qty: number) => {
     if (itemIdForModal) {
-      dispatch(updateQuantity({id: itemIdForModal, quantity: qty}));
+      dispatch(updateQuantity({ id: itemIdForModal, quantity: qty }));
     }
     setModalVisible(false);
   };
 
+
+  const handlePlaceOrder = () => {
+    if (selectedBagItems.length > 0) {
+      navigation.navigate('Address');
+    } else {
+        Toast.show('Please select at least 1 item', Toast.SHORT)
+    }
+  };
   const selectedBagItems = bagItems.filter(item =>
     selectedItems.includes(item.id),
   );
@@ -106,8 +127,6 @@ const Bag = ({navigation}: any) => {
     0,
   );
 
-  console.log('Total MRP', totalMRP);
-
   const totalDiscount = selectedBagItems.reduce(
     (total: number, item: any) =>
       total +
@@ -116,13 +135,16 @@ const Bag = ({navigation}: any) => {
         item.quantity,
     0,
   );
-  const platformFee = selectedItems.length > 0 ? 20 : 0;
 
+  const platformFee = selectedItems.length > 0 ? 20 : 0;
   const shippingFee = 0;
 
-  console.log('Total Discount', totalDiscount);
+  const couponDiscount = selectedCoupon
+  ? totalMRP * selectedCoupon.discountPercentage
+  : 0;
 
-  const totalAmount = totalMRP - totalDiscount + platformFee + shippingFee;
+
+  const totalAmount = totalMRP - totalDiscount - couponDiscount + platformFee + shippingFee;
 
   return (
     <AppWrapper backgroundColor={colors.screengrey}>
@@ -143,6 +165,7 @@ const Bag = ({navigation}: any) => {
           dispatch(clearCart());
         }}
       />
+       <ProgressIndicator currentStep={1} totalSteps={3} />
       {bagItems.length === 0 ? (
         <View style={styles.emptyContainer}>
           <Image source={Icons.emptybag} style={styles.emptybag} />
@@ -157,8 +180,10 @@ const Bag = ({navigation}: any) => {
             <TouchableOpacity
               style={styles.couponbutton}
               onPress={() => navigation.navigate('CouponScreen')}>
-              <Text style={styles.applycoupon}>Apply Coupon</Text>
-              <Text style={styles.viewcoupon}>View Coupons</Text>
+              <Text style={styles.applycoupon}> {selectedCoupon ? 'Coupon Applied' : 'Apply Coupon'}</Text>
+              <Text style={styles.viewcoupon}>
+  {selectedCoupon ?`${selectedCoupon.code}` : 'View Coupon'}
+</Text>
             </TouchableOpacity>
           </View>
 
@@ -179,6 +204,10 @@ const Bag = ({navigation}: any) => {
                 <View style={styles.priceDetailsContainer}>
                   <Text style={styles.priceDetailsText}>Platform Fee</Text>
                   <Text style={styles.priceDetailsValue}>₹{platformFee}</Text>
+                </View>
+                <View style={styles.priceDetailsContainer}>
+                  <Text style={styles.priceDetailsText}>Coupon Discount</Text>
+                  <Text style={styles.discountValue}>-₹{couponDiscount}</Text>
                 </View>
                 <View style={styles.priceDetailsContainer}>
                   <Text style={styles.priceDetailsText}>Shipping Fee</Text>
@@ -209,9 +238,9 @@ const Bag = ({navigation}: any) => {
           <View style={styles.taglinecont}>
             <Text style={styles.taglinetext}>
               By placing the order, you agree to Myntra's{' '}
-              <Text style={{color: colors.zeptored}}>Terms of Use </Text>
-              <Text style={{color: colors.charcol}}>& </Text>
-              <Text style={{color: colors.zeptored}}>Privacy Policy</Text>
+              <Text style={{ color: colors.zeptored }}>Terms of Use </Text>
+              <Text style={{ color: colors.charcol }}>& </Text>
+              <Text style={{ color: colors.zeptored }}>Privacy Policy</Text>
             </Text>
           </View>
         </ScrollView>
@@ -220,7 +249,7 @@ const Bag = ({navigation}: any) => {
       {bagItems.length > 0 && (
         <CustomButton
           title="Place Order"
-          onPress={() => navigation.navigate('Checkout')}
+          onPress={handlePlaceOrder}
           backgroundColor={colors.zeptored}
           textColor={colors.white}
           textStyle={styles.buttontext}
@@ -240,3 +269,4 @@ const Bag = ({navigation}: any) => {
 };
 
 export default Bag;
+

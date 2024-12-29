@@ -125,15 +125,9 @@ const Details = ({navigation}: any) => {
 
 
       <View style={styles.footer}>
-        <TouchableOpacity onPress={handleAddToWishlist}>
-          <Image
-            source={isInWishlist ? Icons.wishlistselected : Icons.wishlist}
-            style={styles.wishlist}
-          />
-        </TouchableOpacity>
         <CustomButton
-          title="Buy Now"
-          icon={Icons.buynow}
+          title={isInWishlist ? 'Wishlisted' : 'Wishlist'}
+          icon={isInWishlist ? Icons.wishlistselected : Icons.wishlist}
           tintColor={colors.zeptored}
           borderColor={colors.zeptored}
           textColor={colors.zeptored}
@@ -142,6 +136,7 @@ const Details = ({navigation}: any) => {
           style={styles.custombutton}
           textStyle={styles.buttontitle}
           paddingHorizontal={vh(30)}
+          onPress={handleAddToWishlist}
         />
 
         <CustomButton

@@ -8,13 +8,14 @@ import Login from '../screens/login';
 import SignUp from '../screens/signup';
 import Items from '../screens/items';
 import Details from '../screens/details';
-import Bag from '../screens/bag';
+import Bag from '../screens/bag/Bag';
 import Wishlist from '../screens/wishlist';
 import CouponScreen from '../screens/couponScreen';
 import Search from '../screens/search';
 import { ScreenNames } from './screenNames';
 
 import BottomTab from './bottomtab';
+import Address from '../screens/address';
 
 
 
@@ -40,6 +41,7 @@ const RootNavigator = () => {
         <Stack.Screen name={ScreenNames.Bag}  component={Bag}/>
         <Stack.Screen name={ScreenNames.Wishlist}  component={Wishlist}/>
         <Stack.Screen name={ScreenNames.CouponScreen }  component={CouponScreen}/>
+        <Stack.Screen name={ScreenNames.Address }  component={Address}/>
         <Stack.Screen name={ScreenNames.Search }  component={Search}/>
 
         <Stack.Screen

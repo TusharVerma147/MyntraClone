@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
       borderRadius: 30,
       paddingHorizontal: vh(10),
        margin:vh(10),
-       paddingVertical:vh(6),  
+       paddingVertical:vh(6), 
+   
     },
     input: {
       flex: 1,

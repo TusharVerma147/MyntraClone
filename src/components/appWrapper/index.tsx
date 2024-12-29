@@ -22,7 +22,7 @@ const AppWrapper: React.FC<AppWrapperProps> = ({ children, backgroundColor, padd
         }]
       }
     >
-      {/* <StatusBar backgroundColor={colors.white}/> */}
+     
       {children}
     </SafeAreaView>
   );

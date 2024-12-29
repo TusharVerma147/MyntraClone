@@ -68,6 +68,7 @@ const Icons = {
 search: require('./icons/search.png'),
  mic: require('./icons/mic.png'),
  gallery: require('./icons/gallery.png'),
+ coordinate: require('./icons/coordinate.png'),
 };
 const Images = {
   banner1: require('./images/banner1.jpeg'),

@@ -4,6 +4,7 @@ export default {
     screengrey:'#f4f4f4',
     grey: '#555555',
     textGrey: '#5b5b5b',
+    greyish:'#d3d3d3',
     midGrey: '#555555',
     white: '#ffffff',
     charcol:'#36454F',

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   FlatList,
   TouchableOpacity,
   Image,
@@ -21,10 +20,11 @@ import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import { Icons } from '../../assets';
 import CustomButton from '../../components/customButton';
-import QuantityModal from '../../components/quantityModal';
 import styles from './styles';
 import Toast from 'react-native-simple-toast';
+import QuantityModal from './quantityModal';
 import ProgressIndicator from '../../components/progressIndicator';
+import CouponModal from './couponModal';
 
 const Bag = ({ navigation, route }: any) => {
   const dispatch = useDispatch();
@@ -34,17 +34,22 @@ const Bag = ({ navigation, route }: any) => {
   const [itemIdForModal, setItemIdForModal] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [selectedCoupon, setSelectedCoupon] = useState<any>(null); 
+  const [couponModalVisible, setCouponModalVisible] = useState(false);
 
-  useEffect(() => {
-    if (route.params?.selectedCoupon) {
-      const coupon = route.params.selectedCoupon;
+
+
+
+  const handleSelectCoupon = (coupon:any) => {
+    if (coupon && coupon.discount) {
       const discountPercentage = parseFloat(coupon.discount.replace('%', '')) / 100;
-      setSelectedCoupon({
-        ...coupon,
-        discountPercentage,  
-      });
+      setSelectedCoupon({ ...coupon, discountPercentage });
+    } else {
+      setSelectedCoupon(null); 
     }
-  }, [route.params?.selectedCoupon]);
+  };
+  
+  
+  
 
   const renderItem = ({ item }: any) => {
     const isSelected = selectedItems.includes(item.id);
@@ -138,12 +143,9 @@ const Bag = ({ navigation, route }: any) => {
 
   const platformFee = selectedItems.length > 0 ? 20 : 0;
   const shippingFee = 0;
-
-  const couponDiscount = selectedCoupon
+  const couponDiscount = selectedCoupon?.discountPercentage
   ? totalMRP * selectedCoupon.discountPercentage
   : 0;
-
-
   const totalAmount = totalMRP - totalDiscount - couponDiscount + platformFee + shippingFee;
 
   return (
@@ -179,13 +181,18 @@ const Bag = ({ navigation, route }: any) => {
           <View style={styles.couponcontainer}>
             <TouchableOpacity
               style={styles.couponbutton}
-              onPress={() => navigation.navigate('CouponScreen')}>
+              onPress={() => setCouponModalVisible(true)}>
               <Text style={styles.applycoupon}> {selectedCoupon ? 'Coupon Applied' : 'Apply Coupon'}</Text>
               <Text style={styles.viewcoupon}>
   {selectedCoupon ?`${selectedCoupon.code}` : 'View Coupon'}
 </Text>
             </TouchableOpacity>
           </View>
+          <CouponModal
+        visible={couponModalVisible}
+        onClose={() => setCouponModalVisible(false)}
+        onSelectCoupon={handleSelectCoupon}
+      />
 
           <FlatList
             data={bagItems}
@@ -257,7 +264,6 @@ const Bag = ({ navigation, route }: any) => {
           style={styles.button}
         />
       )}
-
       <QuantityModal
         visible={modalVisible}
         selectedQty={selectedQty}

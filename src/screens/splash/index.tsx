@@ -26,7 +26,7 @@ const Splash: React.FC<SplashProps> = ({ navigation }) => {
         if (result === 'true') {
           navigation.replace('BottomTab');
         } else {
-          navigation.replace('BottomTab');
+          navigation.replace('Login');
         }
       } catch (err) {
         console.log(err);

@@ -5,7 +5,7 @@ import {Icons} from '../../assets';
 import colors from '../../theme/colors';
 import {ScreenNames} from '../screenNames';
 import Home from '../../screens/home';
-import Bag from '../../screens/bag/Bag';
+import Bag from '../../screens/bag';
 import Minis from '../../screens/minis';
 import Trends from '../../screens/trends';
 import styles from './styles';

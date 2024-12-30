@@ -135,7 +135,7 @@ const Details = ({navigation}: any) => {
           borderRadius={10}
           style={styles.custombutton}
           textStyle={styles.buttontitle}
-          paddingHorizontal={vh(30)}
+          paddingHorizontal={vh(40)}
           onPress={handleAddToWishlist}
         />
 
@@ -150,7 +150,7 @@ const Details = ({navigation}: any) => {
           borderRadius={10}
           style={styles.custombutton}
           textStyle={styles.buttontitle}
-          paddingHorizontal={vh(30)}
+          paddingHorizontal={vh(40)}
           onPress={handleAddToBag}
         />
       </View>

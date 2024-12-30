@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     alignItems: 'center',
-    marginTop: vh(130), 
+    marginTop: Platform.OS === 'android' ? vh(150):vh(200) 
+
   },
   nearbyPlacesContainer: {
     width: '95%', 
@@ -24,15 +25,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
   nearbyPlaceItem: {
-    paddingVertical: vh(10),
-    paddingHorizontal: vh(20),
+    padding:vh(10),
     borderBottomWidth: 1,
     borderBottomColor: colors.charcol,
     flexDirection: 'row',
   },
   listheader: {
     paddingVertical: vh(10),
-    paddingHorizontal: vh(20),
+    paddingHorizontal: vh(30),
     borderBottomWidth: 1,
     borderBottomColor: colors.charcol,
     flexDirection: 'row',
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     marginLeft: vh(10), 
   },
   clock: {
-    height: vh(25),
-    width: vh(25),
+    height: vh(30),
+    width: vh(30),
     resizeMode: 'contain',
   },
   addressview: {

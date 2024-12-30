@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
       scroll:{
         flexGrow:1
       },
+      splashimg:{height:vh(40), width:vh(42) ,marginHorizontal:vh(20)},
    banner: {
         width: SCREEN_WIDTH,
         height: vh(150),

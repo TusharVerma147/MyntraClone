@@ -139,9 +139,7 @@ const togglePasswordVisibility = () => {
         <ScrollView  contentContainerStyle={styles.scroll}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}>
-      <AppHeader 
-      // rightIcon1={Icons.cross} rightHeight={20} rightWidth={20} 
-      backicon={Icons.splash_img} backWidth={42} backHeight={40}/>
+           <Image source={Icons.splash_img} style={styles.splashimg}/>
       <View style={styles.header}>
               <Image style={styles.banner} source={Images.banner5} />
             </View>

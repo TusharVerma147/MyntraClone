@@ -8,11 +8,11 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import CustomButton from '../../components/customButton';
-import {vh} from '../../theme/dimensions';
+import CustomButton from '../../../components/customButton';
+import { vh } from '../../../theme/dimensions';
+import { Icons } from '../../../assets';
+import { colors } from '../../../theme';
 import styles from './styles';
-import {Icons} from '../../assets';
-import { colors } from '../../theme';
 
 type QuantityModalProps = {
   visible: boolean;
@@ -44,7 +44,7 @@ const QuantityModal: React.FC<QuantityModalProps> = ({
       transparent={true}
       visible={visible}
       onRequestClose={onClose}>
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={onClose}>
         <View style={styles.modalOverlay}>
           <TouchableWithoutFeedback>
             <View style={styles.modalContent}>

@@ -1,7 +1,6 @@
 import {View, Text, TouchableOpacity, Image,Alert, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
 import React, {useState,useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
-import AppHeader from '../../components/appHeader';
 import {colors} from '../../theme';
 import styles from './styles';
 import {Icons, Images} from '../../assets';
@@ -14,6 +13,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-simple-toast';
 
 
+
 type NavigationProps = {
     navigate: (screen: string) => void;
     replace: (screen: string) => void;
@@ -24,13 +24,11 @@ type NavigationProps = {
   }
 
   const SignUp: React.FC<SignUpProps> = ({navigation}) => {
-    const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [emailError, setEmailError] = useState<string | null>(null);
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-    const [nameError, setNameError] = useState<string | null>(null);
 
 
     useEffect(() => {
@@ -42,7 +40,7 @@ type NavigationProps = {
   
       const subscriber = auth().onAuthStateChanged(user => {
         if (user) {
-          // Toast.show('User is  signed in', Toast.SHORT);
+          // // Toast.show('User is  signed in', Toast.SHORT);
           navigation.replace('BottomTab');
         } else {
           // Toast.show('User is not signed in', Toast.SHORT);
@@ -79,18 +77,10 @@ type NavigationProps = {
     const validateSignUp = () => {
       let flag = true;
   
-      if (!name || !email || !password) {
+      if (!email || !password) {
         Alert.alert('Please fill all the fields');
         return;
       }
-  
-      if (name.length < 2) {
-        setNameError('Name must be at least 2 characters long');
-        flag = false;
-      } else {
-        setNameError(null);
-      }
-  
   
       if (!specialCharacterRegex.test(password)) {
         setPasswordError('Password must contain at least one special symbol');
@@ -124,10 +114,6 @@ type NavigationProps = {
       }
     };
 
-
-  
-
-  
   
 
 const togglePasswordVisibility = () => {
@@ -146,24 +132,13 @@ const togglePasswordVisibility = () => {
         <ScrollView  contentContainerStyle={styles.scroll}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}>
-      <AppHeader 
-      // rightIcon1={Icons.cross} rightHeight={20} rightWidth={20} 
-      backicon={Icons.splash_img} backWidth={42} backHeight={40}/>
+      
+      <Image source={Icons.splash_img} style={styles.splashimg}/>
       <View style={styles.header}>
               <Image style={styles.banner} source={Images.banner5} />
             </View>
             <View style={styles.bottom}>
               <Text style={styles.logintext}>Sign Up</Text>
-              <CustomTextInput
-                value={name}
-                onChangeText={text => {
-                  setName(text);
-                  setNameError('');
-                }}
-                placeholder="Name"
-                icon={Icons.user}
-                errorMessage={nameError}
-              />
               <CustomTextInput
                 value={email}
                 onChangeText={text => {

@@ -62,13 +62,16 @@ const AnimatedTextInput: React.FC<AnimatedTextInputProps> = ({
       <TouchableOpacity onPress={gotoSearchPage}>
         <Image source={Icons.search} style={styles.rightIcon} />
       </TouchableOpacity>
+
       <TextInput
         style={styles.input}
         placeholder={currentPlaceholder}
         placeholderTextColor={colors.textinput}
         {...textInputProps}
         onFocus={gotoSearchPage}
+   
       />
+
       <TouchableOpacity onPress={onCameraPress}>
         <Image source={Icons.camera} style={styles.rightIcon} />
       </TouchableOpacity>

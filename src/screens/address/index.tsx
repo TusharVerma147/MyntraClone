@@ -98,7 +98,7 @@ import {
     };
   
     return (
-      <AppWrapper>
+      <AppWrapper >
         <AppHeader
           title="SELECT ADDRESS"
           backicon={Icons.back}

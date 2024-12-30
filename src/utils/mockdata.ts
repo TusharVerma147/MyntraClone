@@ -140,6 +140,30 @@ const shirts = [
     off: '50% OFF!',
      description: 'Stylish checked design in a regular fit. Ideal for both casual and semi-formal occasions, made with breathable fabric.'
   },
+  {
+    id: '7',
+    brand: 'The Bear House',
+    type: 'Slim Fit Casual Shirt',
+    Price: '₹2000',
+    DiscountedPrice: '₹1000',
+    rating: '4.2',
+    reviews: '2.4k',
+    image: Images.shirt2,
+    off: '50% OFF!',
+    description: 'A perfect slim-fit casual shirt for everyday wear, crafted from soft cotton to keep you comfortable throughout the day.'
+  },
+  {
+    id: '8',
+    brand: 'The Bear House',
+    type: 'Slim Fit Casual Shirt',
+    Price: '₹2000',
+    DiscountedPrice: '₹1000',
+    rating: '4.2',
+    reviews: '2.4k',
+    image: Images.shirt3,
+    off: '50% OFF!',
+    description: 'A perfect slim-fit casual shirt for everyday wear, crafted from soft cotton to keep you comfortable throughout the day.'
+  },
 ];
 
 const jeans = [

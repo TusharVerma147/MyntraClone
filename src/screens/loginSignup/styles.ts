@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
     borderColor:colors.zeptored,
-    borderWidth:4
+    borderWidth:4,
+    marginHorizontal:vh(20)
   },
   user:{
     position: 'absolute',

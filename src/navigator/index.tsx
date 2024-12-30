@@ -8,7 +8,7 @@ import Login from '../screens/login';
 import SignUp from '../screens/signup';
 import Items from '../screens/items';
 import Details from '../screens/details';
-import Bag from '../screens/bag/Bag';
+import Bag from '../screens/bag';
 import Wishlist from '../screens/wishlist';
 import CouponScreen from '../screens/couponScreen';
 import Search from '../screens/search';

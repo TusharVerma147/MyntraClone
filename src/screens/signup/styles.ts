@@ -14,9 +14,10 @@ const styles = StyleSheet.create({
       scroll:{
         flexGrow:1
       },
-   banner: {
+      splashimg:{height:vh(40), width:vh(42) ,marginHorizontal:vh(20)},
+      banner: {
         width: SCREEN_WIDTH,
-        height: vh(120),
+        height: vh(150),
         resizeMode:'stretch',
         backgroundColor:'red'
       },

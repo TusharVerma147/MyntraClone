@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     marginHorizontal: vh(20),
   },
   backicon: {height: vh(20), width: vh(20), tintColor: colors.charcol},
-
   photoText:{fontSize: vh(15), marginHorizontal:vh(20), marginTop:vh(30), fontWeight:'500', color:colors.textGrey},
 
 photoSearchContainer: {
@@ -49,10 +48,11 @@ photoSearchContainer: {
   editText:{
     fontSize: vh(16),marginTop:vh(30), fontWeight:'600', color:colors.zeptored
   },
-
-
   searchResultsContainer: {
     marginTop: vh(20),
+    // backgroundColor:'red',
+    // borderWidth:1,
+    paddingHorizontal:vh(20)
   },
   itemResult: {
     flexDirection: 'row',
@@ -65,10 +65,12 @@ photoSearchContainer: {
     height: vh(60),
     width: vh(60),
     marginRight: vh(10),
+    resizeMode:'contain'
   },
   itemText: {
-    fontSize: vh(14),
-    color: colors.black,
+    fontSize: vh(16),
+    color: colors.charcol,
+    fontWeight:'600'
   },
 
   // Styling for "No items found"

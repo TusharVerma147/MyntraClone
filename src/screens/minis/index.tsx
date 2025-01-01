@@ -20,10 +20,6 @@ const Minis: React.FC<{ navigation: any }> = ({ navigation }) => {
       <StatusBar backgroundColor={colors.black}/>
       <Reel navigation={navigation} isScreenFocused={isScreenFocused} />
     </View>
-    // <AppWrapper >
-    //   <AppHeader backgroundColor='black'/>
-    //   <Reel/>
-    // </AppWrapper>
   );
 };
 

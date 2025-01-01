@@ -17,7 +17,7 @@ import {
   removeFromWishlist,
 } from '../../redux/slice/wishListSlice';
 import {addToBag} from '../../redux/slice/bagSlice';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 import {handleAddToWishlist} from '../../utils/common';
 
 interface CategoryItem {

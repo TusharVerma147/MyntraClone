@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 import {Icons, Images} from '../../assets';
 import ImageSlider from '../../components/bannerSlide';
 import styles from './styles';

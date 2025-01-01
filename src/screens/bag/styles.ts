@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {vh, vw, SCREEN_WIDTH} from '../../theme/dimensions';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 
 const styles = StyleSheet.create({
   container: {

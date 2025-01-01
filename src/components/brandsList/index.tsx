@@ -20,7 +20,6 @@ type Item = {
 type NavigationProp = StackNavigationProp<any>;
 type BrandListProps = {
   data: Item[];
-  //   onItemPress?: (item: Item, event: GestureResponderEvent) => void;
 };
 
 const BrandList: React.FC<BrandListProps> = ({data}) => {

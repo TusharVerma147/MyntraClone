@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {View,TextInput, Animated,StyleSheet,Easing,TouchableOpacity, Image,TextInputProps} from 'react-native';
 import {Icons} from '../../assets';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';

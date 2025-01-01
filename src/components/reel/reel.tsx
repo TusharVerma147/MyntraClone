@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import { videoData } from '../../utils/videos';
 import SingleReel from '../singleReel/singleReel';
 
 
 interface ReelProps {
-  navigation: any; // Update with proper type if needed
+  navigation: any; 
   isScreenFocused: boolean;
 }
 const Reel: React.FC<ReelProps> = ({ navigation, isScreenFocused }) => {

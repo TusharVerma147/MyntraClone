@@ -11,9 +11,9 @@ import {
 import React from 'react';
 import AppHeader from '../../components/appHeader';
 import AppWrapper from '../../components/appWrapper';
-import {Icons, Images} from '../../assets';
-import {SCREEN_WIDTH, vh} from '../../theme/dimensions';
-import {colors} from '../../theme';
+import {Icons,} from '../../assets';
+import {vh} from '../../theme/dimensions';
+import { colors } from '../../theme';
 import TrendProducts from '../../components/trendProducts';
 import { PyjamaTrouser } from '../../utils/mockdata';
 import { handleWishlistPress,  } from '../../utils/common';

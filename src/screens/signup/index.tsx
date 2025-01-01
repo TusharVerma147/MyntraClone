@@ -1,15 +1,11 @@
-import {View, Text, TouchableOpacity, Image,Alert, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import {View, Text,Image,Alert, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
 import React, {useState,useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 import styles from './styles';
 import {Icons, Images} from '../../assets';
 import CustomButton from '../../components/customButton';
 import CustomTextInput from '../../components/customTextInput';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import Toast from 'react-native-simple-toast';
 import { CommonActions } from '@react-navigation/native';
 import { validateCredentials } from '../../utils/validations';
 import { handleGoogleSignIn, signUpWithEmailAndPassword, configureGoogleSignIn, onAuthStateChanged } from '../../config/firbaseService';

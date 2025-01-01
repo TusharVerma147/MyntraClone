@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaView, } from 'react-native';
 import styles from './styles';
-import { colors } from '../../theme';
+
 
 interface AppWrapperProps {
   children: ReactNode; 

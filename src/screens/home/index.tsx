@@ -28,7 +28,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import BrandList from '../../components/brandsList';
 import AnimatedTextInput from '../../components/animatedTextInput';
 import SelectPhotoModal from './cameraModal';
-import { handleCameraSelect, handleGallerySelect } from '../../utils/imagePicker';
+import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
 import { handleWishlistPress } from '../../utils/common';
 
 type HomeProps = {
@@ -43,6 +43,14 @@ const Home: React.FC<HomeProps> = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('Fashion');
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const WishlistPress = ()=>{
+    handleWishlistPress(navigation)
+  }
+
+  const handleProfile = ()=>{
+    navigation.navigate('LoginSign')
+  }
 
   const renderCategoryContent = () => {
     switch (selectedCategory) {
@@ -92,10 +100,10 @@ const Home: React.FC<HomeProps> = () => {
         </View>
         <View style={styles.rightview}>
           <Image source={Icons.bell} style={styles.righticon} />
-          <TouchableOpacity onPress={() => handleWishlistPress(navigation)}>
+          <TouchableOpacity onPress={WishlistPress}>
           <Image source={Icons.wishlist} style={styles.righticon} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('LoginSign')}>
+          <TouchableOpacity onPress={handleProfile}>
             <Image source={Icons.userpro} style={styles.righticon} />
           </TouchableOpacity>
         </View>

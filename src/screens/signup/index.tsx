@@ -12,6 +12,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-simple-toast';
 import { CommonActions } from '@react-navigation/native';
 import { validateCredentials } from '../../utils/validations';
+import { handleGoogleSignIn, signUpWithEmailAndPassword, configureGoogleSignIn, onAuthStateChanged } from '../../config/firbaseService';
 
 
 
@@ -23,73 +24,34 @@ import { validateCredentials } from '../../utils/validations';
     const [passwordError, setPasswordError] = useState<string | null>(null);
     const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
-
-    useEffect(() => {
-      GoogleSignin.configure({
-        webClientId:
-          '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
-        offlineAccess: true,
-      });
   
-      const subscriber = auth().onAuthStateChanged(user => {
+    useEffect(() => {
+      configureGoogleSignIn();
+  
+      const subscriber = onAuthStateChanged(user => {
         if (user) {
-          // // Toast.show('User is  signed in', Toast.SHORT);
           navigation.replace('BottomTab');
-        } else {
-          // Toast.show('User is not signed in', Toast.SHORT);
         }
       });
   
       return () => subscriber();
     }, [navigation]);
-  
 
 
-    const onGoogleButtonPress = async () => {
-      try {
-        await GoogleSignin.hasPlayServices();
-        const response = await GoogleSignin.signIn();
-        const idToken = response?.data?.idToken;
-    
-        if (!idToken) {
-          throw new Error('Google sign-in did not return an ID token.');
-        }
-    
-        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-        await auth().signInWithCredential(googleCredential);
-        await AsyncStorage.setItem('key', 'true');
-    
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: 'BottomTab' }],
-          })
-        );
-      } catch (error: any) {
-        Alert.alert('Error signing in: ', error.message);
-      }
-    };
 
-    const handleSignUp = async () => {
-      try {
-        console.log("Signing up user...");
-        await auth().createUserWithEmailAndPassword(email, password);
-        console.log("User signed up successfully");
-    
-        await auth().signOut();
-    
-        console.log("User signed out after signup");
-    
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: 'Login' }],
-          })
-        );
-      } catch (error: any) {
-        console.error("Error during signup: ", error.message);
-        Alert.alert('Error', error.message);
-      }
+    const handleSignUp = () => {
+      signUpWithEmailAndPassword(email, password)
+        .then(() => {
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'Login' }],
+            })
+          );
+        })
+        .catch((error) => {
+          Alert.alert('Error', error.message);
+        });
     };
     
 
@@ -173,7 +135,7 @@ const togglePasswordVisibility = () => {
               <CustomButton
                 icon={Icons.google}
                 title="Sign in with Google"
-                onPress={onGoogleButtonPress}
+                onPress={() => handleGoogleSignIn(navigation)}
                 textStyle={styles.buttontext}
                 borderRadius={50}
                 backgroundColor={colors.white}

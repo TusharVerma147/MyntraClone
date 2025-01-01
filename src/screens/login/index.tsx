@@ -14,6 +14,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-simple-toast';
 import { CommonActions } from '@react-navigation/native';
 import { validateCredentials } from '../../utils/validations';
+import { handleGoogleSignIn, signInWithEmailAndPassword, sendPasswordResetEmail, configureGoogleSignIn, onAuthStateChanged } from '../../config/firbaseService';
 
 
 
@@ -31,20 +32,31 @@ import { validateCredentials } from '../../utils/validations';
     const [resetEmailError, setResetEmailError] = useState<string | null>(null);
 
 
-    useEffect(() => {
-      console.log("Login screen loaded");
-      GoogleSignin.configure({
-        webClientId:
-          '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
-        offlineAccess: true,
-      });
+    // useEffect(() => {
+    //   console.log("Login screen loaded");
+    //   GoogleSignin.configure({
+    //     webClientId:
+    //       '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
+    //     offlineAccess: true,
+    //   });
   
-      const subscriber = auth().onAuthStateChanged(user => {
+    //   const subscriber = auth().onAuthStateChanged(user => {
+    //     if (user) {
+    //       // Toast.show('User is  signed in', Toast.SHORT);
+    //       navigation.replace('BottomTab');
+    //     } else {
+    //       // Toast.show('User is not signed in', Toast.SHORT);
+    //     }
+    //   });
+  
+    //   return () => subscriber();
+    // }, [navigation]);
+    useEffect(() => {
+      configureGoogleSignIn();
+  
+      const subscriber = onAuthStateChanged(user => {
         if (user) {
-          // Toast.show('User is  signed in', Toast.SHORT);
           navigation.replace('BottomTab');
-        } else {
-          // Toast.show('User is not signed in', Toast.SHORT);
         }
       });
   
@@ -53,52 +65,69 @@ import { validateCredentials } from '../../utils/validations';
   
  
 
-    const onGoogleButtonPress = async () => {
-      try {
-        await GoogleSignin.hasPlayServices();
-        const response = await GoogleSignin.signIn();
-        const idToken = response?.data?.idToken;
+    // const onGoogleButtonPress = async () => {
+    //   try {
+    //     await GoogleSignin.hasPlayServices();
+    //     const response = await GoogleSignin.signIn();
+    //     const idToken = response?.data?.idToken;
     
-        if (!idToken) {
-          throw new Error('Google sign-in did not return an ID token.');
-        }
+    //     if (!idToken) {
+    //       throw new Error('Google sign-in did not return an ID token.');
+    //     }
     
-        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-        await auth().signInWithCredential(googleCredential);
-        await AsyncStorage.setItem('key', 'true');
+    //     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    //     await auth().signInWithCredential(googleCredential);
+    //     await AsyncStorage.setItem('key', 'true');
     
-        navigation.dispatch(
-          CommonActions.reset({
-            index: 0,
-            routes: [{ name: 'BottomTab' }],
-          })
-        );
-      } catch (error: any) {
-        Alert.alert('Error signing in: ', error.message);
-      }
-    };
+    //     navigation.dispatch(
+    //       CommonActions.reset({
+    //         index: 0,
+    //         routes: [{ name: 'BottomTab' }],
+    //       })
+    //     );
+    //   } catch (error: any) {
+    //     Alert.alert('Error signing in: ', error.message);
+    //   }
+    // };
   
-      const handleLogin = async () => {
-        try {
-          await auth().signInWithEmailAndPassword(email, password);
-          await AsyncStorage.setItem('key', 'true');
-          Toast.show('User logged in successfully', Toast.SHORT);
+      // const handleLogin = async () => {
+      //   try {
+      //     await auth().signInWithEmailAndPassword(email, password);
+      //     await AsyncStorage.setItem('key', 'true');
+      //     Toast.show('User logged in successfully', Toast.SHORT);
       
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: 'BottomTab' }],
-            })
-          );
-        } catch (error: any) {
-          if (error.code === 'auth/user-not-found') {
-            setEmailError(
-              "Can't find Account. The email that you entered doesn't have an account associated with it."
+      //     navigation.dispatch(
+      //       CommonActions.reset({
+      //         index: 0,
+      //         routes: [{ name: 'BottomTab' }],
+      //       })
+      //     );
+      //   } catch (error: any) {
+      //     if (error.code === 'auth/user-not-found') {
+      //       setEmailError(
+      //         "Can't find Account. The email that you entered doesn't have an account associated with it."
+      //       );
+      //     } else {
+      //       Alert.alert('Error', error.message);
+      //     }
+      //   }
+      // };
+
+
+      const handleLogin = () => {
+        // Implement your validation logic here
+        signInWithEmailAndPassword(email, password)
+          .then(() => {
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'BottomTab' }],
+              })
             );
-          } else {
+          })
+          .catch((error) => {
             Alert.alert('Error', error.message);
-          }
-        }
+          });
       };
 
       const validateLogin = () => {
@@ -114,24 +143,36 @@ import { validateCredentials } from '../../utils/validations';
       };
 
 
-      const handleForgotPassword = async () => {
+      // const handleForgotPassword = async () => {
+      //   if (!resetEmail) {
+      //     setResetEmailError('Please enter your email address');
+      //     return;
+      //   }
+    
+      //   try {
+      //     await auth().sendPasswordResetEmail(resetEmail);
+      //     console.log('Password reset email sent!');
+      //     Toast.show('Password reset email sent!', Toast.SHORT);
+      //     setModalVisible(false);
+      //     setResetEmail('');
+      //   } catch (error: any) {
+      //     console.log('Error sending reset email:', error);
+      //     setResetEmailError('Error sending reset password email');
+      //   }
+      // };
+
+
+      const handleForgotPassword = () => {
         if (!resetEmail) {
           setResetEmailError('Please enter your email address');
           return;
         }
-    
-        try {
-          await auth().sendPasswordResetEmail(resetEmail);
-          console.log('Password reset email sent!');
-          Toast.show('Password reset email sent!', Toast.SHORT);
-          setModalVisible(false);
-          setResetEmail('');
-        } catch (error: any) {
-          console.log('Error sending reset email:', error);
-          setResetEmailError('Error sending reset password email');
-        }
+        sendPasswordResetEmail(resetEmail)
+          .catch((error) => {
+            setResetEmailError(error.message);
+          });
       };
-
+    
 
 const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -204,7 +245,7 @@ const togglePasswordVisibility = () => {
               <CustomButton
                 icon={Icons.google}
                 title="Sign in with Google"
-                onPress={onGoogleButtonPress}
+                onPress={() => handleGoogleSignIn(navigation)}
                 textStyle={styles.buttontext}
                 borderRadius={50}
                 backgroundColor={colors.white}

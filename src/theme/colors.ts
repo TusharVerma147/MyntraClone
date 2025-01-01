@@ -22,5 +22,6 @@ export default {
     aqua:'#00FFFF',
     peri:'#CCCCFF',
     royalblu:'	#4169E1',
+    transparent:'rgba(0, 0, 0, 0.5)',
 
   };

@@ -5,7 +5,7 @@ import { vh } from "../../../theme/dimensions";
 const styles = StyleSheet.create({
     overlay: {
       flex: 1,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      backgroundColor: colors.transparent,
     },
     modalContainer: {
       backgroundColor: colors.white,

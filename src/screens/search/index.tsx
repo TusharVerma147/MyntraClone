@@ -61,7 +61,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { shirts, jeans, shoes, watches, products } from '../../utils/mockdata';
 import styles from './styles';
-import { handleCameraSelect, handleGallerySelect } from '../../utils/imagePicker';
+import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
 
 const Search = () => {
   const navigation = useNavigation<StackNavigationProp<any>>();

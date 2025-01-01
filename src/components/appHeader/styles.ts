@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: vh(5),
     borderRadius: 20,
     top: 0,
-  }
+  },
+  countText:{color: colors.white}
 });
 
 export default styles;

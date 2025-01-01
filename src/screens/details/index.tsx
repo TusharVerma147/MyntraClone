@@ -6,29 +6,43 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import {Icons, Images} from '../../assets';
 import {vh} from '../../theme/dimensions';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 import {useRoute} from '@react-navigation/native';
 import CustomButton from '../../components/customButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {addToBag,} from '../../redux/slice/bagSlice';
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from '../../redux/slice/wishListSlice';
 import styles from './styles';
 import { handleWishlistPress, handleAddToWishlist, handleAddToBag} from '../../utils/common';
+import LocationModal from '../../components/locationModal';
+import { useLocation } from '../../custom/location';
 
 
 const Details = ({navigation}: any) => {
-
+  
   const [isOpened, setIsOpened] = useState(false);
+ 
+  const {
+    address,
+    setAddress,
+    currentLocationAddress,
+    nearbyPlaces,
+    showNearbyPlaces,
+    setShowNearbyPlaces,
+    fetchNearbyPlaces,
+  } = useLocation();
 
+  const handlePlaceSelect = (place: string) => {
+    setAddress(place);
+    setShowNearbyPlaces(false);
+  };
 
+ 
+  
+  
   const handleDescription = () => {
     setIsOpened(!isOpened);
   };
@@ -94,12 +108,20 @@ const Details = ({navigation}: any) => {
 <View style={styles.infoview}>
         <View style={styles.deliveryview}>
           <Image style={styles.location} source={Icons.location}/>
-          <Text style={styles.productDescription} >Deliver to Appinventiv</Text>
+          <Text style={styles.productDescription}>Deliver to {address.split(' ').slice(0, 2).join(' ')}</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity         onPress={fetchNearbyPlaces}>
         <Text style={styles.changeText}>Change</Text>
         </TouchableOpacity>
         </View>
+        <LocationModal
+        visible={showNearbyPlaces}
+        currentLocationAddress={currentLocationAddress}
+        isBottomSheet={true}
+        nearbyPlaces={nearbyPlaces}
+        onSelectPlace={handlePlaceSelect}
+        onClose={() => setShowNearbyPlaces(false)}
+      />
 
         <View style={styles.daysview}>
           <Image style={styles.clock} source={Icons.parcel}/>
@@ -170,7 +192,7 @@ const Details = ({navigation}: any) => {
           style={styles.custombutton}
           textStyle={styles.buttontitle}
           paddingHorizontal={vh(40)}
-          onPress={() => handleAddToBag(item, bagItems, dispatch, navigation)}  // Using the new handler
+          onPress={() => handleAddToBag(item, bagItems, dispatch, navigation)}  
        
         />
       </View>
@@ -180,3 +202,6 @@ const Details = ({navigation}: any) => {
 };
 
 export default Details;
+
+
+

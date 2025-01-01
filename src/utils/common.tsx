@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { addToWishlist, removeFromWishlist,  } from '../redux/slice/wishListSlice';
 import { addToBag } from '../redux/slice/bagSlice';
 
+
+
 export const checkLoginStatus = async (): Promise<boolean> => {
   try {
     const isUserLoggedIn = await AsyncStorage.getItem('key');
@@ -89,5 +91,26 @@ export const navigateIfLoggedIn = async (
       dispatch(addToBag(item));  // Add item to the bag if not already there
     }
   };
-  
+
+ 
+// export  const WishlistPress = ()=>{
+
+//   handleWishlistPress(navigation)
+// }  
+
+export const WishlistPress =  (navigation: NavigationProp<any>) => {
+  // const isLoggedIn = await checkLoginStatus();
+
+  handleWishlistPress(navigation) // Navigate to the search screen
+ 
+};
+
+
+export const handleSearch =  (navigation: NavigationProp<any>) => {
+  // const isLoggedIn = await checkLoginStatus();
+
+    navigation.navigate('Search');  // Navigate to the search screen
+ 
+};
+
 

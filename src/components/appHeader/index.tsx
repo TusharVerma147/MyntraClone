@@ -34,7 +34,7 @@ interface AppHeaderProps {
   titletop?: number;
   onPressRightIcon1?: () => void;
   onPressRightIcon2?: () => void;
-  badgeCount?: number; // New prop for badge count
+  badgeCount?: number; 
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({
@@ -135,7 +135,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
             {badgeCount && (
               <View
                 style={styles.count}>
-                <Text style={{color: colors.white}}>{badgeCount}</Text>
+                <Text style={styles.countText}>{badgeCount}</Text>
               </View>
             )}
           </>

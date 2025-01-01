@@ -10,9 +10,7 @@ import { CommonActions } from '@react-navigation/native';
 import { validateCredentials } from '../../utils/validations';
 import { handleGoogleSignIn, signUpWithEmailAndPassword, configureGoogleSignIn, onAuthStateChanged } from '../../config/firbaseService';
 
-
-
-    const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
+const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
       
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -49,7 +47,6 @@ import { handleGoogleSignIn, signUpWithEmailAndPassword, configureGoogleSignIn, 
           Alert.alert('Error', error.message);
         });
     };
-    
 
     const validateSignUp = () => {
       validateCredentials(
@@ -63,9 +60,6 @@ import { handleGoogleSignIn, signUpWithEmailAndPassword, configureGoogleSignIn, 
       );
     };
     
-    
-  
-
 const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };

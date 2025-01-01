@@ -9,6 +9,7 @@ import CustomTextInput from '../../components/customTextInput';
 import { CommonActions } from '@react-navigation/native';
 import { validateCredentials } from '../../utils/validations';
 import { handleGoogleSignIn, signInWithEmailAndPassword, sendPasswordResetEmail, configureGoogleSignIn, onAuthStateChanged } from '../../config/firbaseService';
+import ResetPassword from './resetModal';
 
 const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
       
@@ -164,61 +165,16 @@ const togglePasswordVisibility = () => {
       </ScrollView>
     </AppWrapper>
     </KeyboardAvoidingView>
-    <Modal
-        animationType="slide"
-        transparent={true}
+  
+        <ResetPassword
         visible={modalVisible}
-        onRequestClose={() => setModalVisible(!modalVisible)}>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            setModalVisible(false);
-            setResetEmailError('');
-          }}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Reset Your Password</Text>
-              <Text style={styles.modalText}>
-                Enter your email and you may receive a link to reset your
-                password.
-              </Text>
-              <CustomTextInput
-                value={resetEmail}
-                onChangeText={text => {
-                  setResetEmail(text);
-                  setResetEmailError('');
-                }}
-                placeholder="Enter your email"
-                // icon={Icons.mail}
-                errorMessage={resetEmailError}
-              />
-              <View style={styles.modalButtons}>
-                <CustomButton
-                  title="Reset"
-                  style={styles.custombutton}
-                  textStyle={{fontWeight: '500'}}
-                  borderRadius={5}
-                  backgroundColor={colors.reddish}
-                  textColor={colors.white}
-                  onPress={handleForgotPassword}
-                 
-                />
-                <CustomButton
-                  title="Cancel"
-                  style={styles.custombutton}
-                  textStyle={{fontWeight: '500'}}
-                  borderRadius={5}
-                  backgroundColor={colors.grey}
-                  textColor={colors.white}
-                  onPress={() => {
-                    setModalVisible(false);
-                    setResetEmailError('');
-                  }}
-                />
-              </View>
-            </View>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+        onClose={() => setModalVisible(false)}
+        resetEmail={resetEmail}
+        setResetEmail={setResetEmail}
+        resetEmailError={resetEmailError}
+        setResetEmailError={setResetEmailError}
+        onResetPassword={handleForgotPassword}
+      />
     </>
   );
 };

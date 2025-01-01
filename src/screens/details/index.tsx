@@ -9,7 +9,7 @@ import {
 import React,{useState} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
-import {Icons} from '../../assets';
+import {Icons, Images} from '../../assets';
 import {vh} from '../../theme/dimensions';
 import {colors} from '../../theme';
 import {useRoute} from '@react-navigation/native';
@@ -21,6 +21,8 @@ import {
   removeFromWishlist,
 } from '../../redux/slice/wishListSlice';
 import styles from './styles';
+import { handleWishlistPress, handleAddToWishlist, handleAddToBag} from '../../utils/common';
+
 
 const Details = ({navigation}: any) => {
 
@@ -44,24 +46,6 @@ const Details = ({navigation}: any) => {
     (wishlistItem: any) => wishlistItem.id === item.id,
   );
 
-  const handleAddToBag = () => {
-    if (isInBag) {
-      //   dispatch(removeFromBag(item.id));
-      navigation.navigate('Bag');
-    } else {
-      dispatch(addToBag(item));
-    }
-  };
-
-
-
-  const handleAddToWishlist = () => {
-    if (isInWishlist) {
-      dispatch(removeFromWishlist(item.id));
-    } else {
-      dispatch(addToWishlist(item));
-    }
-  };
 
   return (
     <AppWrapper backgroundColor={colors.white}>
@@ -81,11 +65,11 @@ const Details = ({navigation}: any) => {
         rightIcon2={Icons.bag}
         titleSize={vh(15)}
         backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
-        onPressRightIcon1={() => navigation.navigate('Wishlist')}
+        onPressRightIcon1={() => handleWishlistPress(navigation)}
         onPressRightIcon2={() => navigation.navigate('Bag')}
       />
 
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent} showsVerticalScrollIndicator={false} bounces={false}>
         <View>
           <Image source={item.image} style={styles.image} />
           <View style={styles.ratingview}>
@@ -107,6 +91,40 @@ const Details = ({navigation}: any) => {
             <Text style={styles.off}>({item.off})</Text>
           </View>
         </View>
+<View style={styles.infoview}>
+        <View style={styles.deliveryview}>
+          <Image style={styles.location} source={Icons.location}/>
+          <Text style={styles.productDescription} >Deliver to Appinventiv</Text>
+        </View>
+        <TouchableOpacity>
+        <Text style={styles.changeText}>Change</Text>
+        </TouchableOpacity>
+        </View>
+
+        <View style={styles.daysview}>
+          <Image style={styles.clock} source={Icons.parcel}/>
+          <Text style={styles.daysText}>Delivery between 7-10 Working days</Text>
+          </View>
+        <View style={styles.infoview}>
+            <View style={styles.iconview}>
+
+               <Image source={Icons.exchange} style={styles.icon} />
+         
+              <Text style={styles.infotext}>14 Day Return & Exchange</Text>
+            </View>
+            <View style={styles.iconview}>
+              <Image source={Icons.pay} style={styles.icon} />
+              <Text style={styles.infotext}>Contactless Delivery</Text>
+            </View>
+            <View style={styles.iconview}>
+              <Image source={Icons.original} style={styles.icon} />
+              <Text style={styles.infotext}>Secure Payments</Text>
+            </View>
+            <View style={styles.iconview}>
+              <Image source={Icons.quality} style={styles.icon} />
+              <Text style={styles.infotext}>Secure Payments</Text>
+            </View>
+        </View>
 
         <TouchableOpacity onPress={handleDescription} style={styles.productview} activeOpacity={0.8}>
           <Text style={styles.producttext}>Product Description</Text>
@@ -119,8 +137,9 @@ const Details = ({navigation}: any) => {
           <View style={styles.desview}>
             <Text style={styles.productDescription}>{item.description}</Text>
           </View>
-        )}
      
+        )}
+          <Image source={Images.fwdpass} style={styles.fwd} />
       </ScrollView>
 
 
@@ -136,7 +155,7 @@ const Details = ({navigation}: any) => {
           style={styles.custombutton}
           textStyle={styles.buttontitle}
           paddingHorizontal={vh(40)}
-          onPress={handleAddToWishlist}
+          onPress={() => handleAddToWishlist(item, wishlistItems, dispatch,)}
         />
 
         <CustomButton
@@ -151,7 +170,8 @@ const Details = ({navigation}: any) => {
           style={styles.custombutton}
           textStyle={styles.buttontitle}
           paddingHorizontal={vh(40)}
-          onPress={handleAddToBag}
+          onPress={() => handleAddToBag(item, bagItems, dispatch, navigation)}  // Using the new handler
+       
         />
       </View>
 

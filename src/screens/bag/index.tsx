@@ -7,6 +7,7 @@ import {
   Image,
   Platform,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -25,6 +26,7 @@ import Toast from 'react-native-simple-toast';
 import QuantityModal from './quantityModal';
 import ProgressIndicator from '../../components/progressIndicator';
 import CouponModal from './couponModal';
+import { handleWishlistPress } from '../../utils/common';
 
 const Bag = ({ navigation, route }: any) => {
   const dispatch = useDispatch();
@@ -150,6 +152,7 @@ const Bag = ({ navigation, route }: any) => {
 
   return (
     <AppWrapper backgroundColor={colors.screengrey}>
+      <StatusBar backgroundColor={colors.screengrey} barStyle={'dark-content'} />
       <AppHeader
         backicon={Icons.back}
         backColor={colors.charcol}
@@ -161,13 +164,14 @@ const Bag = ({ navigation, route }: any) => {
         rightIcon2={Icons.wishlist}
         rightIcon1={Icons.delete}
         titleSize={vh(15)}
-        backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
-        onPressRightIcon2={() => navigation.navigate('Wishlist')}
+        backgroundColor={Platform.OS === 'android' ? colors.screengrey : 'none'}
+        // onPressRightIcon2={() => navigation.navigate('Wishlist')}
+        onPressRightIcon2={() => handleWishlistPress(navigation)}
         onPressRightIcon1={() => {
           dispatch(clearCart());
         }}
       />
-       <ProgressIndicator currentStep={1} totalSteps={3} />
+       
       {bagItems.length === 0 ? (
         <View style={styles.emptyContainer}>
           <Image source={Icons.emptybag} style={styles.emptybag} />
@@ -177,7 +181,9 @@ const Bag = ({ navigation, route }: any) => {
           </Text>
         </View>
       ) : (
+        
         <ScrollView>
+          <ProgressIndicator currentStep={1} totalSteps={3} />
           <View style={styles.couponcontainer}>
             <TouchableOpacity
               style={styles.couponbutton}

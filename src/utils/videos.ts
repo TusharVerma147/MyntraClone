@@ -1,8 +1,9 @@
-import { Images, Icons } from '../assets';
+import { Images, Icons, videos } from '../assets';
 
 export const videoData = [
     {
-        video: 'https://www.w3schools.com/html/mov_bbb.mp4', 
+        // video: 'https://www.w3schools.com/html/mov_bbb.mp4', 
+        video:videos.video1,
         postProfile: Icons.profile,
         title: 'Virat Kohli',
         followers: '785 Followers',
@@ -10,7 +11,8 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+        // video: 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+        video:videos.video2,
         postProfile: Icons.profile,
         title: 'Hritik Roshan',
         followers: '785 Followers',
@@ -18,7 +20,8 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+        // video: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
+        video:videos.video3,
         postProfile: Icons.profile,
         title: 'Virat Kohli',
         followers: '785 Followers',
@@ -26,7 +29,8 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+        // video: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
+        video:videos.video4,
         postProfile: Icons.profile,
         title: 'Rohit Sharma',
         followers: '785 Followers',
@@ -34,7 +38,8 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        // video: 'https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        video:videos.video5,
         postProfile: Icons.profile,
         title: 'Lionel Messi',
         followers: '785 Followers',
@@ -42,15 +47,17 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4',
-        postProfile: Icons.profile,
+        // video: 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4',
+        video:videos.video6,
+        // postProfile: Icons.profile,
         title: 'MS Dhoni',
         followers: '785 Followers',
         likes: '56k',
         isLike: false,
     },
     {
-        video: 'https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4',
+        // video: 'https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4',
+        video:videos.video1,
         postProfile: Icons.profile,
         title: 'Cillian Murphy',
         followers: '785 Followers',
@@ -58,7 +65,8 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://media.w3.org/2010/05/bunny/trailer.mp4',
+        // video: 'https://media.w3.org/2010/05/bunny/trailer.mp4',
+        video:videos.video2,
         postProfile: Icons.profile,
         title: 'Henry Cavill',
         followers: '785 Followers',
@@ -66,7 +74,8 @@ export const videoData = [
         isLike: false,
     },
     {
-        video: 'https://filesamples.com/samples/video/mp4/sample_1280x720.mp4',
+        // video: 'https://filesamples.com/samples/video/mp4/sample_1280x720.mp4',
+        video:videos.video3,
         postProfile: Icons.profile,
         title: 'Sachin Tendulkar',
         followers: '785 Followers',

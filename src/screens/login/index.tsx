@@ -1,29 +1,26 @@
-import {View, Text, TouchableOpacity, Image,Alert, KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, Image,Alert, KeyboardAvoidingView, Platform, ScrollView, Modal, TouchableWithoutFeedback} from 'react-native';
 import React, {useState,useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import {colors} from '../../theme';
+import { vh } from '../../theme/dimensions';
 import styles from './styles';
 import {Icons, Images} from '../../assets';
 import CustomButton from '../../components/customButton';
-import {emailRegex,specialCharacterRegex} from '../../utils/regex';
 import CustomTextInput from '../../components/customTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-simple-toast';
+import { CommonActions } from '@react-navigation/native';
+import { validateCredentials } from '../../utils/validations';
 
 
-type NavigationProps = {
-    navigate: (screen: string) => void;
-    replace: (screen: string) => void;
-  };
+
   
-  interface LoginProps {
-    navigation: NavigationProps;
-  }
 
-  const Login: React.FC<LoginProps> = ({navigation}) => {
+    const Login: React.FC<{ navigation: any }> = ({ navigation }) => {
+      
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [emailError, setEmailError] = useState<string | null>(null);
@@ -35,6 +32,7 @@ type NavigationProps = {
 
 
     useEffect(() => {
+      console.log("Login screen loaded");
       GoogleSignin.configure({
         webClientId:
           '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
@@ -53,72 +51,84 @@ type NavigationProps = {
       return () => subscriber();
     }, [navigation]);
   
+ 
+
     const onGoogleButtonPress = async () => {
       try {
         await GoogleSignin.hasPlayServices();
         const response = await GoogleSignin.signIn();
-        console.log('id token', response);
-  
         const idToken = response?.data?.idToken;
+    
         if (!idToken) {
           throw new Error('Google sign-in did not return an ID token.');
         }
-  
+    
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         await auth().signInWithCredential(googleCredential);
         await AsyncStorage.setItem('key', 'true');
-        Toast.show('User logged in successfully!', Toast.SHORT);
-        navigation.replace('BottomTab');
+    
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'BottomTab' }],
+          })
+        );
       } catch (error: any) {
         Alert.alert('Error signing in: ', error.message);
       }
     };
-
-
-    
-
-    const validateLogin = () => {
-        let flag = true;
-        if (!email || !password) {
-          Alert.alert('Please fill the user credentials');
-          return;
-        }
-    
-    
-        if (!specialCharacterRegex.test(password)) {
-          setPasswordError('Password must contain at least one special symbol');
-          flag = false;
-        } else {
-          setPasswordError(null);
-        }
-    
-        if (!emailRegex.test(email)) {
-          setEmailError('Invalid email address');
-          flag = false;
-        } else {
-          setEmailError(null);
-        }
-    
-        if (flag) {
-          handleLogin();
-        }
-      };
-
+  
       const handleLogin = async () => {
         try {
           await auth().signInWithEmailAndPassword(email, password);
           await AsyncStorage.setItem('key', 'true');
           Toast.show('User logged in successfully', Toast.SHORT);
-          navigation.replace('BottomTab');
+      
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'BottomTab' }],
+            })
+          );
         } catch (error: any) {
           if (error.code === 'auth/user-not-found') {
             setEmailError(
-              "Can't find Account. The email that you entered doesn't have an account associated with it.",
+              "Can't find Account. The email that you entered doesn't have an account associated with it."
             );
           } else {
-            console.log(error.message);
             Alert.alert('Error', error.message);
           }
+        }
+      };
+
+      const validateLogin = () => {
+        validateCredentials(
+          email,
+          password,
+          setEmailError,
+          setPasswordError,
+          () => {},
+          handleLogin,
+          'login'
+        );
+      };
+
+
+      const handleForgotPassword = async () => {
+        if (!resetEmail) {
+          setResetEmailError('Please enter your email address');
+          return;
+        }
+    
+        try {
+          await auth().sendPasswordResetEmail(resetEmail);
+          console.log('Password reset email sent!');
+          Toast.show('Password reset email sent!', Toast.SHORT);
+          setModalVisible(false);
+          setResetEmail('');
+        } catch (error: any) {
+          console.log('Error sending reset email:', error);
+          setResetEmailError('Error sending reset password email');
         }
       };
 
@@ -132,6 +142,7 @@ const togglePasswordVisibility = () => {
 
 
   return (
+    <>
     <KeyboardAvoidingView
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     style={styles.keyboard}>
@@ -214,6 +225,62 @@ const togglePasswordVisibility = () => {
       </ScrollView>
     </AppWrapper>
     </KeyboardAvoidingView>
+    <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(!modalVisible)}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            setModalVisible(false);
+            setResetEmailError('');
+          }}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Reset Your Password</Text>
+              <Text style={styles.modalText}>
+                Enter your email and you may receive a link to reset your
+                password.
+              </Text>
+              <CustomTextInput
+                value={resetEmail}
+                onChangeText={text => {
+                  setResetEmail(text);
+                  setResetEmailError('');
+                }}
+                placeholder="Enter your email"
+                // icon={Icons.mail}
+                errorMessage={resetEmailError}
+              />
+              <View style={styles.modalButtons}>
+                <CustomButton
+                  title="Reset"
+                  style={styles.custombutton}
+                  textStyle={{fontWeight: '500'}}
+                  borderRadius={5}
+                  backgroundColor={colors.reddish}
+                  textColor={colors.white}
+                  onPress={handleForgotPassword}
+                 
+                />
+                <CustomButton
+                  title="Cancel"
+                  style={styles.custombutton}
+                  textStyle={{fontWeight: '500'}}
+                  borderRadius={5}
+                  backgroundColor={colors.grey}
+                  textColor={colors.white}
+                  onPress={() => {
+                    setModalVisible(false);
+                    setResetEmailError('');
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+    </>
   );
 };
 

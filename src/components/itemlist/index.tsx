@@ -1,13 +1,24 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, Image, Text, View, ImageSourcePropType } from 'react-native';
-import { Icons } from '../../assets';
-import { SCREEN_WIDTH, vh } from '../../theme/dimensions';
+import {
+  FlatList,
+  TouchableOpacity,
+  Image,
+  Text,
+  View,
+  ImageSourcePropType,
+} from 'react-native';
+import {Icons} from '../../assets';
+import {SCREEN_WIDTH, vh} from '../../theme/dimensions';
 import styles from './styles';
 import CustomButton from '../customButton';
-import { useDispatch } from 'react-redux';
-import { addToWishlist, removeFromWishlist } from '../../redux/slice/wishListSlice';
-import { addToBag } from '../../redux/slice/bagSlice';  
-import { colors } from '../../theme';
+import {useDispatch} from 'react-redux';
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from '../../redux/slice/wishListSlice';
+import {addToBag} from '../../redux/slice/bagSlice';
+import {colors} from '../../theme';
+import {handleAddToWishlist} from '../../utils/common';
 
 interface CategoryItem {
   id: string;
@@ -31,53 +42,56 @@ interface ItemListProps {
   icon?: ImageSourcePropType;
   showcustombutton?: boolean;
   borderWidth?: number;
-  showcrossicon?:boolean;
+  showcrossicon?: boolean;
 }
 
-const ItemList: React.FC<ItemListProps> = ({ 
-  data, 
-  onPress, 
-  wishlistItems, 
-  numColumns = 2, 
-  showWishlistIcon = false, 
-  showcustombutton = false, 
-  showcrossicon=false,  
-  borderWidth 
+const ItemList: React.FC<ItemListProps> = ({
+  data,
+  onPress,
+  wishlistItems,
+  numColumns = 2,
+  showWishlistIcon = false,
+  showcustombutton = false,
+  showcrossicon = false,
+  borderWidth,
 }) => {
   const dispatch = useDispatch();
 
   const isInWishlist = (item: CategoryItem) => {
-    return wishlistItems.some((wishlistItem: any) => wishlistItem.id === item.id);
-  };
-
-
-  const handleAddToWishlist = (item: CategoryItem) => {
-    if (isInWishlist(item)) {
-      dispatch(removeFromWishlist(item.id));  
-    } else {
-      dispatch(addToWishlist(item));  
-    }
+    return wishlistItems.some(
+      (wishlistItem: any) => wishlistItem.id === item.id,
+    );
   };
 
 
   const handleMoveToBag = (item: CategoryItem) => {
-    dispatch(removeFromWishlist(item.id));  
-    dispatch(addToBag(item));  
+    dispatch(removeFromWishlist(item.id));
+    dispatch(addToBag(item));
   };
 
   const handleCross = (item: CategoryItem) => {
-    dispatch(removeFromWishlist(item.id));  
+    dispatch(removeFromWishlist(item.id));
   };
 
-  const renderItem = ({ item }: { item: CategoryItem }) => (
-    <View style={[styles.itemContainer, borderWidth !== undefined && { borderWidth }]}>
-      <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(item)}>
+  const renderItem = ({item}: {item: CategoryItem}) => (
+    <View
+      style={[
+        styles.itemContainer,
+        borderWidth !== undefined && {borderWidth},
+      ]}>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(item)} style={{ width: SCREEN_WIDTH*0.47}}>
         <View>
-          <Image source={item.image} style={styles.image} />
+          <Image
+            source={item.image}
+            style={styles.image}
+            resizeMode="contain"
+          />
           {showcrossicon && (
-          <TouchableOpacity  style={styles.crossview} onPress={() => handleCross(item)}>
-          <Image source={Icons.cross} style={styles.cross}/>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.crossview}
+              onPress={() => handleCross(item)}>
+              <Image source={Icons.cross} style={styles.cross} />
+            </TouchableOpacity>
           )}
           <View style={styles.ratingview}>
             <Text>
@@ -89,8 +103,16 @@ const ItemList: React.FC<ItemListProps> = ({
         <View style={styles.brandview}>
           <Text style={styles.name}>{item.brand}</Text>
           {showWishlistIcon && (
-            <TouchableOpacity onPress={() => handleAddToWishlist(item)}>
-              <Image source={isInWishlist(item) ? Icons.wishlistselected : Icons.wishlist} style={styles.wishlist} />
+            <TouchableOpacity
+              onPress={() =>
+                handleAddToWishlist(item, wishlistItems, dispatch)
+              }>
+              <Image
+                source={
+                  isInWishlist(item) ? Icons.wishlistselected : Icons.wishlist
+                }
+                style={styles.wishlist}
+              />
             </TouchableOpacity>
           )}
         </View>
@@ -106,7 +128,7 @@ const ItemList: React.FC<ItemListProps> = ({
       {showcustombutton && (
         <CustomButton
           title="Move to Bag"
-          onPress={() => handleMoveToBag(item)} 
+          onPress={() => handleMoveToBag(item)}
           borderWidth={1}
           borderColor={colors.platinum}
           borderRadius={5}
@@ -122,9 +144,10 @@ const ItemList: React.FC<ItemListProps> = ({
     <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id}
+      keyExtractor={item => item.id}
       numColumns={numColumns}
       columnWrapperStyle={styles.row}
+      showsVerticalScrollIndicator={false}
     />
   );
 };

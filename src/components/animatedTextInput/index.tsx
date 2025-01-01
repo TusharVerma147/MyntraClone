@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {View,TextInput, Animated,StyleSheet,Easing,TouchableOpacity, Image,TextInputProps} from 'react-native';
 import {Icons} from '../../assets';
 import {colors} from '../../theme';
@@ -29,6 +29,8 @@ const AnimatedTextInput: React.FC<AnimatedTextInputProps> = ({
   const [index, setIndex] = useState<number>(0);
   const fadeAnim = new Animated.Value(1);
   const navigation = useNavigation<StackNavigationProp<any>>();
+
+  
 
   const changePlaceholder = () => {
     Animated.timing(fadeAnim, {

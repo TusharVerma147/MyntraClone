@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     paddingVertical: vh(10),
     paddingLeft: vh(10),
     justifyContent: 'space-between',
+    alignItems: 'center'
   },
   row: {flexDirection: 'row'},
   myntraview: {

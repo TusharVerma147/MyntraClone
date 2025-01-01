@@ -40,6 +40,14 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: colors.textGrey,
   },
+  count:{
+    position: 'absolute',
+    right: 0,
+    backgroundColor: colors.zeptored,
+    paddingHorizontal: vh(5),
+    borderRadius: 20,
+    top: 0,
+  }
 });
 
 export default styles;

@@ -20,6 +20,7 @@ const Icons = {
   google: require('./icons/gicon.png'),
   mail: require('./icons/mail.png'),
   pass: require('./icons/pass.png'),
+  parcel: require('./icons/parcel.png'),
   play: require('./icons/play.png'),
   hash: require('./icons/hastag.png'),
   bottom: require('./icons/bottom.png'),
@@ -69,6 +70,11 @@ search: require('./icons/search.png'),
  mic: require('./icons/mic.png'),
  gallery: require('./icons/gallery.png'),
  coordinate: require('./icons/coordinate.png'),
+ exchange: require('./icons/exchange.png'),
+ pay : require('./icons/pay.png'),
+quality: require('./icons/quality.png'),
+location: require('./icons/location.png'),
+
 };
 const Images = {
   banner1: require('./images/banner1.jpeg'),
@@ -131,6 +137,19 @@ const Images = {
 loreal: require('./images/loreal.png'),
 purifier: require('./images/purifier.png'),
   newbanner: require('./images/newbanner.jpeg'),
+ jogger: require('./images/jogger.jpeg'),
+ fwdpass: require('./images/fwdpass.jpeg'),
 };
 
-export {Icons, Images};
+
+const videos = {
+  video1: require('./videos/Video1.mp4'),
+  video2: require('./videos/Video2.mp4'),
+  video3: require('./videos/Video3.mp4'),
+  video4: require('./videos/Video4.mp4'),
+  video5: require('./videos/Video5.mp4'),
+  video6: require('./videos/Video6.mp4'),
+
+}
+
+export {Icons, Images, videos};

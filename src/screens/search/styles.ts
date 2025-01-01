@@ -59,13 +59,13 @@ photoSearchContainer: {
     alignItems: 'center',
     paddingVertical: vh(10),
     borderBottomWidth: 1,
-    borderColor: colors.textGrey,
+    borderColor: colors.platinum,
   },
   itemImage: {
     height: vh(60),
     width: vh(60),
     marginRight: vh(10),
-    resizeMode:'contain'
+    resizeMode:'contain',
   },
   itemText: {
     fontSize: vh(16),
@@ -73,7 +73,7 @@ photoSearchContainer: {
     fontWeight:'600'
   },
 
-  // Styling for "No items found"
+
   noItemsFoundContainer: {
     marginTop: vh(20),
     justifyContent: 'center',

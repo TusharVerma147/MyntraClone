@@ -404,7 +404,7 @@ const products = [
     off: '30% OFF!',
     description: 'Classic Skybags backpack with a modern twist. Ideal for daily use with ample storage space.'
   },
-  // Tops
+
   {
     id: '42',
     brand: 'Zara',
@@ -417,7 +417,7 @@ const products = [
     off: '20% OFF!',
     description: 'A casual cotton top perfect for a relaxed look. Soft and breathable fabric for comfort all day long.'
   },
-  // Saree
+
   {
     id: '43',
     brand: 'Sabyasachi',
@@ -430,7 +430,7 @@ const products = [
     off: '20% OFF!',
     description: 'Elegant handwoven silk saree with intricate designs. Ideal for weddings and formal events.'
   },
-  // Jacket
+
   {
     id: '44',
     brand: 'Levi\'s',
@@ -579,9 +579,77 @@ const products = [
   }
 ];
 
+const PyjamaTrouser =[
+  
+  {
+    id: '56',
+    brand: 'Bosch',
+    type: 'Food Processor',
+    Price: '₹10000',
+    DiscountedPrice: '₹8000',
+    rating: '4.4',
+    reviews: '3.8k',
+    image: Images.jogger,
+    off: '20% OFF!',
+    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+  },
+
+  {
+    id: '57',
+    brand: 'Bosch',
+    type: 'Food Processor',
+    Price: '₹10000',
+    DiscountedPrice: '₹8000',
+    rating: '4.4',
+    reviews: '3.8k',
+    image: Images.jogger,
+    off: '20% OFF!',
+    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+  },
+  {
+    id: '58',
+    brand: 'Bosch',
+    type: 'Food Processor',
+    Price: '₹10000',
+    DiscountedPrice: '₹8000',
+    rating: '4.4',
+    reviews: '3.8k',
+    image: Images.jogger,
+    off: '20% OFF!',
+    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+  },
+  {
+    id: '59',
+    brand: 'Bosch',
+    type: 'Food Processor',
+    Price: '₹10000',
+    DiscountedPrice: '₹8000',
+    rating: '4.4',
+    reviews: '3.8k',
+    image: Images.jogger,
+    off: '20% OFF!',
+    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+  },
+  {
+    id: '50',
+    brand: 'Bosch',
+    type: 'Food Processor',
+    Price: '₹10000',
+    DiscountedPrice: '₹8000',
+    rating: '4.4',
+    reviews: '3.8k',
+    image: Images.jogger,
+    off: '20% OFF!',
+    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+  }
+
+
+
+]
 
 
 
 
 
-export {fashion, beauty, home,fashionlist, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products}
+
+export {fashion, beauty, home,fashionlist, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products, PyjamaTrouser}

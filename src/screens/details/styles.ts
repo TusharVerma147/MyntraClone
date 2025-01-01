@@ -72,13 +72,8 @@ const styles = StyleSheet.create({
   
   
     footer: {
-      // position: 'absolute',
-      // left: 0,
-      // right: 0,
-      // bottom:0,
       backgroundColor: colors.white,
       alignItems:'center',
-      // backgroundColor:'red',
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       paddingVertical: vh(10),
@@ -110,7 +105,7 @@ const styles = StyleSheet.create({
       fontWeight: '700',
     },
     scrollViewContent: {
-      paddingBottom: vh(100), 
+      paddingBottom: vh(10), 
     },
     wishlist:{height: vh(25), width: vh(25), tintColor:colors.zeptored},
 
@@ -138,7 +133,7 @@ const styles = StyleSheet.create({
     productDescription: {
       color:colors.textGrey,
       fontSize: vh(15),
-      fontWeight: '300',
+      fontWeight: '400',
       letterSpacing:0.5
     
     },
@@ -146,6 +141,61 @@ const styles = StyleSheet.create({
       height: vh(20),  
       width: vh(20),
     },
+    deliveryview:{flexDirection:'row', alignItems:'center'},
+    location:{width:vh(20),height:vh(20), tintColor:colors.textGrey},
+    changeText:{color:colors.zeptored, fontWeight:'600'},
+    addresText:{
+
+    },
+     daysview: {
+      flexDirection: 'row',
+      backgroundColor:colors.palepurple,
+      paddingHorizontal: vh(10),
+      paddingVertical:vh(5),
+      marginVertical:vh(5),
+      marginHorizontal:vh(10),
+      borderRadius:8,
+      alignItems:'center'
+    },
+    daysText:{
+    fontWeight:'500',
+    color:colors.black,
+    marginHorizontal:vh(5)
+    },
+    infoview: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      padding: vh(20),
+    },
+    iconview: {
+      alignItems: 'center',
+      maxWidth: '20%', 
+    },
+    icon: {
+      height: vh(40),
+      width: vh(40),
+      // tintColor: colors.zeptored,
+     backgroundColor:colors.palepurple,
+     padding:vh(3),
+     borderRadius:8
+    },
+    infotext: {
+      fontSize: vh(10),
+      textAlign: 'center',  
+      flexWrap: 'wrap',     
+      lineHeight: vh(14),   
+    },
+    fwd:{
+      width: SCREEN_WIDTH - 20,
+      backgroundColor: 'blue',
+      resizeMode: 'stretch',
+      height: vh(100),
+      alignSelf: 'center',
+      borderRadius: 20,
+      marginVertical: vh(15),
+    }
+    
+
   });
 
   export default styles;

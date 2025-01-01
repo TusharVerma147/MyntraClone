@@ -9,29 +9,29 @@ const styles = StyleSheet.create({
       marginBottom: 10,
     },
     itemContainer: {
-      marginHorizontal: vh(5),
-      paddingHorizontal: vh(3),
+      marginHorizontal: SCREEN_WIDTH*0.015,
       borderRadius: 5,
     },
     image: {
-      width: SCREEN_WIDTH / 2.2,
-      height: vh(230),
+      width: SCREEN_WIDTH* 0.47,
+      height: vh(220),
       borderRadius: 5,
-      resizeMode: 'contain',
       backgroundColor: colors.platinum,
     },
-    brandview:{flexDirection:'row', alignItems:'center',justifyContent:'space-between'},
+    brandview:{flexDirection:'row', alignItems:'center',justifyContent:'space-between',paddingHorizontal:vh(5)},
     name: {
       marginTop: vh(5),
       fontWeight: '700',
       color: colors.charcol,
       fontSize: vh(15),
+
     },
     type: {
       color: colors.grey,
       fontSize: vh(12),
+      paddingHorizontal:vh(5)
     },
-      priceview:{flexDirection: 'row'},
+      priceview:{flexDirection: 'row',paddingHorizontal:vh(5)},
     price: {
       color: colors.grey,
       textDecorationLine: 'line-through',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
       color: colors.charcol,
       fontSize: vh(12),
       fontWeight: '700',
-      marginHorizontal: vh(5),
+      paddingLeft:vh(5)
     },
     off:{
       color:colors.zeptored,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
       flexDirection:'row', position:'absolute', bottom:vh(5), left:vw(5), borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, gap:5
     },
     crossview:{
-       position:'absolute', bottom:vh(205), left:vw(145), borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, borderColor:colors.textGrey
+       position:'absolute', bottom:vh(205), left:vw(142), borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, borderColor:colors.textGrey
     },
     star:{height:vh(10), width:vh(10), tintColor:colors.green},
     reviewtext:{

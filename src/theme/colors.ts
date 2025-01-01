@@ -17,6 +17,10 @@ export default {
     crown:'#bf9647',
     crown1:'#ffbf00',
     backyellow:'#ffecc7',
-    textinput:'#999'
+    textinput:'#999',
+    palepurple:'#cbc3e3',
+    aqua:'#00FFFF',
+    peri:'#CCCCFF',
+    royalblu:'	#4169E1',
 
   };

@@ -3696,6 +3696,7 @@ __metadata:
     prettier: 2.8.8
     react: 18.3.1
     react-native: 0.76.5
+    react-native-image-crop-picker: ^0.41.6
     react-native-reanimated: ^3.16.5
     react-native-safe-area-context: ^5.0.0
     react-native-screens: ^4.3.0
@@ -8928,6 +8929,15 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-native-image-crop-picker@npm:^0.41.6":
+  version: 0.41.6
+  resolution: "react-native-image-crop-picker@npm:0.41.6"
+  peerDependencies:
+    react-native: ">=0.40.0"
+  checksum: 6e4ef44e9e74311f91ef783dd52105964cbe60ab1b0d6a48a7029f8faffed25451cfd62b3526ffa99d4e00feaeae473175d237f6bfb063f21691d5983ef78567
   languageName: node
   linkType: hard
 

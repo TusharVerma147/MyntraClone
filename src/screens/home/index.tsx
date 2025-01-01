@@ -27,6 +27,9 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import BrandList from '../../components/brandsList';
 import AnimatedTextInput from '../../components/animatedTextInput';
+import SelectPhotoModal from './cameraModal';
+import { handleCameraSelect, handleGallerySelect } from '../../utils/imagePicker';
+import { handleWishlistPress } from '../../utils/common';
 
 type HomeProps = {
   navigation: {
@@ -39,6 +42,7 @@ const Home: React.FC<HomeProps> = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const [selectedCategory, setSelectedCategory] = useState('Fashion');
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const renderCategoryContent = () => {
     switch (selectedCategory) {
@@ -70,7 +74,7 @@ const Home: React.FC<HomeProps> = () => {
   const {categoryList, bannerImage} = renderCategoryContent();
   return (
     <AppWrapper backgroundColor={colors.white}>
-      <StatusBar backgroundColor={colors.white} />
+      <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
       <View style={styles.header}>
         <View style={styles.row}>
           <View style={styles.myntraview}>
@@ -88,13 +92,23 @@ const Home: React.FC<HomeProps> = () => {
         </View>
         <View style={styles.rightview}>
           <Image source={Icons.bell} style={styles.righticon} />
+          <TouchableOpacity onPress={() => handleWishlistPress(navigation)}>
           <Image source={Icons.wishlist} style={styles.righticon} />
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('LoginSign')}>
             <Image source={Icons.userpro} style={styles.righticon} />
           </TouchableOpacity>
         </View>
       </View>
-      <AnimatedTextInput />
+      <AnimatedTextInput onCameraPress={() => setIsModalVisible(true)} />
+
+<SelectPhotoModal
+  isVisible={isModalVisible}
+  onClose={() => setIsModalVisible(false)}
+  onCameraSelect={handleCameraSelect}
+  onGallerySelect={handleGallerySelect}
+
+/>
       <View style={styles.category}>
         <CategoryCard
           text="Fashion"

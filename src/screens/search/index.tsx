@@ -51,7 +51,7 @@
 
 
 
-import { View, Text, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, FlatList, StatusBar } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import AppWrapper from '../../components/appWrapper';
 import { Icons } from '../../assets';
@@ -61,6 +61,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { shirts, jeans, shoes, watches, products } from '../../utils/mockdata';
 import styles from './styles';
+import { handleCameraSelect, handleGallerySelect } from '../../utils/imagePicker';
 
 const Search = () => {
   const navigation = useNavigation<StackNavigationProp<any>>();
@@ -97,8 +98,9 @@ const Search = () => {
 
   return (
     <AppWrapper>
+      <StatusBar backgroundColor={colors.screengrey} barStyle={'dark-content'}/>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate('BottomTab',{screen: 'Home'})}>
           <Image style={styles.backicon} source={Icons.back} />
         </TouchableOpacity>
         <TextInput
@@ -145,11 +147,11 @@ const Search = () => {
         <>
           <Text style={styles.photoText}>PHOTO SEARCH</Text>
           <View style={styles.photoSearchContainer}>
-            <TouchableOpacity activeOpacity={0.8} style={[styles.photoButton, styles.photoButtonLeft]}>
+            <TouchableOpacity activeOpacity={0.8} style={[styles.photoButton, styles.photoButtonLeft]} onPress={handleCameraSelect}>
               <Image style={styles.backicon} source={Icons.camera} />
               <Text style={styles.buttonText}>Click a photo</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.photoButton} activeOpacity={0.8}>
+            <TouchableOpacity style={styles.photoButton} activeOpacity={0.8} onPress={handleGallerySelect}>
               <Image style={styles.backicon} source={Icons.gallery} />
               <Text style={styles.buttonText}>Select a photo</Text>
             </TouchableOpacity>

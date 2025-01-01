@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../theme';
-import {vh, vw, SCREEN_HEIGHT, SCREEN_WIDTH} from '../../theme/dimensions';
+import {vh, SCREEN_WIDTH} from '../../theme/dimensions';
 
 const styles = StyleSheet.create({
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
       },
       modalContent: {
         width: '80%',
-        backgroundColor: colors.grey,
+        backgroundColor: colors.screengrey,
         borderRadius: 10,
         paddingHorizontal: 20,
         height: SCREEN_WIDTH/ 1.2,
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
       },
       custombutton:{
-        marginTop:5
+        marginTop:5,
+        padding:vh(10)
       },
       modalText: {
         fontSize: 15,

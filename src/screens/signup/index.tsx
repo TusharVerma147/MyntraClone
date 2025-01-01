@@ -5,25 +5,18 @@ import {colors} from '../../theme';
 import styles from './styles';
 import {Icons, Images} from '../../assets';
 import CustomButton from '../../components/customButton';
-import {emailRegex,specialCharacterRegex} from '../../utils/regex';
 import CustomTextInput from '../../components/customTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import Toast from 'react-native-simple-toast';
+import { CommonActions } from '@react-navigation/native';
+import { validateCredentials } from '../../utils/validations';
 
 
 
-type NavigationProps = {
-    navigate: (screen: string) => void;
-    replace: (screen: string) => void;
-  };
-  
-  interface SignUpProps {
-    navigation: NavigationProps;
-  }
-
-  const SignUp: React.FC<SignUpProps> = ({navigation}) => {
+    const SignUp: React.FC<{ navigation: any }> = ({ navigation }) => {
+      
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [emailError, setEmailError] = useState<string | null>(null);
@@ -50,70 +43,69 @@ type NavigationProps = {
       return () => subscriber();
     }, [navigation]);
   
+
+
     const onGoogleButtonPress = async () => {
       try {
         await GoogleSignin.hasPlayServices();
         const response = await GoogleSignin.signIn();
-        console.log('id token', response);
-  
         const idToken = response?.data?.idToken;
+    
         if (!idToken) {
           throw new Error('Google sign-in did not return an ID token.');
         }
-  
+    
         const googleCredential = auth.GoogleAuthProvider.credential(idToken);
         await auth().signInWithCredential(googleCredential);
         await AsyncStorage.setItem('key', 'true');
-        Toast.show('User logged in successfully!', Toast.SHORT);
-        navigation.replace('BottomTab');
+    
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'BottomTab' }],
+          })
+        );
       } catch (error: any) {
         Alert.alert('Error signing in: ', error.message);
       }
     };
 
-   
-
-
-    const validateSignUp = () => {
-      let flag = true;
-  
-      if (!email || !password) {
-        Alert.alert('Please fill all the fields');
-        return;
-      }
-  
-      if (!specialCharacterRegex.test(password)) {
-        setPasswordError('Password must contain at least one special symbol');
-        flag = false;
-      } else {
-        setPasswordError(null);
-      }
-  
-      if (!emailRegex.test(email)) {
-        setEmailError('Invalid email address');
-        flag = false;
-      } else {
-        setEmailError(null);
-      }
-  
-      if (flag) {
-        handleSignUp();
-      }
-    };
-
     const handleSignUp = async () => {
       try {
-        const userCredential = await auth().createUserWithEmailAndPassword(
-          email,
-          password,
+        console.log("Signing up user...");
+        await auth().createUserWithEmailAndPassword(email, password);
+        console.log("User signed up successfully");
+    
+        await auth().signOut();
+    
+        console.log("User signed out after signup");
+    
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+          })
         );
-        Toast.show('User Registered successfully!', Toast.SHORT);
-        navigation.navigate('Login');
       } catch (error: any) {
+        console.error("Error during signup: ", error.message);
         Alert.alert('Error', error.message);
       }
     };
+    
 
+    const validateSignUp = () => {
+      validateCredentials(
+        email,
+        password,
+        setEmailError,
+        setPasswordError,
+        handleSignUp,
+        () => {},
+        'signUp'
+      );
+    };
+    
+    
   
 
 const togglePasswordVisibility = () => {

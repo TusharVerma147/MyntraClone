@@ -219,6 +219,9 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import ItemList from '../../components/itemlist';
+import { handleWishlistPress } from '../../utils/common';
+import { VELOCITY_EPS } from 'react-native-reanimated/lib/typescript/animation/decay/utils';
+import { View } from 'react-native';
 
 type NavigationProp = StackNavigationProp<any>;
 
@@ -272,6 +275,9 @@ const Items = () => {
       categoryData = products; 
     }
   }
+const goToWishlisht = () =>{
+ handleWishlistPress(navigation)
+}
 
   const gotoDetail = (item: CategoryItem) => {
     console.log('item--->', item);
@@ -279,7 +285,9 @@ const Items = () => {
   };
 
   return (
+   
     <AppWrapper backgroundColor={colors.white}>
+     
       <AppHeader
         backicon={Icons.back}
         backColor={colors.charcol}
@@ -296,7 +304,7 @@ const Items = () => {
         rightIcon2={Icons.bag}
         titleSize={vh(15)}
         subtitle={`${categoryData.length} items`}
-        onPressRightIcon1={() => navigation.navigate('Wishlist')}
+        onPressRightIcon1={goToWishlisht}
         onPressRightIcon2={() => navigation.navigate('Bag')}
       />
 
@@ -306,7 +314,10 @@ const Items = () => {
         showWishlistIcon={true}
         wishlistItems={wishlistItems}
       />
+
     </AppWrapper>
+ 
+  
   );
 };
 

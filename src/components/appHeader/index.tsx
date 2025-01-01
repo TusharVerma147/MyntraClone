@@ -32,8 +32,9 @@ interface AppHeaderProps {
   rightWidth?: number;
   rightHeight?: number;
   titletop?: number;
-  onPressRightIcon1?: () => void; 
-  onPressRightIcon2?: () => void; 
+  onPressRightIcon1?: () => void;
+  onPressRightIcon2?: () => void;
+  badgeCount?: number; // New prop for badge count
 }
 
 const AppHeader: React.FC<AppHeaderProps> = ({
@@ -59,6 +60,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   rightWidth = vh(25),
   onPressRightIcon1,
   onPressRightIcon2,
+  badgeCount, 
 }) => {
   const navigation = useNavigation();
 
@@ -121,14 +123,22 @@ const AppHeader: React.FC<AppHeaderProps> = ({
           </TouchableOpacity>
         )}
         {rightIcon2 && (
-          <TouchableOpacity
-            style={[styles.rightIcon]}
-            onPress={onPressRightIcon2}>
-            <Image
-              source={rightIcon2}
-              style={[styles.icon, {height: rightHeight, width: rightWidth}]}
-            />
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity
+              style={[styles.rightIcon]}
+              onPress={onPressRightIcon2}>
+              <Image
+                source={rightIcon2}
+                style={[styles.icon, {height: rightHeight, width: rightWidth}]}
+              />
+            </TouchableOpacity>
+            {badgeCount && (
+              <View
+                style={styles.count}>
+                <Text style={{color: colors.white}}>{badgeCount}</Text>
+              </View>
+            )}
+          </>
         )}
       </View>
     </View>

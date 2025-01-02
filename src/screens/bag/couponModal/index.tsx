@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Modal,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import {View,Text,FlatList,Modal,TouchableWithoutFeedback, } from 'react-native';
 import { colors } from '../../../theme';
 import CustomButton from '../../../components/customButton';
 import styles from './styles';

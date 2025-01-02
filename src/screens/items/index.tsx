@@ -4,7 +4,7 @@ import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import { Icons } from '../../assets';
 import { colors } from '../../theme';
-import { shirts, jeans, shoes, watches, products } from '../../utils/mockdata';
+import { shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser } from '../../utils/mockdata';
 import { vh } from '../../theme/dimensions';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -36,13 +36,17 @@ const Items = () => {
   const wishlistItems = useSelector((state: any) => state.wishlist.items);
   console.log('--wishlist', wishlistItems);
 
+  const bagItems = useSelector((state: any) => state.bag.items);
+
+  const totalQuantity = bagItems.reduce((total: number, item: any) => total + item.quantity, 0);
+
   let categoryData: any = [];
 
-  const predefinedCategories = ['jeans', 'shoes', 'shirts', 'watches', 'products'];
+  const preCategories = ['jeans', 'shoes', 'shirts', 'watches', 'products','OversizedHoodies','RelaxedFitJeans', 'SloganTees', 'PyjamaTrouser '];
 
   if (categoryTitle.toLowerCase() === 'products') {
     categoryData = products; 
-  } else if (predefinedCategories.includes(categoryTitle.toLowerCase())) {
+  } else if (preCategories.includes(categoryTitle.toLowerCase())) {
     const newCategoryTitle = categoryTitle.toLowerCase();
   
     if (newCategoryTitle === 'jeans') {
@@ -57,7 +61,7 @@ const Items = () => {
   } else {
     
     if (categoryTitle && categoryTitle.trim().length > 0) {
-      categoryData = [...shirts, ...jeans, ...shoes, ...watches, ...products].filter((item) =>
+      categoryData = [...shirts, ...jeans, ...shoes, ...watches, ...products, ...OversizedHoodies,...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser].filter((item) =>
         item.brand.toLowerCase().includes(categoryTitle.toLowerCase()) ||
         item.type.toLowerCase().includes(categoryTitle.toLowerCase())
       );
@@ -96,6 +100,7 @@ const goToWishlisht = () =>{
         subtitle={`${categoryData.length} items`}
         onPressRightIcon1={goToWishlisht}
         onPressRightIcon2={() => navigation.navigate('Bag')}
+        badgeCount={totalQuantity > 0 ? totalQuantity : undefined} 
       />
 
       <ItemList

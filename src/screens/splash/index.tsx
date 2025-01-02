@@ -15,13 +15,9 @@ interface SplashProps {
   };
 }
 
-const Splash: React.FC<SplashProps> = ({ navigation }) => {
+const Splash= ({ navigation }:any) => {
   const opacity = useSharedValue(1); 
   const scale = useSharedValue(1);   
-
-  
- 
-
 
   useEffect(() => {
     const checkFirstLaunch = async () => {
@@ -52,7 +48,6 @@ const Splash: React.FC<SplashProps> = ({ navigation }) => {
     return () => clearTimeout(timer); 
   }, [navigation, opacity, scale]);
 
- 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value, 

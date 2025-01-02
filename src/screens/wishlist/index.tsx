@@ -7,7 +7,7 @@ import { vh } from '../../theme/dimensions';
 import { colors } from '../../theme';
 import { useSelector } from 'react-redux';
 import ItemList from '../../components/itemlist';  
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import styles from './styles';
 import CustomButton from '../../components/customButton';
@@ -33,12 +33,32 @@ interface CategoryItem {
 
 const Wishlist = () => {
 
-    const navigation = useNavigation<NavigationProp>();
-  
+  const navigation = useNavigation<NavigationProp>();
+
   const wishlistItems = useSelector((state: any) => state.wishlist.items);
+
+  const bagItems = useSelector((state: any) => state.bag.items);
+
+  const totalQuantity = bagItems.reduce((total: number, item: any) => total + item.quantity, 0);
+
+
   const gotoDetail = (item: CategoryItem) => {
     navigation.navigate('Details', { item });
   };
+
+  const handleShopNow = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
+      })
+    );
+  };
+
+  const handleBag = () =>{
+    navigation.navigate('Bag')
+  }
+
   const wishlistCount = wishlistItems.length;
 
   return (
@@ -51,10 +71,11 @@ const Wishlist = () => {
         marginLeft={10}
         title="Wishlist"
         titleColor={colors.charcol}
-        rightIcon2={Icons.bag}
+        rightIcon2={wishlistItems.length === 0 ? null : Icons.bag}
         titleSize={vh(15)}
         subtitle={`${wishlistCount} ${wishlistCount === 1 ? 'item' : 'items'}`}
-        onPressRightIcon2={() => navigation.navigate('Bag')}
+        onPressRightIcon2={handleBag}
+        badgeCount={totalQuantity > 0 ? totalQuantity : undefined} 
       />
 
       
@@ -64,7 +85,7 @@ const Wishlist = () => {
           <Text style={styles.emptysubMessage}>
           Save items that you like in your wishlist. Review them anytime and easily move them to the bag.
           </Text>
-          <CustomButton title='SHOP NOW' borderWidth={1} borderRadius={5} borderColor={colors.zeptored} textColor={colors.zeptored} onPress={() => navigation.navigate('BottomTab',{screen: 'Home'})} />
+          <CustomButton title='SHOP NOW' borderWidth={1} borderRadius={5} borderColor={colors.zeptored} textColor={colors.zeptored} onPress={handleShopNow} />
         </View>
       ) : (
         <ItemList

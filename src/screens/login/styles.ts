@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
         marginTop: vh(5),
         paddingRight:vh(10)
       },
+         
       buttontext:
         {fontWeight: '700', fontSize:vh(20)},
       custombuttonview:

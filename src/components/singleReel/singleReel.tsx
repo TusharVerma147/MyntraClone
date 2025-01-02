@@ -1,10 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, Text,TouchableOpacity,Image,} from 'react-native';
 import Video, { VideoRef } from 'react-native-video';
 import {Icons} from '../../assets';
 import styles from './styles';

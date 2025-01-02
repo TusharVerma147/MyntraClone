@@ -2,11 +2,10 @@ import { View, Text, Image, TextInput, TouchableOpacity, FlatList, StatusBar } f
 import React, { useState, useEffect } from 'react';
 import AppWrapper from '../../components/appWrapper';
 import { Icons } from '../../assets';
-import { vh } from '../../theme/dimensions';
 import { colors } from '../../theme';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { shirts, jeans, shoes, watches, products } from '../../utils/mockdata';
+import { shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser } from '../../utils/mockdata';
 import styles from './styles';
 import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
 
@@ -16,11 +15,21 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState<any[]>([]);
 
 
+  const handleBack = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
+      })
+    );
+  };
+
+
   const handleSearch = (term: string) => {
     setSearchTerm(term);
     if (term) {
 
-      const allItems = [...shirts, ...jeans, ...shoes, ...watches, ...products];
+      const allItems = [...shirts, ...jeans, ...shoes, ...watches, ...products, ...OversizedHoodies,...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser];
       const filteredItems = allItems.filter((item) =>
         
         item.brand.toLowerCase().includes(term.toLowerCase()) ||
@@ -47,7 +56,7 @@ const Search = () => {
     <AppWrapper>
       <StatusBar backgroundColor={colors.screengrey} barStyle={'dark-content'}/>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('BottomTab',{screen: 'Home'})}>
+        <TouchableOpacity onPress={handleBack}>
           <Image style={styles.backicon} source={Icons.back} />
         </TouchableOpacity>
         <TextInput

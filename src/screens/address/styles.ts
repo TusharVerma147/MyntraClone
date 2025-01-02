@@ -1,6 +1,6 @@
 import {StyleSheet, Platform} from 'react-native';
 import {vh} from '../../theme/dimensions';
-import {colors} from '../../theme';
+import { colors } from '../../theme';
 
 const styles = StyleSheet.create({
   modalOverlay: {

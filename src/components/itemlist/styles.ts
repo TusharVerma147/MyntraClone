@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
       marginHorizontal: SCREEN_WIDTH*0.015,
       borderRadius: 5,
     },
+    itemButton:{ width: SCREEN_WIDTH*0.47},
     image: {
       width: SCREEN_WIDTH* 0.47,
       height: vh(220),

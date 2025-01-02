@@ -1,20 +1,7 @@
 import React, { useState,} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  Platform,
-  ScrollView,
-  StatusBar,
-} from 'react-native';
+import {View,Text,FlatList,TouchableOpacity,Image,Platform,ScrollView,StatusBar,} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  removeFromBag,
-  updateQuantity,
-  clearCart,
-} from '../../redux/slice/bagSlice';
+import {removeFromBag,updateQuantity,clearCart,} from '../../redux/slice/bagSlice';
 import { vh } from '../../theme/dimensions';
 import { colors } from '../../theme';
 import AppWrapper from '../../components/appWrapper';
@@ -26,7 +13,7 @@ import Toast from 'react-native-simple-toast';
 import QuantityModal from './quantityModal';
 import ProgressIndicator from '../../components/progressIndicator';
 import CouponModal from './couponModal';
-import { handleWishlistPress } from '../../utils/common';
+import { handleWishlistPress} from '../../utils/common';
 
 const Bag = ({ navigation, route }: any) => {
   const dispatch = useDispatch();
@@ -40,6 +27,13 @@ const Bag = ({ navigation, route }: any) => {
 
 
 
+  const handleCross = (item) =>{
+     dispatch(removeFromBag(item))
+  };
+
+  const handleDelete = () => {
+    dispatch(clearCart());
+  }
 
   const handleSelectCoupon = (coupon:any) => {
     if (coupon && coupon.discount) {
@@ -49,9 +43,14 @@ const Bag = ({ navigation, route }: any) => {
       setSelectedCoupon(null); 
     }
   };
-  
-  
-  
+
+  const handleCouponModal = () =>{
+    setCouponModalVisible(false)
+  };
+
+  const handleQtyModal = () =>{
+    setModalVisible(false)
+  };
 
   const renderItem = ({ item }: any) => {
     const isSelected = selectedItems.includes(item.id);
@@ -102,7 +101,7 @@ const Bag = ({ navigation, route }: any) => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => dispatch(removeFromBag(item.id))}>
+        <TouchableOpacity onPress={()=>handleCross(item.id)}>
           <Image source={Icons.cross} style={styles.cross} />
         </TouchableOpacity>
       </View>
@@ -165,11 +164,8 @@ const Bag = ({ navigation, route }: any) => {
         rightIcon1={Icons.delete}
         titleSize={vh(15)}
         backgroundColor={Platform.OS === 'android' ? colors.screengrey : 'none'}
-        // onPressRightIcon2={() => navigation.navigate('Wishlist')}
         onPressRightIcon2={() => handleWishlistPress(navigation)}
-        onPressRightIcon1={() => {
-          dispatch(clearCart());
-        }}
+        onPressRightIcon1={handleDelete}
       />
        
       {bagItems.length === 0 ? (
@@ -196,7 +192,7 @@ const Bag = ({ navigation, route }: any) => {
           </View>
           <CouponModal
         visible={couponModalVisible}
-        onClose={() => setCouponModalVisible(false)}
+        onClose={handleCouponModal}
         onSelectCoupon={handleSelectCoupon}
       />
 
@@ -273,7 +269,7 @@ const Bag = ({ navigation, route }: any) => {
       <QuantityModal
         visible={modalVisible}
         selectedQty={selectedQty}
-        onClose={() => setModalVisible(false)}
+        onClose={handleQtyModal}
         onQtyChange={qty => handleQtyChange(qty)}
       />
     </AppWrapper>

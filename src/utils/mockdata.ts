@@ -579,72 +579,258 @@ const products = [
   }
 ];
 
-const PyjamaTrouser =[
-  
+const SloganTees = [
+  {
+    id: '61',
+    brand: 'Levi\'s',
+    type: 'Graphic Tee',
+    Price: '₹899',
+    DiscountedPrice: '₹699',
+    rating: '4.5',
+    reviews: '2.4k',
+    image: Images.tees1,
+    off: '22% OFF!',
+    description: 'SuperTees graphic tee with bold prints for a stylish casual look. Comfortable and trendy.'
+  },
+  {
+    id: '62',
+    brand: 'Kwabey',
+    type: 'Slogan Tee',
+    Price: '₹799',
+    DiscountedPrice: '₹649',
+    rating: '4.3',
+    reviews: '1.9k',
+    image: Images.tees2,
+    off: '19% OFF!',
+    description: 'TrendTee slogan tee with witty designs for the fun-loving fashionista.'
+  },
+  {
+    id: '63',
+    brand: 'Levi\'s',
+    type: 'Vintage Tee',
+    Price: '₹950',
+    DiscountedPrice: '₹799',
+    rating: '4.6',
+    reviews: '2.1k',
+    image: Images.tees3,
+    off: '16% OFF!',
+    description: 'FreshTees vintage tee with retro prints for a cool, laid-back vibe.'
+  },
+  {
+    id: '64',
+    brand: 'KooknKeech',
+    type: 'Printed Tee',
+    Price: '₹799',
+    DiscountedPrice: '₹649',
+    rating: '4.2',
+    reviews: '1.7k',
+    image: Images.tees4,
+    off: '19% OFF!',
+    description: 'ChillTees printed tee with contemporary designs perfect for weekend wear.'
+  },
+  {
+    id: '65',
+    brand: 'Bewakoof',
+    type: 'Streetwear Tee',
+    Price: '₹1050',
+    DiscountedPrice: '₹850',
+    rating: '4.7',
+    reviews: '2.8k',
+    image: Images.tees5,
+    off: '19% OFF!',
+    description: 'UrbanTees streetwear tee designed for the bold and adventurous. Embrace your urban style.'
+  }
+]
+
+
+
+const PyjamaTrouser = [
   {
     id: '56',
-    brand: 'Bosch',
-    type: 'Food Processor',
-    Price: '₹10000',
-    DiscountedPrice: '₹8000',
+    brand: 'ComfyPants',
+    type: 'Lounge Jogger',
+    Price: '₹999',
+    DiscountedPrice: '₹799',
     rating: '4.4',
-    reviews: '3.8k',
+    reviews: '3.5k',
     image: Images.jogger,
     off: '20% OFF!',
-    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+    description: 'ComfyPants lounge jogger made from soft cotton, perfect for cozy evenings or casual outings.'
   },
-
   {
     id: '57',
-    brand: 'Bosch',
-    type: 'Food Processor',
-    Price: '₹10000',
-    DiscountedPrice: '₹8000',
-    rating: '4.4',
-    reviews: '3.8k',
-    image: Images.jogger,
+    brand: 'RelaxWear',
+    type: 'Cotton Joggers',
+    Price: '₹950',
+    DiscountedPrice: '₹760',
+    rating: '4.3',
+    reviews: '2.2k',
+    image: Images.jogger1,
     off: '20% OFF!',
-    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+    description: 'RelaxWear cotton joggers with a comfortable fit, ideal for both lounging and light workouts.'
   },
   {
     id: '58',
-    brand: 'Bosch',
-    type: 'Food Processor',
-    Price: '₹10000',
-    DiscountedPrice: '₹8000',
-    rating: '4.4',
-    reviews: '3.8k',
-    image: Images.jogger,
+    brand: 'EasyFit',
+    type: 'Jogging Pants',
+    Price: '₹799',
+    DiscountedPrice: '₹639',
+    rating: '4.5',
+    reviews: '3.0k',
+    image: Images.jogger2,
     off: '20% OFF!',
-    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+    description: 'EasyFit jogging pants designed for ultimate comfort and flexibility, perfect for exercise or relaxation.'
   },
   {
     id: '59',
-    brand: 'Bosch',
-    type: 'Food Processor',
-    Price: '₹10000',
-    DiscountedPrice: '₹8000',
-    rating: '4.4',
-    reviews: '3.8k',
-    image: Images.jogger,
-    off: '20% OFF!',
-    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+    brand: 'LuxeLounge',
+    type: 'Sleep Jogger',
+    Price: '₹1299',
+    DiscountedPrice: '₹999',
+    rating: '4.6',
+    reviews: '2.6k',
+    image: Images.jogger3,
+    off: '23% OFF!',
+    description: 'LuxeLounge sleep jogger made from premium soft fabric for a peaceful and relaxed sleep.'
   },
   {
-    id: '50',
-    brand: 'Bosch',
-    type: 'Food Processor',
-    Price: '₹10000',
-    DiscountedPrice: '₹8000',
-    rating: '4.4',
+    id: '60',
+    brand: 'UrbanChill',
+    type: 'Athleisure Joggers',
+    Price: '₹1199',
+    DiscountedPrice: '₹999',
+    rating: '4.7',
     reviews: '3.8k',
-    image: Images.jogger,
-    off: '20% OFF!',
-    description: 'Bosch food processor with multiple attachments for chopping, slicing, and grinding. A must-have kitchen companion.'
+    image: Images.jogger4,
+    off: '17% OFF!',
+    description: 'UrbanChill athleisure joggers with a sleek fit and breathable fabric for a fashionable active lifestyle.'
   }
+]
 
+const RelaxedFitJeans = [
+  {
+    id: '66',
+    brand: 'Uniqlo',
+    type: 'Relaxed Fit Denim',
+    Price: '₹1799',
+    DiscountedPrice: '₹1399',
+    rating: '4.5',
+    reviews: '2.8k',
+    image: Images.rf1,  
+    off: '22% OFF!',
+    description: 'EasyFit relaxed fit denim jeans, designed for comfort with a classic look. Ideal for everyday wear.'
+  },
+  {
+    id: '67',
+    brand: 'Levi\'s',
+    type: 'Loose Fit Jeans',
+    Price: '₹1999',
+    DiscountedPrice: '₹1599',
+    rating: '4.4',
+    reviews: '3.0k',
+    image: Images.rf2,  
+    off: '20% OFF!',
+    description: 'UrbanDenim loose fit jeans with a relaxed waist and straight leg cut for a laid-back style.'
+  },
+  {
+    id: '68',
+    brand: 'H&M',
+    type: 'Classic Relaxed Fit',
+    Price: '₹2200',
+    DiscountedPrice: '₹1799',
+    rating: '4.6',
+    reviews: '2.5k',
+    image: Images.rf3, 
+    off: '18% OFF!',
+    description: 'DenimCraft classic relaxed fit jeans offering a timeless design with soft, durable fabric.'
+  },
+  {
+    id: '69',
+    brand: 'Wrangler',
+    type: 'Stretch Relaxed Fit',
+    Price: '₹2499',
+    DiscountedPrice: '₹1999',
+    rating: '4.7',
+    reviews: '3.4k',
+    image: Images.rf4,  
+    off: '20% OFF!',
+    description: 'FlexJeans stretch relaxed fit jeans for extra comfort and flexibility, perfect for casual outings or long wear.'
+  },
+  {
+    id: '70',
+    brand: 'Only',
+    type: 'Easy Relaxed Fit',
+    Price: '₹2599',
+    DiscountedPrice: '₹2199',
+    rating: '4.8',
+    reviews: '3.1k',
+    image: Images.rf5,  
+    off: '15% OFF!',
+    description: 'TrueFit easy relaxed fit jeans that combine comfort and style with a soft stretch fabric for all-day wear.'
+  }
+]
 
-
+const OversizedHoodies = [
+  {
+    id: '71',
+    brand: 'RedTape',
+    type: 'Oversized Hoodie',
+    Price: '₹1799',
+    DiscountedPrice: '₹1499',
+    rating: '4.6',
+    reviews: '3.2k',
+    image: Images.hoodie2,
+    off: '17% OFF!',
+    description: 'ComfyWear oversized hoodie made with ultra-soft fabric, designed for a relaxed and cozy look. Perfect for layering or lounging.'
+  },
+  {
+    id: '72',
+    brand: 'Uniqlo',
+    type: 'Loose Fit Hoodie',
+    Price: '₹1999',
+    DiscountedPrice: '₹1699',
+    rating: '4.5',
+    reviews: '2.8k',
+    image: Images.hoodie1,
+    off: '15% OFF!',
+    description: 'UrbanComfort loose fit hoodie with a spacious design, ideal for a casual, street-style vibe.'
+  },
+  {
+    id: '73',
+    brand: 'H&M',
+    type: 'Oversized Beige Hoddie',
+    Price: '₹2200',
+    DiscountedPrice: '₹1899',
+    rating: '4.7',
+    reviews: '3.5k',
+    image: Images.hoodie3,
+    off: '14% OFF!',
+    description: 'StreetHood oversized pullover hoodie with a bold graphic print and roomy fit. Your go-to hoodie for a laid-back urban look.'
+  },
+  {
+    id: '74',
+    brand: 'The Souled Store',
+    type: 'Comfy Oversized Hoodie',
+    Price: '₹2599',
+    DiscountedPrice: '₹2199',
+    rating: '4.8',
+    reviews: '4.0k',
+    image: Images.hoodie4,
+    off: '15% OFF!',
+    description: 'ChillMode comfy oversized hoodie crafted from premium cotton blend for a soft and snug feel. Perfect for chilly evenings or lounging at home.'
+  },
+  {
+    id: '75',
+    brand: 'Roadster',
+    type: 'Casual Oversized Hoodie',
+    Price: '₹2799',
+    DiscountedPrice: '₹2399',
+    rating: '4.6',
+    reviews: '3.9k',
+    image: Images.hoodie5,
+    off: '14% OFF!',
+    description: 'VibeWear casual oversized hoodie with a minimalist design, featuring a large hood and relaxed fit for ultimate comfort.'
+  }
 ]
 
 
@@ -652,4 +838,7 @@ const PyjamaTrouser =[
 
 
 
-export {fashion, beauty, home,fashionlist, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products, PyjamaTrouser}
+
+
+
+export {fashion, beauty, home,fashionlist, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies}

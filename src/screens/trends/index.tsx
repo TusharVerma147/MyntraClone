@@ -2,11 +2,7 @@ import {
   View,
   Text,
   ScrollView,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
   Platform,
-  StatusBar,
 } from 'react-native';
 import React from 'react';
 import AppHeader from '../../components/appHeader';
@@ -15,22 +11,32 @@ import {Icons,} from '../../assets';
 import {vh} from '../../theme/dimensions';
 import { colors } from '../../theme';
 import TrendProducts from '../../components/trendProducts';
-import { PyjamaTrouser } from '../../utils/mockdata';
+import { PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies } from '../../utils/mockdata';
 import { handleWishlistPress,  } from '../../utils/common';
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import styles from './styles';
 
-const Trends: React.FC<{ navigation: any }> = ({ navigation }) => {
 
-   const handleSearch =  () => {
-      navigation.navigate('Search');  
-   
+type NavigationProp = StackNavigationProp<any>;
+const Trends = () => {
+
+  const navigation = useNavigation<NavigationProp>();
+
+
+  const handleSearch = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: 'Search' }],
+      })
+    );
   };
 
 
 
   return (
     <AppWrapper>
-
       <AppHeader
         rightIcon1={Icons.search}
         rightIcon2={Icons.wishlist}
@@ -41,13 +47,14 @@ const Trends: React.FC<{ navigation: any }> = ({ navigation }) => {
         onPressRightIcon2={()=>handleWishlistPress}
         onPressRightIcon1={handleSearch}
       />
-
       <ScrollView>
       <View style={styles.trendsView}>
   <Text style={styles.trendsText}>Trends</Text>
   </View>
-        <TrendProducts heading='#Pyjama Joggers' data={PyjamaTrouser} navigation={navigation}/>
-        <TrendProducts heading='#Pyjama Joggers' data={PyjamaTrouser} navigation={navigation}/>
+       <TrendProducts heading='#OversizedHoodies ' data={OversizedHoodies } navigation={navigation}/>
+        <TrendProducts heading='#PyjamaJoggers' data={PyjamaTrouser} navigation={navigation}/>
+        <TrendProducts heading='#SloganTees' data={SloganTees} navigation={navigation}/>
+        <TrendProducts heading='#RelaxedFitJeans' data={RelaxedFitJeans} navigation={navigation}/>
       </ScrollView>
     </AppWrapper>
   );

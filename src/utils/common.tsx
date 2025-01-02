@@ -93,24 +93,5 @@ export const navigateIfLoggedIn = async (
   };
 
  
-// export  const WishlistPress = ()=>{
-
-//   handleWishlistPress(navigation)
-// }  
-
-export const WishlistPress =  (navigation: NavigationProp<any>) => {
-  // const isLoggedIn = await checkLoginStatus();
-
-  handleWishlistPress(navigation) // Navigate to the search screen
- 
-};
-
-
-export const handleSearch =  (navigation: NavigationProp<any>) => {
-  // const isLoggedIn = await checkLoginStatus();
-
-    navigation.navigate('Search');  // Navigate to the search screen
- 
-};
 
 

@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Modal,
-  View,
-  TouchableWithoutFeedback,
-  FlatList,
-  TouchableOpacity,
-  Text,
-  Image,
-} from 'react-native';
+import {Modal,View,TouchableWithoutFeedback,FlatList,TouchableOpacity,Text,Image,} from 'react-native';
 import { Icons } from '../../assets';
 import styles from './styles';
 

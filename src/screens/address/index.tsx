@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, } from 'react-native';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import { Icons } from '../../assets';

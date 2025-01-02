@@ -1,18 +1,21 @@
-// src/services/firebaseService.ts
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CommonActions } from '@react-navigation/native';
+import {CommonActions} from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 
 export const configureGoogleSignIn = () => {
   GoogleSignin.configure({
-    webClientId: '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
+    webClientId:
+      '697757617336-uimalgjb0ns634f5qmimj4shae19h5rr.apps.googleusercontent.com',
     offlineAccess: true,
   });
 };
 
-export const signInWithEmailAndPassword = async (email: string, password: string) => {
+export const signInWithEmailAndPassword = async (
+  email: string,
+  password: string,
+) => {
   try {
     await auth().signInWithEmailAndPassword(email, password);
     await AsyncStorage.setItem('key', 'true');
@@ -22,7 +25,10 @@ export const signInWithEmailAndPassword = async (email: string, password: string
   }
 };
 
-export const signUpWithEmailAndPassword = async (email: string, password: string) => {
+export const signUpWithEmailAndPassword = async (
+  email: string,
+  password: string,
+) => {
   try {
     await auth().createUserWithEmailAndPassword(email, password);
     await auth().signOut();
@@ -49,8 +55,8 @@ export const handleGoogleSignIn = async (navigation: any) => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{ name: 'BottomTab' }],
-      })
+        routes: [{name: 'BottomTab'}],
+      }),
     );
   } catch (error: any) {
     throw new Error('Error signing in with Google: ' + error.message);
@@ -66,20 +72,21 @@ export const sendPasswordResetEmail = async (email: string) => {
   }
 };
 
-export const onAuthStateChanged = (setUser: React.Dispatch<React.SetStateAction<FirebaseAuthTypes.User | null>>) => {
+export const onAuthStateChanged = (
+  setUser: React.Dispatch<React.SetStateAction<FirebaseAuthTypes.User | null>>,
+) => {
   return auth().onAuthStateChanged((user: FirebaseAuthTypes.User | null) => {
     setUser(user);
   });
 };
 
-
 export const logout = async () => {
-    try {
-      await auth().signOut();
-      await AsyncStorage.removeItem('key');
-      Toast.show('Logged out successfully', Toast.SHORT);
-    } catch (error: any) {
-      Toast.show('Error logging out', Toast.SHORT);
-      console.log(error);
-    }
-  };
+  try {
+    await auth().signOut();
+    await AsyncStorage.removeItem('key');
+    Toast.show('Logged out successfully', Toast.SHORT);
+  } catch (error: any) {
+    Toast.show('Error logging out', Toast.SHORT);
+    console.log(error);
+  }
+};

@@ -6,7 +6,7 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
-import React,{useState, useEffect} from 'react';
+import React,{useState,} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import {Icons, Images} from '../../assets';
@@ -61,6 +61,11 @@ const Details = ({navigation}: any) => {
   );
 
 
+
+
+  const totalQuantity = bagItems.reduce((total: number, item: any) => total + item.quantity, 0);
+
+
   return (
     <AppWrapper backgroundColor={colors.white}>
       <AppHeader
@@ -81,6 +86,7 @@ const Details = ({navigation}: any) => {
         backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
         onPressRightIcon1={() => handleWishlistPress(navigation)}
         onPressRightIcon2={() => navigation.navigate('Bag')}
+        badgeCount={totalQuantity > 0 ? totalQuantity : undefined} 
       />
 
       <ScrollView contentContainerStyle={styles.scrollViewContent} showsVerticalScrollIndicator={false} bounces={false}>

@@ -1,21 +1,11 @@
 import React from 'react';
-import {
-  FlatList,
-  TouchableOpacity,
-  Image,
-  Text,
-  View,
-  ImageSourcePropType,
-} from 'react-native';
+import {FlatList,TouchableOpacity,Image,Text, View,ImageSourcePropType,} from 'react-native';
 import {Icons} from '../../assets';
 import {SCREEN_WIDTH, vh} from '../../theme/dimensions';
 import styles from './styles';
 import CustomButton from '../customButton';
 import {useDispatch} from 'react-redux';
-import {
-  addToWishlist,
-  removeFromWishlist,
-} from '../../redux/slice/wishListSlice';
+import {removeFromWishlist,} from '../../redux/slice/wishListSlice';
 import {addToBag} from '../../redux/slice/bagSlice';
 import { colors } from '../../theme';
 import {handleAddToWishlist} from '../../utils/common';
@@ -79,7 +69,7 @@ const ItemList: React.FC<ItemListProps> = ({
         styles.itemContainer,
         borderWidth !== undefined && {borderWidth},
       ]}>
-      <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(item)} style={{ width: SCREEN_WIDTH*0.47}}>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => onPress(item)} style={styles.itemButton}>
         <View>
           <Image
             source={item.image}

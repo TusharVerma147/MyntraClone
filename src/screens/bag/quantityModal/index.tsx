@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Modal,
-  TouchableWithoutFeedback,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {View,Text,Modal, TouchableWithoutFeedback, Image, ScrollView,TouchableOpacity} from'react-native';
 import CustomButton from '../../../components/customButton';
 import { vh } from '../../../theme/dimensions';
 import { Icons } from '../../../assets';

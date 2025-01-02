@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  FlatList,
-  Text,
-  Image,
-  ImageSourcePropType,
-  TouchableOpacity,
-} from 'react-native';
+import {FlatList,Text,Image,ImageSourcePropType,TouchableOpacity,} from 'react-native';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native'; 
 import { StackNavigationProp } from '@react-navigation/stack';

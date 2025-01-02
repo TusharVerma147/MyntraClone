@@ -122,7 +122,7 @@ const togglePasswordVisibility = () => {
              <View style={styles.custombuttonview}>
               <CustomButton
                 title="Login"
-                style={styles.custombutton}
+                // style={styles.custombutton}
                 textStyle={styles.buttontext}
                 borderRadius={50}
                 backgroundColor={colors.zeptored}

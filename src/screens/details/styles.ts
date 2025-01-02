@@ -69,8 +69,6 @@ const styles = StyleSheet.create({
       fontSize: vh(12),
       fontWeight: '700'
     },
-  
-  
     footer: {
       backgroundColor: colors.white,
       alignItems:'center',
@@ -135,7 +133,19 @@ const styles = StyleSheet.create({
       fontSize: vh(15),
       fontWeight: '400',
       letterSpacing:0.5
-    
+    },
+    questionDescription: {
+      color:colors.charcol,
+      fontSize: vh(17),
+      fontWeight: '500',
+      letterSpacing:0.5
+    },
+
+  answerDescription: {
+      color:colors.textGrey,
+      fontSize: vh(16),
+      fontWeight: '500',
+      letterSpacing:0.5
     },
     clock: {
       height: vh(20),  
@@ -193,8 +203,8 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       borderRadius: 20,
       marginVertical: vh(15),
-    }
-    
+    },
+   
 
   });
 

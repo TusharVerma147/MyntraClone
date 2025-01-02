@@ -1,6 +1,6 @@
 import { StyleSheet,Platform } from "react-native";
 import { vh, vw, SCREEN_WIDTH, SCREEN_HEIGHT } from "../../theme/dimensions";
-import { colors } from "react-native-swiper-flatlist/src/themes";
+import { colors } from "../../theme";
 
 
 const styles = StyleSheet.create({
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     profileImg: {
-      width: vw(25),
-      height: vw(25),
+      width: vw(40),
+      height: vw(40),
       borderRadius: 50,
       backgroundColor: 'white',
       margin: vw(10),

@@ -6,6 +6,7 @@ import styles from './styles';
 
 
 interface VideoItem {
+  postProfile: ImageSourcePropType | undefined;
   title: string;
   followers: string;
   video: string;
@@ -53,7 +54,7 @@ const SingleReel : React.FC <SingleReelProps> = ({
         </TouchableOpacity>
         <View style={styles.userDetails}>
           <View style={styles.profileImg}>
-            <Image source={Icons.profile} style={styles.img} />
+            <Image source={item.postProfile} style={styles.img} />
           </View>
           <View>
             <Text style={styles.userName}>{item.title}</Text>

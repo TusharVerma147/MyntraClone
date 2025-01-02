@@ -27,7 +27,7 @@ const Bag = ({ navigation, route }: any) => {
 
 
 
-  const handleCross = (item) =>{
+  const handleCross = (item: string) =>{
      dispatch(removeFromBag(item))
   };
 
@@ -118,12 +118,12 @@ const Bag = ({ navigation, route }: any) => {
 
   const handlePlaceOrder = () => {
     if (selectedBagItems.length > 0) {
-      navigation.navigate('Address');
+      navigation.navigate('Address', { totalAmount });
     } else {
         Toast.show('Please select at least 1 item', Toast.SHORT)
     }
   };
-  const selectedBagItems = bagItems.filter(item =>
+  const selectedBagItems = bagItems.filter((item: { id: string; }) =>
     selectedItems.includes(item.id),
   );
 

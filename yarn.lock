@@ -3697,6 +3697,7 @@ __metadata:
     react: 18.3.1
     react-native: 0.76.5
     react-native-image-crop-picker: ^0.41.6
+    react-native-razorpay: ^2.3.0
     react-native-reanimated: ^3.16.5
     react-native-safe-area-context: ^5.0.0
     react-native-screens: ^4.3.0
@@ -8938,6 +8939,16 @@ __metadata:
   peerDependencies:
     react-native: ">=0.40.0"
   checksum: 6e4ef44e9e74311f91ef783dd52105964cbe60ab1b0d6a48a7029f8faffed25451cfd62b3526ffa99d4e00feaeae473175d237f6bfb063f21691d5983ef78567
+  languageName: node
+  linkType: hard
+
+"react-native-razorpay@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "react-native-razorpay@npm:2.3.0"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-native: ">=0.66.0"
+  checksum: 35a549938e001d2ad30f8bcacc04df05070ea8cafc201e8938c750f5abc9b4c9ad29240924398030a1cc3633ac3e71d1871f29ff7bdf9096aa0d9cbd304d2ad4
   languageName: node
   linkType: hard
 

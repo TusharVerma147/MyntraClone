@@ -28,8 +28,6 @@ const BrandList: React.FC<BrandListProps> = ({data}) => {
       activeOpacity={0.8}
       onPress={() => gotoItem(item)}>
       <Image source={item.image} style={styles.image} />
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.subtitle}>{item.subtitle}</Text>
     </TouchableOpacity>
   );
 

@@ -1,31 +1,17 @@
-import {
-  View,
-  Text,
-  Image,
-  StatusBar,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {View,Text,Image,StatusBar,TouchableOpacity,ScrollView} from 'react-native';
+import React, {useState,} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import { colors } from '../../theme';
 import {Icons, Images} from '../../assets';
 import ImageSlider from '../../components/bannerSlide';
 import styles from './styles';
-import {
-  fashion,
-  home,
-  beauty,
-  fashionlist,
-  beautylist,
-  homelist,
-  fashionbrand,
-} from '../../utils/mockdata';
+import {fashion,home,beauty, fashionlist,beautylist,homelist, fashionbrand,newbrand,winterbrand1,winterbrand2,homeessential,shadi,OversizedShirts,bestbeauty} from '../../utils/mockdata';
 import CategoryCard from '../../components/category';
 import CategoryList from '../../components/categoryList';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import BrandList from '../../components/brandsList';
+import TrendProducts from '../../components/trendProducts';
 import AnimatedTextInput from '../../components/animatedTextInput';
 import SelectPhotoModal from './cameraModal';
 import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
@@ -145,8 +131,19 @@ const Home: React.FC<HomeProps> = () => {
         {selectedCategory === 'Home' && <ImageSlider images={home} />}
         <Image source={Images.brandstobrowse} style={styles.banner} />
         <BrandList data={fashionbrand} />
+        <Image source={Images.passfwd} style={styles.banner} />
+        <TrendProducts heading='#OversizedShirts' data={OversizedShirts} navigation={navigation}/>
+        <Image source={Images.bestbeauty} style={styles.newbanner} />
+        <BrandList data={bestbeauty} />
         <Image source={Images.blinkandmiss} style={styles.banner} />
         <BrandList data={fashionbrand} />
+        <Image source={Images.winteredit} style={styles.winter}/>
+        <BrandList data={winterbrand1} />
+        <BrandList data={winterbrand2} />
+        <Image source={Images.crazyhome} style={styles.banner} />
+        <BrandList data={homeessential} />
+        <Image source={Images.shadi} style={styles.banner} />
+        <BrandList data={shadi} />
       </ScrollView>
     </AppWrapper>
   );

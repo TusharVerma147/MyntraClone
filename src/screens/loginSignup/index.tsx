@@ -14,6 +14,7 @@ import MenuItem from '../../components/menuButton';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { checkLoginStatus } from '../../utils/common';
+import Toast from 'react-native-simple-toast';
 
 type NavigationProp = StackNavigationProp<any>;
 
@@ -31,14 +32,13 @@ const LoginSign: React.FC = () => {
     const checkLogin = async () => {
       const isUserLoggedIn = await checkLoginStatus();
       setIsLoggedIn(isUserLoggedIn);
-
       if (isUserLoggedIn) {
         const user = auth().currentUser;
         if (user) {
           const displayName = user.displayName || user.email?.split('@')[0];
-          setUserName(displayName);
-          setUserEmail(user.email);
-          setUserInitial(displayName ? displayName[0] : user.email?.[0]);
+          setUserName(displayName || null);  
+          setUserEmail(user.email || null); 
+          setUserInitial(displayName ? displayName[0] : (user.email ? user.email[0] : ''));
         }
       }
     };
@@ -53,9 +53,13 @@ const LoginSign: React.FC = () => {
         routes: [{ name: 'Login' }],
       });
     } catch (error) {
-      console.log(error);
+      Toast.show('Error Logging Out', Toast.SHORT)
     }
   };
+
+  const onPressHelp = () =>{
+    navigation.navigate('Chat')
+  }
 
   return (
     <AppWrapper>
@@ -104,12 +108,11 @@ const LoginSign: React.FC = () => {
           <Image source={Images.bargains} style={styles.adBanner} />
 
           <View style={styles.menu}>
-            <MenuItem icon={Icons.orders} label="Orders" />
+            <MenuItem icon={Icons.orders} label="Orders"  onPress={onPressHelp}/>
             <MenuItem icon={Icons.crown} label="Insider" />
-            <MenuItem icon={Icons.help} label="Help Center" />
+            <MenuItem icon={Icons.help} label="Help Center"  onPress={onPressHelp}/>
             <MenuItem icon={Icons.coupon} label="Coupons" />
           </View>
-
           <CustomButton
             onPress={handleLogout}
             title="LOG OUT"

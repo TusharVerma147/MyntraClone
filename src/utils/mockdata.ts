@@ -46,6 +46,7 @@ const fashionlist = [
   {id: '5', title: 'GROOMING', image:  Icons.grooming},
   {id: '6', title: 'BATH & BODY', image:  Icons.bath},
   {id: '7', title: 'APPLIANCES', image:  Icons.appliances},
+  
 
 ];
 
@@ -61,10 +62,63 @@ const fashionlist = [
 
 const fashionbrand=[
   {id: '1',  image: Images.fashionbrand1},
+  {id: '2',  image: Images.fashionbrand2},
+  {id: '3',  image: Images.fashionbrand3},
+  {id: '4',  image: Images.fashionbrand4},
+  {id: '5',  image: Images.fashionbrand5},
+];
+
+const bestbeauty=[
+  {id: '1',  image: Images.bestbeauty1},
+  {id: '2',  image: Images.bestbeauty2},
+  {id: '3',  image: Images.bestbeauty3},
+  {id: '4',  image: Images.bestbeauty4},
+  {id: '5',  image: Images.bestbeauty5},
+];
+
+const winterbrand1=[
+  {id: '1',  image: Images.winter6},
+  {id: '2',  image: Images.winter7},
+  {id: '3',  image: Images.winter1},
+  {id: '4',  image: Images.winter2},
+  {id: '5',  image: Images.winter3},
+];
+const winterbrand2=[
+  {id: '1',  image: Images.winter4},
+  {id: '2',  image: Images.winter5},
+  {id: '3',  image:Images.winter8},
+  {id: '4',  image: Images.winter9},
+  {id: '5',  image: Images.winter10},
+];
+
+const homeessential=[
+  {id: '1',  image: Images.bed},
+  {id: '2',  image: Images.prestige},
+  {id: '3',  image:Images.milton},
+  {id: '4',  image: Images.goodhomes},
+];
+const shadi=[
+  {id: '1',  image: Images.lakme},
+  {id: '2',  image: Images.plum},
+  {id: '4',  image:Images.maybelline},
+  {id: '3',  image: Images.kbaauty},
+  {id: '5',  image: Images.lotus},
+  {id: '6',  image: Images.nivea},
+];
+
+
+
+const newbrand=[
+  {id: '1',  image: Images.fashionbrand1},
   {id: '2',  image: Images.fashionbrand1},
   {id: '3',  image: Images.fashionbrand1},
   {id: '4',  image: Images.fashionbrand1},
   {id: '5',  image: Images.fashionbrand1},
+  {id: '6',  image: Images.fashionbrand1},
+  {id: '7',  image: Images.fashionbrand1},
+  {id: '8',  image: Images.fashionbrand1},
+  {id: '9',  image: Images.fashionbrand1},
+  {id: '10',  image: Images.fashionbrand1},
 ];
 
 const shirts = [
@@ -833,12 +887,70 @@ const OversizedHoodies = [
   }
 ]
 
+const OversizedShirts = [
+  {
+    id: '76',
+    brand: 'Flying Machine',
+    type: 'Cuban Collar Oversized Casual Shirt',
+    Price: '₹1499',
+    DiscountedPrice: '₹1299',
+    rating: '4.5',
+    reviews: '2.1k',
+    image: Images.oversizeshirt5,
+    off: '13% OFF!',
+    description: 'Blue solid opaque casual shirt ,has a cuban collar, button placket, 1 patch pocket, short regular sleeves, curved hem.'
+  },
+  {
+    id: '77',
+    brand: 'Gant',
+    type: 'Oversized Polo Shirt',
+    Price: '₹1799',
+    DiscountedPrice: '₹1599',
+    rating: '4.6',
+    reviews: '3.0k',
+    image: Images.oversizeshirt3,
+    off: '11% OFF!',
+    description: 'Oversized polo shirt crafted with breathable fabric, offering a laid-back yet stylish look for everyday wear.'
+  },
+  {
+    id: '78',
+    brand: 'Uniqlo',
+    type: 'Long Sleeves Solid Oversized Casual Shirt',
+    Price: '₹1399',
+    DiscountedPrice: '₹1199',
+    rating: '4.4',
+    reviews: '1.8k',
+    image: Images.oversizeshirt4,
+    off: '14% OFF!',
+    description: 'White solid opaque casual shirt, has a spread collar, button cuff, concealed button placket,long regular sleeves, curved hem'
+  },
+  {
+    id: '79',
+    brand: 'Zara',
+    type: 'Oversized Denim Shirt',
+    Price: '₹2499',
+    DiscountedPrice: '₹2199',
+    rating: '4.8',
+    reviews: '3.2k',
+    image: Images.oversizeshirt2,
+    off: '12% OFF!',
+    description: 'Zara oversized denim shirt with a vintage wash. Designed for a loose and effortless fit, perfect for a cool, relaxed vibe.'
+  },
+  {
+    id: '80',
+    brand: 'H&M',
+    type: 'Oversized Checkered Shirt',
+    Price: '₹1999',
+    DiscountedPrice: '₹1699',
+    rating: '4.7',
+    reviews: '2.5k',
+    image: Images.oversizeshirt1,
+    off: '15% OFF!',
+    description: 'H&M oversized checkered shirt made from soft cotton with a relaxed fit. Ideal for layering or wearing as a casual, everyday piece.'
+  },
+  
+];
 
 
 
-
-
-
-
-
-export {fashion, beauty, home,fashionlist, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies}
+export {fashion, beauty, home,fashionlist,newbrand, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty}

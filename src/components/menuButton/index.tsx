@@ -14,7 +14,7 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({ icon, label, onPress }) => {
   return (
-    <TouchableOpacity style={styles.menuItem} onPress={onPress}>
+    <TouchableOpacity style={styles.menuItem} onPress={onPress} activeOpacity={0.8}>
       <View style={styles.splashview}>
         <Image source={icon} style={styles.menuIcon} />
         <Text style={styles.menuText}>{label}</Text>

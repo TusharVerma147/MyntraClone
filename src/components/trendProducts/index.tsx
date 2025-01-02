@@ -68,7 +68,7 @@ const TrendProducts: React.FC<TrendProductsProps & { navigation: any }> = ({ dat
         </View>
       </View>
       <TouchableOpacity style={styles.button} activeOpacity={0.8}  onPress={() => navigation.navigate('Items', { categoryTitle: 'Products' })}>
-        <Text style={styles.buttonText} >View 33 Products</Text>
+        <Text style={styles.buttonText} >View All Products</Text>
         <Image source={Icons.forward} style={styles.forwardIcon} />
       </TouchableOpacity>
     </View>

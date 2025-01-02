@@ -11,24 +11,13 @@ const styles = StyleSheet.create({
   card: {
     alignItems: 'center',
     marginHorizontal: vh(5),
-
   },
   image: {
     width: vw(160),
     height: vh(220),
     borderRadius: 5,
     resizeMode: 'stretch',
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginTop: 5,
-  },
-  subtitle: {
-    fontSize: 12,
-    color: 'gray',
-    textAlign: 'center',
+    backgroundColor:'red'
   },
 });
 

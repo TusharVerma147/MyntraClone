@@ -87,6 +87,5 @@ export const logout = async () => {
     Toast.show('Logged out successfully', Toast.SHORT);
   } catch (error: any) {
     Toast.show('Error logging out', Toast.SHORT);
-    console.log(error);
   }
 };

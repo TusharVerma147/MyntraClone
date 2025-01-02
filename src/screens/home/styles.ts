@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
   category:{flexDirection: 'row', marginVertical: vh(5), marginHorizontal:vh(5)},
   categorylist:{marginVertical: vh(10), marginHorizontal: vh(5)},
   banner:{width:SCREEN_WIDTH,resizeMode:'contain', height:SCREEN_WIDTH/5 },
+  newbanner:{width:SCREEN_WIDTH,resizeMode:'cover', height:SCREEN_WIDTH/3 },
+ winter:{width:SCREEN_WIDTH,resizeMode:'cover', height:SCREEN_WIDTH/2},
   container: {
     flexDirection: 'row',
     alignItems: 'center',

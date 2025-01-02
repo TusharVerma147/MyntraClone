@@ -1,6 +1,6 @@
 import {StyleSheet,} from 'react-native';
 import { colors } from '../../theme';
-import {vh, SCREEN_WIDTH} from '../../theme/dimensions';
+import {vh} from '../../theme/dimensions';
 
 
 const styles = StyleSheet.create({
@@ -10,19 +10,19 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
       justifyContent: 'center',
-      marginHorizontal: vh(8),
+      marginHorizontal: vh(5),
     },
     image: {
-      width: vh(60),
+      width: vh(80),
       height: vh(80),
       borderRadius: 50,
-      resizeMode: 'contain',
+      resizeMode: 'cover',
       borderWidth: 2,
       borderColor: colors.crown,
       alignSelf: 'center',
     },
     title: {
-      fontSize: 13,
+      fontSize: vh(13),
       fontWeight: '600',
       textAlign: 'center',
     },

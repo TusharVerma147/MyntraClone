@@ -11,7 +11,7 @@ import {Icons,} from '../../assets';
 import {vh} from '../../theme/dimensions';
 import { colors } from '../../theme';
 import TrendProducts from '../../components/trendProducts';
-import { PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies } from '../../utils/mockdata';
+import { PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies, OversizedShirts } from '../../utils/mockdata';
 import { handleWishlistPress,  } from '../../utils/common';
 import { useNavigation, CommonActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -55,6 +55,7 @@ const Trends = () => {
         <TrendProducts heading='#PyjamaJoggers' data={PyjamaTrouser} navigation={navigation}/>
         <TrendProducts heading='#SloganTees' data={SloganTees} navigation={navigation}/>
         <TrendProducts heading='#RelaxedFitJeans' data={RelaxedFitJeans} navigation={navigation}/>
+        <TrendProducts heading='#OversizedShirts' data={OversizedShirts} navigation={navigation}/>
       </ScrollView>
     </AppWrapper>
   );

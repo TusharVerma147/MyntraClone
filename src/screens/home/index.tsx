@@ -84,7 +84,7 @@ const Home: React.FC<HomeProps> = () => {
             </View>
           </View>
         </View>
-        <View style={styles.rightview}>
+        <View style={styles.row}>
           <Image source={Icons.bell} style={styles.righticon} />
           <TouchableOpacity onPress={WishlistPress}>
           <Image source={Icons.wishlist} style={styles.righticon} />

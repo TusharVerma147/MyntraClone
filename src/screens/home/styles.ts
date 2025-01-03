@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     paddingVertical: vh(10),
     paddingLeft: vh(10),
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   row: {flexDirection: 'row'},
   myntraview: {
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: colors.crown,
   },
-  rightview: {flexDirection: 'row', marginTop: vh(10)},
   righticon: {
     height: 25,
     width: 25,
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
     tintColor: colors.crown,
   },
-  myntra: {fontSize: 15, fontWeight: '600'},
+  myntra: {fontSize: vh(15), fontWeight: '600'},
   crown: {
     height: 40,
     width: 40,

@@ -49,21 +49,21 @@ const styles = StyleSheet.create({
     nearbyPlaceItem: {
       padding: vh(10),
       borderBottomWidth: 1,
-      borderBottomColor: colors.charcol,
+      borderBottomColor: colors.platinum,
       flexDirection: 'row',
     },
     listheader: {
       paddingVertical: vh(10),
       paddingHorizontal: vh(30),
       borderBottomWidth: 1,
-      borderBottomColor: colors.charcol,
+      borderBottomColor: colors.platinum,
       flexDirection: 'row',
       alignItems: 'center',
     },
     nearbyPlaceText: {
       fontSize: vh(18),
-      color: colors.black,
-      fontWeight: '600',
+      color: colors.charcol,
+      fontWeight: '400',
       marginLeft: vh(10),
     },
     clock: {

@@ -29,7 +29,7 @@ export const navigateIfLoggedIn = async (
     if (isLoggedIn) {
       navigation.navigate(targetScreen);
     } else {
-      Alert.alert("Login Required", "Please log in to access this feature.");
+      Toast.show('Please log in to access  this feature.', Toast.SHORT);
     }
   };
 
@@ -50,12 +50,10 @@ export const navigateIfLoggedIn = async (
     item: any,
     wishlistItems: any[],
     dispatch: ReturnType<typeof useDispatch>,
-    // navigation: NavigationProp<any>
   ) => {
     const isLoggedIn = await checkLoginStatus();
     if (!isLoggedIn) {
-      Alert.alert("Login Required", "Please log in to add items to your wishlist.");
-    //   navigation.navigate('Login');
+      Toast.show('Please log in to add items to your wishlist.', Toast.SHORT); 
       return;
     }
   
@@ -79,16 +77,16 @@ export const navigateIfLoggedIn = async (
   ) => {
     const isLoggedIn = await checkLoginStatus();
     if (!isLoggedIn) {
-      Alert.alert("Login Required", "Please log in to add items to your bag.");
+      Toast.show('Please log in to add items to your  bag.', Toast.SHORT); 
       return;
     }
   
     const isInBag = bagItems.some((bagItem: any) => bagItem.id === item.id);
   
     if (isInBag) {
-      navigation.navigate('Bag');  // Navigate to the Bag screen if item is already in the bag
+      navigation.navigate('Bag');  
     } else {
-      dispatch(addToBag(item));  // Add item to the bag if not already there
+      dispatch(addToBag(item));  
     }
   };
 

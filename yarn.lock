@@ -2869,6 +2869,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-firebase/firestore@npm:^21.6.2":
+  version: 21.6.2
+  resolution: "@react-native-firebase/firestore@npm:21.6.2"
+  peerDependencies:
+    "@react-native-firebase/app": 21.6.2
+  checksum: 4a6ce3b5e83f01c7be06cfca4470b79c0f0c2bd67fbba231a7b1474bf353789576189aacf4a000166fe647459c5681f00d78b26ef4ffa62bdbe49775f61ce335
+  languageName: node
+  linkType: hard
+
 "@react-native-google-signin/google-signin@npm:latest":
   version: 13.1.0
   resolution: "@react-native-google-signin/google-signin@npm:13.1.0"
@@ -3677,6 +3686,7 @@ __metadata:
     "@react-native-community/geolocation": ^3.4.0
     "@react-native-firebase/app": ^21.6.1
     "@react-native-firebase/auth": ^21.6.1
+    "@react-native-firebase/firestore": ^21.6.2
     "@react-native-google-signin/google-signin": latest
     "@react-native-picker/picker": ^2.10.2
     "@react-native/babel-preset": 0.76.5

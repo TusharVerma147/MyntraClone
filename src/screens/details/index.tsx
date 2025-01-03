@@ -9,9 +9,10 @@ import { useRoute } from '@react-navigation/native';
 import CustomButton from '../../components/customButton';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
-import { handleWishlistPress, handleAddToWishlist, handleAddToBag } from '../../utils/common';
+import { handleWishlistPress, handleAddToWishlist,  handleAddToBag } from '../../utils/common';
 import LocationModal from '../../components/locationModal';
 import { useLocation } from '../../custom/location';
+
 
 const Details = ({ navigation }: any) => {
   const [isOpened, setIsOpened] = useState(false); 

@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
       fontWeight: '700',
       color: colors.charcol,
       fontSize: vh(15),
-
     },
     type: {
       color: colors.grey,
@@ -50,10 +49,11 @@ const styles = StyleSheet.create({
       fontSize:vh(12) 
     },
     ratingview:{
-      flexDirection:'row', position:'absolute', bottom:vh(5), left:vw(5), borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, gap:5
+      flexDirection:'row', position:'absolute', bottom:vh(5), left:vw(5), borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, gap:vh(5)
     },
     crossview:{
-       position:'absolute', bottom:vh(205), left:vw(142), borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, borderColor:colors.textGrey
+       position:'absolute', borderRadius:20, justifyContent:'center', alignItems:'center', padding:vh(5),backgroundColor:colors.screengrey, borderColor:colors.textGrey, right:vh(10),
+       top:vh(10)
     },
     star:{height:vh(10), width:vh(10), tintColor:colors.green},
     reviewtext:{

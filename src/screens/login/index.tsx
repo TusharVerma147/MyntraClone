@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Image,Alert, KeyboardAvoidingView, Platform, ScrollView, Modal, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, TouchableOpacity, Image,Alert, KeyboardAvoidingView, Platform, ScrollView, } from 'react-native';
 import React, {useState,useEffect} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import { colors } from '../../theme';

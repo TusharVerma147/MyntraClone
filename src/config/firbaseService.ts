@@ -1,8 +1,10 @@
+import React,{useEffect} from 'react';
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CommonActions} from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
+
 
 export const configureGoogleSignIn = () => {
   GoogleSignin.configure({
@@ -89,3 +91,8 @@ export const logout = async () => {
     Toast.show('Error logging out', Toast.SHORT);
   }
 };
+
+
+
+
+

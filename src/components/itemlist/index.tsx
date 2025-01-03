@@ -1,14 +1,14 @@
 import React from 'react';
 import {FlatList,TouchableOpacity,Image,Text, View,ImageSourcePropType,} from 'react-native';
 import {Icons} from '../../assets';
-import {SCREEN_WIDTH, vh} from '../../theme/dimensions';
 import styles from './styles';
 import CustomButton from '../customButton';
 import {useDispatch} from 'react-redux';
 import {removeFromWishlist,} from '../../redux/slice/wishListSlice';
 import {addToBag} from '../../redux/slice/bagSlice';
 import { colors } from '../../theme';
-import {handleAddToWishlist} from '../../utils/common';
+import {handleAddToWishlist, handleAddToBag} from '../../utils/common';
+import { NavigationProp } from '@react-navigation/native';
 
 interface CategoryItem {
   id: string;
@@ -33,6 +33,7 @@ interface ItemListProps {
   showcustombutton?: boolean;
   borderWidth?: number;
   showcrossicon?: boolean;
+  navigation: NavigationProp<any>;
 }
 
 const ItemList: React.FC<ItemListProps> = ({
@@ -44,6 +45,7 @@ const ItemList: React.FC<ItemListProps> = ({
   showcustombutton = false,
   showcrossicon = false,
   borderWidth,
+  navigation,
 }) => {
   const dispatch = useDispatch();
 
@@ -54,14 +56,18 @@ const ItemList: React.FC<ItemListProps> = ({
   };
 
 
-  const handleMoveToBag = (item: CategoryItem) => {
-    dispatch(removeFromWishlist(item.id));
-    dispatch(addToBag(item));
+  // const handleMoveToBag = (item: CategoryItem) => {
+  //   dispatch(removeFromWishlist(item.id));
+  //   dispatch(addToBag(item));
+   
+  // };
+
+  const handleMoveToBag = async (item: CategoryItem) => {
+    await handleAddToWishlist(item, wishlistItems, dispatch);
+    await handleAddToBag(item, [], dispatch, navigation); // Pass an empty array for bagItems or the actual array if available
   };
 
-  const handleCross = (item: CategoryItem) => {
-    dispatch(removeFromWishlist(item.id));
-  };
+  
 
   const renderItem = ({item}: {item: CategoryItem}) => (
     <View
@@ -79,7 +85,7 @@ const ItemList: React.FC<ItemListProps> = ({
           {showcrossicon && (
             <TouchableOpacity
               style={styles.crossview}
-              onPress={() => handleCross(item)}>
+              onPress={() => handleAddToWishlist(item, wishlistItems, dispatch)}>
               <Image source={Icons.cross} style={styles.cross} />
             </TouchableOpacity>
           )}

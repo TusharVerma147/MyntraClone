@@ -1,7 +1,7 @@
 import React, { useState,} from 'react';
 import {View,Text,FlatList,TouchableOpacity,Image,Platform,ScrollView,StatusBar,} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import {removeFromBag,updateQuantity,clearCart,} from '../../redux/slice/bagSlice';
+import {updateQuantity,} from '../../redux/slice/bagSlice';
 import { vh } from '../../theme/dimensions';
 import { colors } from '../../theme';
 import AppWrapper from '../../components/appWrapper';
@@ -13,7 +13,8 @@ import Toast from 'react-native-simple-toast';
 import QuantityModal from './quantityModal';
 import ProgressIndicator from '../../components/progressIndicator';
 import CouponModal from './couponModal';
-import { handleWishlistPress} from '../../utils/common';
+import { handleWishlistPress,handleDelete, handleCross} from '../../utils/common';
+
 
 const Bag = ({ navigation, route }: any) => {
   const dispatch = useDispatch();
@@ -27,13 +28,8 @@ const Bag = ({ navigation, route }: any) => {
 
 
 
-  const handleCross = (item: string) =>{
-     dispatch(removeFromBag(item))
-  };
 
-  const handleDelete = () => {
-    dispatch(clearCart());
-  }
+
 
   const handleSelectCoupon = (coupon:any) => {
     if (coupon && coupon.discount) {
@@ -101,7 +97,8 @@ const Bag = ({ navigation, route }: any) => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={()=>handleCross(item.id)}>
+        {/* <TouchableOpacity onPress={()=>handleCross(item.id)}> */}
+        <TouchableOpacity onPress={() => handleCross(item.id, dispatch)}>
           <Image source={Icons.cross} style={styles.cross} />
         </TouchableOpacity>
       </View>
@@ -161,11 +158,11 @@ const Bag = ({ navigation, route }: any) => {
         title="SHOPPING BAG"
         titleColor={colors.charcol}
         rightIcon2={Icons.wishlist}
-        rightIcon1={Icons.delete}
+       rightIcon1={bagItems.length > 0 ? Icons.delete : null}
         titleSize={vh(15)}
         backgroundColor={Platform.OS === 'android' ? colors.screengrey : 'none'}
         onPressRightIcon2={() => handleWishlistPress(navigation)}
-        onPressRightIcon1={handleDelete}
+        onPressRightIcon1={() =>handleDelete(dispatch)}
       />
        
       {bagItems.length === 0 ? (

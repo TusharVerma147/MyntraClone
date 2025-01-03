@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View,Text,Modal, TouchableWithoutFeedback, Image, ScrollView,TouchableOpacity} from'react-native';
 import CustomButton from '../../../components/customButton';
 import { vh } from '../../../theme/dimensions';
@@ -19,7 +19,7 @@ const QuantityModal: React.FC<QuantityModalProps> = ({
   onClose,
   onQtyChange,
 }) => {
-  const [localQty, setLocalQty] = React.useState(selectedQty);
+  const [localQty, setLocalQty] =  useState<number>(selectedQty);
 
   React.useEffect(() => {
     setLocalQty(selectedQty);

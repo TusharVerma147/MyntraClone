@@ -1,5 +1,5 @@
 import {View,Text,Image,StatusBar,TouchableOpacity,ScrollView} from 'react-native';
-import React, {useState,} from 'react';
+import React, {useEffect, useState,} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import { colors } from '../../theme';
 import {Icons, Images} from '../../assets';
@@ -16,6 +16,8 @@ import AnimatedTextInput from '../../components/animatedTextInput';
 import SelectPhotoModal from './cameraModal';
 import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
 import { handleWishlistPress } from '../../utils/common';
+import useCartAndWishlist from '../../custom/useCartandWislist';
+
 
 type HomeProps = {
   navigation: {
@@ -30,13 +32,23 @@ const Home: React.FC<HomeProps> = () => {
   const [selectedCategory, setSelectedCategory] = useState('Fashion');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+
+  useCartAndWishlist();
+
+  // useEffect(()=>{
+  //   fetchCart();
+  //   fetchWishlist();
+  // },[]);
+
   const WishlistPress = ()=>{
     handleWishlistPress(navigation)
   }
 
+
   const handleProfile = ()=>{
     navigation.navigate('LoginSign')
   }
+
 
   const renderCategoryContent = () => {
     switch (selectedCategory) {
@@ -66,6 +78,60 @@ const Home: React.FC<HomeProps> = () => {
   };
 
   const {categoryList, bannerImage} = renderCategoryContent();
+
+
+  // const fetchCart=async()=>{
+  //   const uid=auth().currentUser?.uid;
+  //   try{
+  //     if(uid){
+  //       const cartSnapshot=await firestore()
+  //       .collection('users')
+  //       .doc(uid)
+  //       .collection('cart')
+  //       .get();
+
+  //       const cartItem=cartSnapshot.docs.map(doc=>doc.data());
+  //       cartItem.forEach(item=>{
+  //         const alreadyExist=bagItems.some((item: { id: any; })=>item.id===item.id)
+  //         if(!alreadyExist){
+  //           dispatch(addToBag(item))
+  //         }
+  //       })
+      
+  //     }
+  //   }catch{
+     
+  //   }
+  // }
+
+  // const fetchWishlist=async()=>{
+  //   const uid=auth().currentUser?.uid;
+  //   try{
+  //     if(uid){
+  //       const cartSnapshot=await firestore()
+  //       .collection('users')
+  //       .doc(uid)
+  //       .collection('wishlist')
+  //       .get();
+
+  //       const wishlistItem=cartSnapshot.docs.map(doc=>doc.data());
+  //       wishlistItem.forEach(item=>{
+  //         const alreadyExist=wishlistItems.some((item: { id: any; })=>item.id===item.id)
+  //         if(!alreadyExist){
+  //           dispatch(addToWishlist(item))
+  //         }
+  //       })
+      
+  //     }
+  //   }catch{
+
+  //   }
+  // }
+
+
+
+
+
   return (
     <AppWrapper backgroundColor={colors.white}>
       <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />

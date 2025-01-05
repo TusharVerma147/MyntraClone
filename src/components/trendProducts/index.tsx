@@ -15,6 +15,19 @@ interface TrendProductsProps {
 
 
 const TrendProducts: React.FC<TrendProductsProps & { navigation: any }> = ({ data, heading, navigation }) => {
+
+
+
+  const goToDetails = (item: any) => {
+    navigation.navigate('Details', { item });
+  };
+
+  const gotoItem = () => {
+    navigation.navigate('Items', {categoryTitle: 'Products'});
+  };
+ 
+
+
   return (
     <View style={styles.productmain}>
       <Text style={styles.productHeading}>{heading}</Text>
@@ -26,7 +39,7 @@ const TrendProducts: React.FC<TrendProductsProps & { navigation: any }> = ({ dat
                 key={index}
                 style={styles.productButton}
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate('Details', { item })}
+                onPress={() => goToDetails(item)}
               >
                 <Image source={item.image} style={styles.productImage} />
                 <View style={styles.prizeview}>
@@ -42,7 +55,7 @@ const TrendProducts: React.FC<TrendProductsProps & { navigation: any }> = ({ dat
                 key={index}
                 style={styles.productButton}
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate('Details', { item })}
+                onPress={() => goToDetails(item)}
               >
                 <Image source={item.image} style={styles.productImage} />
                 <View style={styles.prizeview}>
@@ -57,7 +70,7 @@ const TrendProducts: React.FC<TrendProductsProps & { navigation: any }> = ({ dat
           <TouchableOpacity
             style={styles.productButton}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate('Details', { item: data[4] })}
+            onPress={() => goToDetails(data[4])}
           >
             <Image source={data[4].image} style={styles.productLargeImage} />
             <View style={styles.prizeview}>
@@ -67,8 +80,8 @@ const TrendProducts: React.FC<TrendProductsProps & { navigation: any }> = ({ dat
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles.button} activeOpacity={0.8}  onPress={() => navigation.navigate('Items', { categoryTitle: 'Products' })}>
-        <Text style={styles.buttonText} >View All Products</Text>
+      <TouchableOpacity style={styles.button} activeOpacity={0.8}  onPress={gotoItem}>
+        <Text style={styles.buttonText}>View All Products</Text>
         <Image source={Icons.forward} style={styles.forwardIcon} />
       </TouchableOpacity>
     </View>

@@ -8,12 +8,17 @@ import Home from '../../screens/home';
 import Bag from '../../screens/bag';
 import Minis from '../../screens/minis';
 import Trends from '../../screens/trends';
-import styles from './styles';
 import {vh} from '../../theme/dimensions';
+import { useSelector, } from 'react-redux';
+import styles from './styles';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTab = () => {
+
+  const bagItems = useSelector((state: any) => state.bag.items);
+  const totalQuantity = bagItems.reduce((total: number, item: any) => total + item.quantity, 0);
+
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
@@ -50,11 +55,6 @@ const BottomTab = () => {
                     : focused
                     ? colors.green
                     : colors.charcol,
-                    // elevation: focused ? 10 : 0,
-                    // shadowColor: focused ? colors.zeptored : 'transparent',
-                    // shadowOffset: {width: 0, height: 10}, 
-                    // shadowOpacity: focused ? 1 : 0, 
-                    // shadowRadius: 5,
               }}>
               <Image
                 source={iconName}
@@ -71,6 +71,16 @@ const BottomTab = () => {
                       : colors.charcol,
                 }}
               />
+
+{route.name === ScreenNames.Bag  &&totalQuantity > 0 &&  (
+                <View
+                  style={styles.countview}>
+                  <Text
+                    style={styles.countText}>
+                    {totalQuantity > 0 ? totalQuantity : undefined}
+                  </Text>
+                </View>
+              )}
             </View>
           );
         },

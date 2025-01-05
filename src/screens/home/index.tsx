@@ -1,11 +1,11 @@
-import {View,Text,Image,StatusBar,TouchableOpacity,ScrollView} from 'react-native';
-import React, {useEffect, useState,} from 'react';
+import {View,Text,Image,StatusBar,TouchableOpacity,ScrollView,} from 'react-native';
+import React, {useState} from 'react';
 import AppWrapper from '../../components/appWrapper';
-import { colors } from '../../theme';
+import {colors} from '../../theme';
 import {Icons, Images} from '../../assets';
 import ImageSlider from '../../components/bannerSlide';
 import styles from './styles';
-import {fashion,home,beauty, fashionlist,beautylist,homelist, fashionbrand,newbrand,winterbrand1,winterbrand2,homeessential,shadi,OversizedShirts,bestbeauty} from '../../utils/mockdata';
+import {fashion,home,beauty,fashionlist,beautylist,homelist,fashionbrand,winterbrand1,winterbrand2,homeessential,shadi,OversizedShirts,bestbeauty,} from '../../utils/mockdata';
 import CategoryCard from '../../components/category';
 import CategoryList from '../../components/categoryList';
 import {useNavigation} from '@react-navigation/native';
@@ -14,10 +14,9 @@ import BrandList from '../../components/brandsList';
 import TrendProducts from '../../components/trendProducts';
 import AnimatedTextInput from '../../components/animatedTextInput';
 import SelectPhotoModal from './cameraModal';
-import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
-import { handleWishlistPress } from '../../utils/common';
-import useCartAndWishlist from '../../custom/useCartandWislist';
-
+import {handleCameraSelect,handleGallerySelect,} from '../../custom/imagePicker';
+import {handleWishlistPress} from '../../utils/common';
+import fetchFirestore from '../../custom/useCartandWislist';
 
 type HomeProps = {
   navigation: {
@@ -32,23 +31,23 @@ const Home: React.FC<HomeProps> = () => {
   const [selectedCategory, setSelectedCategory] = useState('Fashion');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  fetchFirestore();
 
-  useCartAndWishlist();
+  const WishlistPress = () => {
+    handleWishlistPress(navigation);
+  };
 
-  // useEffect(()=>{
-  //   fetchCart();
-  //   fetchWishlist();
-  // },[]);
+  const handleProfile = () => {
+    navigation.navigate('LoginSign');
+  };
 
-  const WishlistPress = ()=>{
-    handleWishlistPress(navigation)
+  const handleModal = ()=>{
+    setIsModalVisible(!isModalVisible)
   }
 
-
-  const handleProfile = ()=>{
-    navigation.navigate('LoginSign')
+  const handleMyntra = ()=>{
+      navigation.navigate('LandingPage')
   }
-
 
   const renderCategoryContent = () => {
     switch (selectedCategory) {
@@ -79,70 +78,17 @@ const Home: React.FC<HomeProps> = () => {
 
   const {categoryList, bannerImage} = renderCategoryContent();
 
-
-  // const fetchCart=async()=>{
-  //   const uid=auth().currentUser?.uid;
-  //   try{
-  //     if(uid){
-  //       const cartSnapshot=await firestore()
-  //       .collection('users')
-  //       .doc(uid)
-  //       .collection('cart')
-  //       .get();
-
-  //       const cartItem=cartSnapshot.docs.map(doc=>doc.data());
-  //       cartItem.forEach(item=>{
-  //         const alreadyExist=bagItems.some((item: { id: any; })=>item.id===item.id)
-  //         if(!alreadyExist){
-  //           dispatch(addToBag(item))
-  //         }
-  //       })
-      
-  //     }
-  //   }catch{
-     
-  //   }
-  // }
-
-  // const fetchWishlist=async()=>{
-  //   const uid=auth().currentUser?.uid;
-  //   try{
-  //     if(uid){
-  //       const cartSnapshot=await firestore()
-  //       .collection('users')
-  //       .doc(uid)
-  //       .collection('wishlist')
-  //       .get();
-
-  //       const wishlistItem=cartSnapshot.docs.map(doc=>doc.data());
-  //       wishlistItem.forEach(item=>{
-  //         const alreadyExist=wishlistItems.some((item: { id: any; })=>item.id===item.id)
-  //         if(!alreadyExist){
-  //           dispatch(addToWishlist(item))
-  //         }
-  //       })
-      
-  //     }
-  //   }catch{
-
-  //   }
-  // }
-
-
-
-
-
   return (
     <AppWrapper backgroundColor={colors.white}>
       <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
       <View style={styles.header}>
         <View style={styles.row}>
-          <View style={styles.myntraview}>
+          <TouchableOpacity style={styles.myntraview} onPress={handleMyntra}>
             <Text style={styles.myntra}>Myntra</Text>
             <Image source={Icons.bottom} style={styles.bottom} />
-          </View>
+          </TouchableOpacity>
           <Image source={Icons.crown} style={styles.crown} />
-          <View style={{}}>
+          <View>
             <Text>BECOME</Text>
             <View style={styles.row}>
               <Text style={styles.inside}>INSIDER</Text>
@@ -153,22 +99,21 @@ const Home: React.FC<HomeProps> = () => {
         <View style={styles.row}>
           <Image source={Icons.bell} style={styles.righticon} />
           <TouchableOpacity onPress={WishlistPress}>
-          <Image source={Icons.wishlist} style={styles.righticon} />
+            <Image source={Icons.wishlist} style={styles.righticon} />
           </TouchableOpacity>
           <TouchableOpacity onPress={handleProfile}>
             <Image source={Icons.userpro} style={styles.righticon} />
           </TouchableOpacity>
         </View>
       </View>
-      <AnimatedTextInput onCameraPress={() => setIsModalVisible(true)} />
+      <AnimatedTextInput onCameraPress={handleModal} />
 
-<SelectPhotoModal
-  isVisible={isModalVisible}
-  onClose={() => setIsModalVisible(false)}
-  onCameraSelect={handleCameraSelect}
-  onGallerySelect={handleGallerySelect}
-
-/>
+      <SelectPhotoModal
+        isVisible={isModalVisible}
+        onClose={handleModal}
+        onCameraSelect={handleCameraSelect}
+        onGallerySelect={handleGallerySelect}
+      />
       <View style={styles.category}>
         <CategoryCard
           text="Fashion"
@@ -198,12 +143,16 @@ const Home: React.FC<HomeProps> = () => {
         <Image source={Images.brandstobrowse} style={styles.banner} />
         <BrandList data={fashionbrand} />
         <Image source={Images.passfwd} style={styles.banner} />
-        <TrendProducts heading='#OversizedShirts' data={OversizedShirts} navigation={navigation}/>
+        <TrendProducts
+          heading="#OversizedShirts"
+          data={OversizedShirts}
+          navigation={navigation}
+        />
         <Image source={Images.bestbeauty} style={styles.newbanner} />
         <BrandList data={bestbeauty} />
         <Image source={Images.blinkandmiss} style={styles.banner} />
         <BrandList data={fashionbrand} />
-        <Image source={Images.winteredit} style={styles.winter}/>
+        <Image source={Images.winteredit} style={styles.winter} />
         <BrandList data={winterbrand1} />
         <BrandList data={winterbrand2} />
         <Image source={Images.crazyhome} style={styles.banner} />

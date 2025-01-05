@@ -23,5 +23,5 @@ export default {
     peri:'#CCCCFF',
     royalblu:'	#4169E1',
     transparent:'rgba(0, 0, 0, 0.5)',
-
+     lightpink:'#feecf1'
   };

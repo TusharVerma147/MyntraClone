@@ -1,4 +1,5 @@
 import ImagePicker from 'react-native-image-crop-picker';
+import { Alert } from 'react-native';
 
 export const handleCameraSelect = () => {
   return ImagePicker.openCamera({
@@ -11,8 +12,9 @@ export const handleCameraSelect = () => {
       return image; 
     })
     .catch(error => {
-      console.log('Error opening camera:', error);
-      throw error; 
+      // console.log('Error opening camera:', error);
+      // Alert.alert('Myntra', 'Camera cannot run camera on simulator');
+      throw error;
     });
 };
 

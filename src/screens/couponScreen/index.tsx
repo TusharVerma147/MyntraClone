@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, FlatList, Platform } from 'react-native';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
@@ -9,35 +8,22 @@ import { vh } from '../../theme/dimensions';
 import CustomButton from '../../components/customButton';
 import styles from './styles';
 
-const CouponScreen = ({ navigation, route }: any) => {
-  
-  const [selectedCoupon, setSelectedCoupon] = useState<string | null>(null);
+const CouponScreen = () => {
 
   const coupons = [
-    { id: '1', code: 'SAVE10', discount: '10%', description: 'Get 10% off', },
-    { id: '2', code: 'CHRISTMAS25', discount: '25%', description: 'Get 25% off',},
+    { id: '1', code: 'SAVE10', discount: '10%', description: 'Get 10% off' },
+    { id: '2', code: 'CHRISTMAS25', discount: '25%', description: 'Get 25% off' },
     { id: '3', code: 'NY50', discount: '50%', description: 'Get 50% off', minimumPurchase: 1200 },
-    { id: '4', code: 'FLASHSALE30', discount: '30%', description: 'Get 30% off',},
-    { id: '5', code: 'SUMMER20', discount: '20%', description: 'Get 20% off', },
-    { id: '6', code: 'WINTER15', discount: '15%', description: 'Get 15% off',},
-    { id: '7', code: 'EOSS', discount: '40', description: 'Get 40% off', },
+    { id: '4', code: 'FLASHSALE30', discount: '30%', description: 'Get 30% off' },
+    { id: '5', code: 'SUMMER20', discount: '20%', description: 'Get 20% off' },
+    { id: '6', code: 'WINTER15', discount: '15%', description: 'Get 15% off' },
+    { id: '7', code: 'EOSS', discount: '40', description: 'Get 40% off' },
   ];
-
-  const handleApplyRemoveCoupon = (coupon: any) => {
-    if (selectedCoupon === coupon.id) {
-          
-      setSelectedCoupon(null);
-    } else {
-
-      setSelectedCoupon(coupon.id);
-      navigation.navigate('Bag', { selectedCoupon: coupon });
-    }
-  };
 
   return (
     <AppWrapper>
       <AppHeader
-        title="MY COUPON"
+        title="MY COUPONS"
         backicon={Icons.back}
         backColor={colors.charcol}
         backHeight={19}
@@ -56,15 +42,15 @@ const CouponScreen = ({ navigation, route }: any) => {
               <Text style={styles.couponDescription}>{item.description}</Text>
             </View>
             <CustomButton
-              title={selectedCoupon === item.id ? 'REMOVE' : 'APPLY'}
+              title="VIEW"
               textColor={colors.zeptored}
               style={styles.couponbutton}
               textStyle={styles.viewcoupon}
               borderColor={colors.zeptored}
               borderWidth={1}
-              backgroundColor="#feecf1"
+              backgroundColor={colors.lightpink}
               borderRadius={5}
-              onPress={() => handleApplyRemoveCoupon(item)} 
+              onPress={() => {} }
             />
           </View>
         )}
@@ -74,6 +60,3 @@ const CouponScreen = ({ navigation, route }: any) => {
 };
 
 export default CouponScreen;
-
-
-

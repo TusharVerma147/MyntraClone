@@ -7,7 +7,6 @@ import styles from './styles';
 import { Icons, Images } from '../../assets';
 import { vh } from '../../theme/dimensions';
 import CustomButton from '../../components/customButton';
-import strings from '../../utils/strings';
 import auth from '@react-native-firebase/auth';
 import { logout } from '../../config/firbaseService';
 import MenuItem from '../../components/menuButton';
@@ -57,14 +56,46 @@ const LoginSign: React.FC = () => {
     }
   };
 
-  const onPressHelp = () =>{
-    navigation.navigate('Chat')
+  const handleLogged = () =>{
+    navigation.navigate('Login')
   }
 
+  const onPressHelp = () =>{
+    if (isLoggedIn) {
+      navigation.navigate('Chat');
+    } else {
+      Toast.show('Please log in', Toast.SHORT);
+    }
+  }
+  const onPressOrders = () =>{
+    if (isLoggedIn) {
+      navigation.navigate('Orders');
+    } else {
+      Toast.show('Please log in', Toast.SHORT);
+    }
+  }
+
+  const onPressCoupon = () =>{
+    if (isLoggedIn) {
+      navigation.navigate('CouponScreen');
+    } else {
+      Toast.show('Please log in', Toast.SHORT);
+    }
+  }
+
+  const renderMenu = () => (
+    <View style={styles.menu}>
+      <MenuItem icon={Icons.orders} label="Orders" onPress={onPressOrders} />
+      <MenuItem icon={Icons.crown} label="Insider" />
+      <MenuItem icon={Icons.help} label="Help Center" onPress={onPressHelp} />
+      <MenuItem icon={Icons.coupon} label="Coupons" onPress={onPressCoupon} />
+    </View>
+  );
+  
   return (
     <AppWrapper>
       <AppHeader
-        title={strings.profile}
+        title="Profile"
         backicon={Icons.back}
         backColor={colors.grey}
         backHeight={19}
@@ -72,9 +103,8 @@ const LoginSign: React.FC = () => {
         marginLeft={10}
         backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
       />
- 
-
-{isLoggedIn ? (
+  
+      {isLoggedIn ? (
         <View>
           <ImageBackground
             source={Images.insiderbg}
@@ -91,7 +121,7 @@ const LoginSign: React.FC = () => {
               <Text style={styles.elite}>Elite Member</Text>
             </View>
           </ImageBackground>
-
+  
           <View style={styles.shoppingSection}>
             <Text style={styles.sectionTitle}>Shopping for {userName}</Text>
             <View style={styles.userIcon}>
@@ -104,15 +134,12 @@ const LoginSign: React.FC = () => {
             </View>
             <Text style={styles.adminUser}>{userName}</Text>
           </View>
-
+  
           <Image source={Images.bargains} style={styles.adBanner} />
-
-          <View style={styles.menu}>
-            <MenuItem icon={Icons.orders} label="Orders"  onPress={onPressHelp}/>
-            <MenuItem icon={Icons.crown} label="Insider" />
-            <MenuItem icon={Icons.help} label="Help Center"  onPress={onPressHelp}/>
-            <MenuItem icon={Icons.coupon} label="Coupons" />
-          </View>
+  
+        
+          {renderMenu()}
+  
           <CustomButton
             onPress={handleLogout}
             title="LOG OUT"
@@ -126,25 +153,32 @@ const LoginSign: React.FC = () => {
       ) : (
         <>
           <View style={styles.topview}></View>
+  
+
           <View style={styles.lowerview}>
             <View style={styles.profileview}>
               <Image source={Icons.user} style={styles.profile} />
             </View>
             <View style={styles.loginview}>
               <CustomButton
-                title={strings.Log}
+                title="LOG IN/SIGN UP"
                 backgroundColor={colors.zeptored}
                 textColor={colors.white}
                 borderRadius={5}
                 paddingHorizontal={vh(60)}
-                onPress={() => navigation.navigate('Login')}
+                onPress={handleLogged}
               />
             </View>
           </View>
+  <View style={{marginVertical:vh(50)}}>
+        
+          {renderMenu()}
+      </View>
         </>
       )}
     </AppWrapper>
   );
+  
 };
 
 export default LoginSign;

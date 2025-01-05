@@ -1,7 +1,8 @@
 import React, {useRef, useState} from 'react';
-import {View, Text,TouchableOpacity,Image,} from 'react-native';
+import {View, Text,TouchableOpacity,Image, ImageSourcePropType,} from 'react-native';
 import Video, { VideoRef } from 'react-native-video';
 import {Icons} from '../../assets';
+import Toast from "react-native-simple-toast"
 import styles from './styles';
 
 
@@ -35,21 +36,27 @@ const SingleReel : React.FC <SingleReelProps> = ({
 
   const videoRef = useRef<VideoRef | null>(null);
 
-  const onBuffer = (buffer:any) => {
-    console.log('buffring', buffer);
-  };
-  const onError = (error:any) => {
-    console.log('error', error);
-  };
+ 
 
   const [mute, setMute] = useState<boolean>(false);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [like, setLike] = useState<boolean>(item.isLike);
 
+  const onBuffer = (buffer:any) => {
+    Toast.show('Video will be load soon', Toast.SHORT, buffer)
+
+  };
+  const onError = (error:any) => {
+    Toast.show('Error playing Video', Toast.SHORT, error)
+  };
+  const handleBack = () =>{
+    navigation.goBack()
+  }
+
   return (
     <>
       <View style={styles.details}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={handleBack}>
           <Image source={Icons.back} style={styles.back} />
         </TouchableOpacity>
         <View style={styles.userDetails}>
@@ -80,11 +87,8 @@ const SingleReel : React.FC <SingleReelProps> = ({
               onError={onError}
               repeat
               resizeMode="cover"
-              // paused={currentIndex === index ? false : true}
-              // paused={currentIndex !== index}
               paused={!isScreenFocused || currentIndex !== index}
-
-              source={ item.video}
+              source={item.video}
               muted={mute}
               style={styles.reels}
             />

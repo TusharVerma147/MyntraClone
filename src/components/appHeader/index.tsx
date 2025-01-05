@@ -18,7 +18,7 @@ interface AppHeaderProps {
   backHeight?: number;
   leftWidth?: number;
   leftHeight?: number;
-  backColor?: string;
+  backColor?: string;  
   backicon?: ImageSourcePropType;
   iconleft?: ImageSourcePropType;
   rightIcon1?: ImageSourcePropType;
@@ -37,9 +37,9 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   backgroundColor,
   subtitle,
   subtitleColor = colors.textGrey,
-  titleSize = vh(19),
-  marginLeft = vh(15),
-  marginHorizontal = vh(5),
+  titleSize = vh(20),
+  marginLeft,
+  marginHorizontal,
   backWidth,
   backHeight,
   leftWidth,

@@ -160,7 +160,7 @@ export const handleAddToBag = async (
     }
   };
 
-  export const handleCross = async (
+  export const handleRemoveFromBag = async (
     item: any, 
     dispatch: ReturnType<typeof useDispatch>
   ) => {

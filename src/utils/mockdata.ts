@@ -34,7 +34,7 @@ const fashionlist = [
   {id: '5', title: 'TOPS', image:  Icons.top},
   {id: '6', title: 'KURTAS', image:  Icons.kurta},
   {id: '7', title: 'SAREES', image:  Icons.saree},
-  {id: '8', title: 'SANDALS', image:  Icons.sandals},
+  // {id: '8', title: 'SANDALS', image:  Icons.sandals},
 ];
 
 
@@ -44,7 +44,7 @@ const fashionlist = [
   {id: '3', title: 'FRAGRANCES', image:  Icons.fragrances},
   {id: '4', title: 'HAIR CARE', image:  Icons.haircare},
   {id: '5', title: 'GROOMING', image:  Icons.grooming},
-  {id: '6', title: 'BATH & BODY', image:  Icons.bath},
+  // {id: '6', title: 'BATH & BODY', image:  Icons.bath},
   {id: '7', title: 'APPLIANCES', image:  Icons.appliances},
   
 
@@ -194,30 +194,7 @@ const shirts = [
     off: '50% OFF!',
      description: 'Stylish checked design in a regular fit. Ideal for both casual and semi-formal occasions, made with breathable fabric.'
   },
-  {
-    id: '7',
-    brand: 'The Bear House',
-    type: 'Slim Fit Casual Shirt',
-    Price: '₹2000',
-    DiscountedPrice: '₹1000',
-    rating: '4.2',
-    reviews: '2.4k',
-    image: Images.shirt2,
-    off: '50% OFF!',
-    description: 'A perfect slim-fit casual shirt for everyday wear, crafted from soft cotton to keep you comfortable throughout the day.'
-  },
-  {
-    id: '8',
-    brand: 'The Bear House',
-    type: 'Slim Fit Casual Shirt',
-    Price: '₹2000',
-    DiscountedPrice: '₹1000',
-    rating: '4.2',
-    reviews: '2.4k',
-    image: Images.shirt3,
-    off: '50% OFF!',
-    description: 'A perfect slim-fit casual shirt for everyday wear, crafted from soft cotton to keep you comfortable throughout the day.'
-  },
+ 
 ];
 
 const jeans = [
@@ -248,7 +225,7 @@ const jeans = [
   {
     id: '13',
     brand: 'Lee',
-    type: 'Distressed Light Fade Jeans',
+    type: 'Light Fade Jeans',
     Price: '₹2800',
     DiscountedPrice: '₹1400',
     rating: '4.7',
@@ -294,7 +271,157 @@ const jeans = [
     description: 'Performance fit jeans for active individuals. Stretchable, comfortable, and designed for freedom of movement.'
   }
 ];
+const kurtas = [
+  {
+    id: '17',
+    brand: 'FabIndia',
+    type: 'Cotton Casual Kurta',
+    Price: '₹2200',
+    DiscountedPrice: '₹1300',
+    rating: '4.3',
+    reviews: '1.8k',
+    image: Images.kurta4,
+    off: '41% OFF!',
+    description: 'A comfortable cotton kurta with a modern fit. Perfect for everyday wear, offering both style and comfort for casual outings.'
+  },
+  {
+    id: '18',
+    brand: 'Aurelia',
+    type: 'Embroidered Kurta',
+    Price: '₹2800',
+    DiscountedPrice: '₹1600',
+    rating: '4.6',
+    reviews: '1.5k',
+    image: Images.kurta2,
+    off: '43% OFF!',
+    description: 'A beautiful embroidered kurta with delicate floral patterns. Made from soft cotton, it’s perfect for both casual and festive occasions.'
+  },
+  {
+    id: '19',
+    brand: 'W for Woman',
+    type: 'Silk Blend Kurta',
+    Price: '₹6000',
+    DiscountedPrice: '₹3000',
+    rating: '4.7',
+    reviews: '2.8k',
+    image: Images.kurta3,
+    off: '50% OFF!',
+    description: 'A luxurious silk blend kurta, ideal for special occasions. Features elegant design and fine detailing for a regal look.'
+  },
+  {
+    id: '20',
+    brand: 'Biba',
+    type: 'Chanderi Kurta',
+    Price: '₹3500',
+    DiscountedPrice: '₹2100',
+    rating: '4.4',
+    reviews: '3.2k',
+    image: Images.kurta1,
+    off: '40% OFF!',
+    description: 'A cool, breathable linen kurta for casual outings. Light and comfortable, perfect for the summer season with a laid-back style.'
+  }
+];
+const tops = [
+  {
+    id: '27',
+    brand: 'Zara',
+    type: 'Floral Print Top',
+    Price: '₹1800',
+    DiscountedPrice: '₹900',
+    rating: '4.5',
+    reviews: '2.4k',
+    image: Icons.top,
+    off: '50% OFF!',
+    description: 'A stylish floral print top made from soft cotton. Perfect for casual outings or beach days, offering comfort with a fashionable flair.'
+  },
+  {
+    id: '28',
+    brand: 'H&M',
+    type: 'Linen  Top',
+    Price: '₹2200',
+    DiscountedPrice: '₹1400',
+    rating: '4.6',
+    reviews: '3.1k',
+    image: Images.top1,
+    off: '36% OFF!',
+    description: 'A breezy linen crop top that’s perfect for warm weather. The lightweight fabric ensures comfort while the relaxed fit offers a trendy vibe.'
+  },
+  {
+    id: '29',
+    brand: 'Mango',
+    type: 'Casual Top',
+    Price: '₹1500',
+    DiscountedPrice: '₹750',
+    rating: '4.4',
+    reviews: '1.8k',
+    image: Images.top2,
+    off: '50% OFF!',
+    description: 'A simple and chic  top made of soft, breathable fabric. A versatile piece that pairs well with jeans or skirts for a casual look.'
+  },
+  {
+    id: '30',
+    brand: 'Forever 21',
+    type: 'Long Top',
+    Price: '₹2500',
+    DiscountedPrice: '₹1250',
+    rating: '4.7',
+    reviews: '2.5k',
+    image: Images.top3,
+    off: '50% OFF!',
+    description: 'A trendy Long top made from premium fabric. Perfect for a night out or casual daywear, giving you a stylish, feminine look.'
+  }
+];
 
+const sarees = [
+  {
+    id: '37',
+    brand: 'FabIndia',
+    type: 'Cotton Silk Saree',
+    Price: '₹5000',
+    DiscountedPrice: '₹2500',
+    rating: '4.6',
+    reviews: '1.5k',
+    image: Images.saree1,
+    off: '50% OFF!',
+    description: 'A beautiful blend of cotton and silk, this saree features traditional block prints. Perfect for casual gatherings and festive occasions, offering comfort and elegance.'
+  },
+  {
+    id: '38',
+    brand: 'Biba',
+    type: 'Banarasi Silk Saree',
+    Price: '₹5500',
+    DiscountedPrice: '₹2750',
+    rating: '4.5',
+    reviews: '2.0k',
+    image: Images.saree2,
+    off: '50% OFF!',
+    description: 'A traditional Banarasi silk saree featuring intricate zari work. Ideal for weddings or formal events, this saree combines tradition and modern design.'
+  },
+  {
+    id: '39',
+    brand: 'W for Woman',
+    type: 'Saree with Embroidery',
+    Price: '₹4800',
+    DiscountedPrice: '₹2400',
+    rating: '4.4',
+    reviews: '1.8k',
+    image: Images.saree3,
+    off: '50% OFF!',
+    description: 'A breathable cotton saree with beautiful embroidery on the border. The perfect choice for a day event or casual occasions, offering a relaxed yet stylish look.'
+  },
+  {
+    id: '40',
+    brand: 'Global Desi',
+    type: 'Printed Crepe Saree',
+    Price: '₹4999',
+    DiscountedPrice: '₹2499',
+    rating: '4.7',
+    reviews: '3.2k',
+    image: Images.saree4,
+    off: '50% OFF!',
+    description: 'A modern printed crepe saree with vibrant colors and patterns. Perfect for semi-formal events and evening parties, offering a blend of style and comfort.'
+  }
+];
 
 const shoes = [
   {
@@ -370,6 +497,7 @@ const shoes = [
     description: 'Durable trail running shoes designed for rough outdoor terrains. Lightweight, breathable, and built to last through extreme conditions.'
   }
 ];
+
 const watches = [
   {
     id: '31',
@@ -410,7 +538,7 @@ const watches = [
   {
     id: '34',
     brand: 'Titan',
-    type: 'Edge Stainless Steel Watch',
+    type: 'Stainless Steel Watch',
     Price: '₹12000',
     DiscountedPrice: '₹9600',
     rating: '4.6',
@@ -633,6 +761,211 @@ const products = [
   }
 ];
 
+const makeup = [
+  {
+    id: '61',
+    brand: 'Maybelline',
+    type: 'Fit Me Matte',
+    Price: '₹699',
+    DiscountedPrice: '₹499',
+    rating: '4.4',
+    reviews: '6.5k',
+    image: Images.fitme,
+    off: '29% OFF!',
+    description: 'A liquid foundation that offers natural coverage and controls shine. Ideal for normal to oily skin, it smooths the pores for a flawless finish.'
+  },
+  {
+    id: '62',
+    brand: 'L\'Oréal Paris',
+    type: 'Volume Million Mascara',
+    Price: '₹799',
+    DiscountedPrice: '₹599',
+    rating: '4.7',
+    reviews: '3.2k',
+    image: Images.makeup2,
+    off: '25% OFF!',
+    description: 'A mascara designed to give bold volume and length to your lashes. Its unique brush separates and defines each lash, creating a dramatic look.'
+  },
+  {
+    id: '63',
+    brand: 'Lakmé',
+    type: 'Mousse Foundation',
+    Price: '₹800',
+    DiscountedPrice: '₹550',
+    rating: '4.5',
+    reviews: '4.1k',
+    image: Images.makeup3,
+    off: '31% OFF!',
+    description: 'A lightweight mousse foundation that provides full coverage with a natural finish. Perfect for long-lasting wear, it keeps your skin smooth and matte throughout the day.'
+  },
+  {
+    id: '64',
+    brand: 'Faces Canada',
+    type: 'Matte Lip Crayon',
+    Price: '₹599',
+    DiscountedPrice: '₹399',
+    rating: '4.6',
+    reviews: '2.9k',
+    image: Images.makeup4,
+    off: '33% OFF!',
+    description: 'A creamy, matte lip crayon that glides on smoothly and stays on for hours. Available in vibrant shades, it gives your lips a bold, long-lasting color with a comfortable feel.'
+  }
+];
+
+const skincare = [
+  {
+    id: '9',
+    brand: 'Neutrogena',
+    type: 'Hydro Boost Water Gel',
+    Price: '₹899',
+    DiscountedPrice: '₹649',
+    rating: '4.7',
+    reviews: '4.3k',
+    image: Images.skincare1,
+    off: '28% OFF!',
+    description: 'A lightweight water gel that provides instant hydration and locks it in for 48 hours. Suitable for all skin types, especially dry skin.'
+  },
+  {
+    id: '10',
+    brand: 'Cetaphil',
+    type: 'Daily Facial Cleanser',
+    Price: '₹620',
+    DiscountedPrice: '₹499',
+    rating: '4.6',
+    reviews: '5.2k',
+    image: Images.skincare2,
+    off: '20% OFF!',
+    description: 'A gentle daily facial cleanser that removes dirt and oil without stripping the skin’s natural moisture. Ideal for sensitive skin.'
+  },
+  {
+    id: '65',
+    brand: 'The Body Shop',
+    type: 'Tea Tree Oil',
+    Price: '₹1595',
+    DiscountedPrice: '₹1195',
+    rating: '4.8',
+    reviews: '2.1k',
+    image: Images.treeoil,
+    off: '25% OFF!',
+    description: 'A purifying and blemish-fighting oil made from 100% tea tree leaves. Ideal for acne-prone skin, it helps reduce blemishes and breakouts.'
+  },
+  {
+    id: '81',
+    brand: 'BoroPlus',
+    type: 'Body Lotion',
+    Price: '₹500',
+    DiscountedPrice: '₹400',
+    rating: '4.9',
+    reviews: '3.5k',
+    image: Images.skincare4,
+    off: '20% OFF!',
+    description: 'An intense moisturizing cream that provides all-day hydration for all skin types, leaving skin feeling soft, smooth, and deeply nourished.'
+  }
+];
+const fragrances = [
+  {
+    id: '82',
+    brand: 'Bellavita',
+    type: 'Organic Deodorant Spray',
+    Price: '₹499',
+    DiscountedPrice: '₹349',
+    rating: '4.5',
+    reviews: '2.3k',
+    image: Images.fragrance1,
+    off: '30% OFF!',
+    description: 'A long-lasting, alcohol-free deodorant spray with natural ingredients. Keeps you fresh all day long with a refreshing citrusy scent, perfect for daily use.'
+  },
+  {
+    id: '83',
+    brand: 'Park Avenue',
+    type: 'Samurai Parfum',
+    Price: '₹499',
+    DiscountedPrice: '224',
+    rating: '4.4',
+    reviews: '1.8k',
+    image: Images.fragrance2,
+    off: '55% OFF!',
+    description: 'A fresh, vibrant fragrance with top notes of citrus and floral. This perfume spray keeps you feeling fresh and confident for hours, ideal for everyday wear.'
+  },
+  {
+    id: '84',
+    brand: 'Wild Stone',
+    type: 'Code Titanium',
+    Price: '₹850',
+    DiscountedPrice: '₹599',
+    rating: '4.6',
+    reviews: '3.1k',
+    image: Images.fragrance3,
+    off: '29% OFF!',
+    description: 'A bold and masculine fragrance with woody and musky notes. This deodrant offers a long-lasting scent that keeps you fresh and confident throughout the day.'
+  },
+  {
+    id: '85',
+    brand: 'Fogg',
+    type: 'Impressio Eau De Parfum',
+    Price: '₹799',
+    DiscountedPrice: '₹599',
+    rating: '4.5',
+    reviews: '4.0k',
+    image: Images.fragrance4,
+    off: '25% OFF!',
+    description: 'A vibrant and elegant perfume with a blend of floral and fruity notes. This long-lasting fragrance is perfect for both daytime and evening wear.'
+  }
+];
+
+const grooming = [
+  {
+    id: '86',
+    brand: 'Beardo',
+    type: 'Beardo Beard Oil',
+    Price: '₹499',
+    DiscountedPrice: '₹399',
+    rating: '4.5',
+    reviews: '3.2k',
+    image: Images.grooming1,
+    off: '20% OFF!',
+    description: 'A premium beard oil that nourishes and softens your beard. It helps reduce itchiness and makes your beard more manageable, with a refreshing fragrance.'
+  },
+  {
+    id: '87',
+    brand: 'Bombay Shaving Company',
+    type: 'Shaving Kit for Men',
+    Price: '₹999',
+    DiscountedPrice: '₹749',
+    rating: '4.6',
+    reviews: '2.8k',
+    image: Images.grooming2,
+    off: '25% OFF!',
+    description: 'A complete shaving kit that includes a razor, shaving cream, and a post-shave balm. Everything you need for a smooth and irritation-free shave.'
+  },
+  {
+    id: '88',
+    brand: 'The Man Company',
+    type: 'Men’s Hair Wax',
+    Price: '₹599',
+    DiscountedPrice: '₹449',
+    rating: '4.4',
+    reviews: '1.9k',
+    image: Images.grooming3,
+    off: '25% OFF!',
+    description: 'A strong hold hair wax that gives you a stylish look with a matte finish. Ideal for all hair types, it keeps your hair in place throughout the day.'
+  },
+  {
+    id: '89',
+    brand: 'Philips',
+    type: 'Philips Nose Trimmer',
+    Price: '₹1299',
+    DiscountedPrice: '₹999',
+    rating: '4.7',
+    reviews: '5.4k',
+    image: Images.grooming4,
+    off: '23% OFF!',
+    description: 'A high-quality nose trimmer that provides a safe and precise trimming experience. Ideal for trimming nose, ear, and eyebrow hair, with a washable head for easy cleaning.'
+  }
+];
+
+
+
 const SloganTees = [
   {
     id: '61',
@@ -695,8 +1028,6 @@ const SloganTees = [
     description: 'UrbanTees streetwear tee designed for the bold and adventurous. Embrace your urban style.'
   }
 ]
-
-
 
 const PyjamaTrouser = [
   {
@@ -891,7 +1222,7 @@ const OversizedShirts = [
   {
     id: '76',
     brand: 'Flying Machine',
-    type: 'Cuban Collar Oversized Casual Shirt',
+    type: 'Cuban Collar Casual Shirt',
     Price: '₹1499',
     DiscountedPrice: '₹1299',
     rating: '4.5',
@@ -915,7 +1246,7 @@ const OversizedShirts = [
   {
     id: '78',
     brand: 'Uniqlo',
-    type: 'Long Sleeves Solid Oversized Casual Shirt',
+    type: 'Long Sleeves Casual Shirt',
     Price: '₹1399',
     DiscountedPrice: '₹1199',
     rating: '4.4',
@@ -953,4 +1284,4 @@ const OversizedShirts = [
 
 
 
-export {fashion, beauty, home,fashionlist,newbrand, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches, products, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty}
+export {fashion, beauty, home,fashionlist,newbrand, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches,kurtas, sarees, tops,makeup,skincare, fragrances, grooming,products, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty}

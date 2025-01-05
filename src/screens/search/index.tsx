@@ -1,60 +1,158 @@
-import { View, Text, Image, TextInput, TouchableOpacity, FlatList, StatusBar } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  FlatList,
+  StatusBar,
+} from 'react-native';
+import {
+  useNavigation,
+  CommonActions,
+  useFocusEffect,
+} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import AppWrapper from '../../components/appWrapper';
-import { Icons } from '../../assets';
-import { colors } from '../../theme';
-import { useNavigation, CommonActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser } from '../../utils/mockdata';
+import {Icons} from '../../assets';
+import {colors} from '../../theme';
+import {
+  handleCameraSelect,
+  handleGallerySelect,
+} from '../../custom/imagePicker';
+import {
+  saveSearchToFirestore,
+  fetchRecentSearches,
+  deleteRecentSearch,
+} from '../../custom/searchFirestore';
+import {
+  shirts,
+  jeans,
+  shoes,
+  watches,
+  products,
+  kurtas,
+  OversizedHoodies,
+  RelaxedFitJeans,
+  SloganTees,
+  PyjamaTrouser,
+  OversizedShirts,
+  skincare,
+  fragrances,
+} from '../../utils/mockdata';
 import styles from './styles';
-import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
+import PhotoSearch from '../../components/photoSearch';
 
 const Search = () => {
   const navigation = useNavigation<StackNavigationProp<any>>();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [recentSearches, setRecentSearches] = useState<any[]>([]);
+  const [isEditing, setIsEditing] = useState<Boolean>(false);
 
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
 
   const handleBack = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
-      })
+        routes: [{name: 'BottomTab', params: {screen: 'Home'}}],
+      }),
     );
   };
 
+  const searchInputRef = useRef<TextInput | null>(null);
+  const focusSearchInput = useCallback(() => {
+    const timeoutId = setTimeout(() => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
+    }, 1000);
 
-  const handleSearch = (term: string) => {
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      focusSearchInput();
+    }, [focusSearchInput]),
+  );
+
+  const handleSearch = async (term: string) => {
     setSearchTerm(term);
     if (term) {
-
-      const allItems = [...shirts, ...jeans, ...shoes, ...watches, ...products, ...OversizedHoodies,...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser];
-      const filteredItems = allItems.filter((item) =>
-        
-        item.brand.toLowerCase().includes(term.toLowerCase()) ||
-        item.type.toLowerCase().includes(term.toLowerCase())
+      const allItems = [
+        ...shirts,
+        ...jeans,
+        ...shoes,
+        ...watches,
+        ...products,
+        ...kurtas,
+        ...OversizedHoodies,
+        ...RelaxedFitJeans,
+        ...SloganTees,
+        ...PyjamaTrouser,
+        ...OversizedShirts,
+        ...skincare,
+        ...fragrances,
+      ];
+      const filteredItems = allItems.filter(
+        item =>
+          item.brand.toLowerCase().includes(term.toLowerCase()) ||
+          item.type.toLowerCase().includes(term.toLowerCase()),
       );
-      
-      setSearchResults(filteredItems); 
+
+      setSearchResults(filteredItems);
+      if (filteredItems.length > 0) {
+        const relevantItem = filteredItems[0];
+        await saveSearchToFirestore(
+          term,
+          relevantItem.brand || relevantItem.type,
+        );
+      }
     } else {
       setSearchResults([]);
     }
   };
-  
-  const shortenText = (text: string, wordLimit: number) => {
-    const words = text.split(' ');
-    return words.length > wordLimit ? `${words.slice(0, wordLimit).join(' ')}...` : text;
-  };
- 
-  const navigateToItemScreen = (title: string) => {
-    navigation.navigate('Items', { categoryTitle: title, searchTerm });
+
+  const handleRecentSearchPress = (term: string, type: string) => {
+    navigation.navigate('Items', {categoryTitle: type || term});
   };
 
+  const handleDeleteRecentSearch = async (id: string) => {
+    await deleteRecentSearch(id);
+    setRecentSearches(recentSearches.filter(search => search.id !== id));
+  };
+
+  const fetchRecentSearchesData = async () => {
+    const searches = await fetchRecentSearches();
+    setRecentSearches(searches);
+  };
+
+  useEffect(() => {
+    fetchRecentSearchesData();
+  }, []);
+
+  const shortenText = (text: string, wordLimit: number) => {
+    const words = text.split(' ');
+    return words.length > wordLimit
+      ? `${words.slice(0, wordLimit).join(' ')}...`
+      : text;
+  };
+
+  const navigateToItemScreen = (title: string) => {
+    navigation.navigate('Items', {categoryTitle: title, searchTerm});
+  };
 
   return (
     <AppWrapper>
-      <StatusBar backgroundColor={colors.screengrey} barStyle={'dark-content'}/>
+      <StatusBar
+        backgroundColor={colors.screengrey}
+        barStyle={'dark-content'}
+      />
       <View style={styles.container}>
         <TouchableOpacity onPress={handleBack}>
           <Image style={styles.backicon} source={Icons.back} />
@@ -65,12 +163,12 @@ const Search = () => {
           placeholderTextColor={colors.textinput}
           value={searchTerm}
           onChangeText={handleSearch}
+          ref={searchInputRef}
         />
         <TouchableOpacity>
           <Image style={styles.backicon} source={Icons.mic} />
         </TouchableOpacity>
       </View>
-
 
       {searchTerm ? (
         searchResults.length > 0 ? (
@@ -78,22 +176,21 @@ const Search = () => {
             <FlatList
               showsVerticalScrollIndicator={false}
               data={searchResults}
-              renderItem={({ item }) => {
-                console.log(item.type)
+              renderItem={({item}) => {
                 return (
-                <TouchableOpacity
-                  style={styles.itemResult}
-                  onPress={() => navigateToItemScreen(item.type)} 
-                >
-                  <Image style={styles.itemImage} source={item.image} />
-                  <Text style={styles.itemText}>{shortenText(`${item.brand} - ${item.type}`, 5)}</Text>
-                </TouchableOpacity>
-         ) }}
-              keyExtractor={(item) => item.id}
-              
+                  <TouchableOpacity
+                    style={styles.itemResult}
+                    onPress={() => navigateToItemScreen(item.type)}>
+                    <Image style={styles.itemImage} source={item.image} />
+                    <Text style={styles.itemText}>
+                      {shortenText(`${item.brand} - ${item.type}`, 5)}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              }}
+              keyExtractor={item => item.id}
             />
           </View>
-          
         ) : (
           <View style={styles.noItemsFoundContainer}>
             <Text style={styles.noItemsFoundText}>No items found</Text>
@@ -103,19 +200,50 @@ const Search = () => {
         <>
           <Text style={styles.photoText}>PHOTO SEARCH</Text>
           <View style={styles.photoSearchContainer}>
-            <TouchableOpacity activeOpacity={0.8} style={[styles.photoButton, styles.photoButtonLeft]} onPress={handleCameraSelect}>
-              <Image style={styles.backicon} source={Icons.camera} />
-              <Text style={styles.buttonText}>Click a photo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.photoButton} activeOpacity={0.8} onPress={handleGallerySelect}>
-              <Image style={styles.backicon} source={Icons.gallery} />
-              <Text style={styles.buttonText}>Select a photo</Text>
-            </TouchableOpacity>
+            <PhotoSearch onPress={handleCameraSelect} style={styles.photoButtonLeft} icon={Icons.camera} text="Click a photo" />
+            <PhotoSearch onPress={handleGallerySelect} icon={Icons.gallery} text="Select a photo" />
           </View>
-
-          <View style={styles.container}>
-            <Text style={styles.recentText}>RECENT SEARCHES</Text>
-            <Text style={styles.editText}>EDIT</Text>
+          <View>
+            <View style={styles.container}>
+              <Text style={styles.recentText}>RECENT SEARCHES</Text>
+              <TouchableOpacity onPress={toggleEdit} activeOpacity={0.8}>
+                <Text style={styles.editText}>
+                  {isEditing ? 'DONE' : 'EDIT'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={recentSearches}
+              renderItem={({item}) => (
+                <View>
+                  <TouchableOpacity activeOpacity={0.8}
+                    onPress={() =>
+                      handleRecentSearchPress(item.term, item.type)
+                    }
+                    style={styles.recentItem}>
+                    {item.image && (
+                      <Image
+                        style={styles.recentItemImage}
+                        source={item.image}
+                      />
+                    )}
+                    <Text style={styles.recentItemText} numberOfLines={2}>
+                      {item.type}
+                    </Text>
+                  </TouchableOpacity>
+                  {isEditing && (
+                    <TouchableOpacity activeOpacity={0.8}
+                      onPress={() => handleDeleteRecentSearch(item.id)}
+                      style={styles.crossIconContainer}>
+                      <Image style={styles.crossIcon} source={Icons.cross} />
+                    </TouchableOpacity>
+                  )}
+                </View>
+              )}
+              keyExtractor={item => item.id}
+            />
           </View>
         </>
       )}

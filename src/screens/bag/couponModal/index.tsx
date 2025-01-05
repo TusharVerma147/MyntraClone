@@ -51,6 +51,7 @@ const CouponModal = ({ visible, onClose, onSelectCoupon }: any) => {
                 style={[
                   styles.couponButton,
                 ]}
+                backgroundColor={colors.lightpink}
                 textStyle={styles.couponButtonText}
                 borderColor={colors.zeptored}
                 borderWidth={1}

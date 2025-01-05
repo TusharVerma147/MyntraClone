@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text,FlatList,Image,TouchableOpacity,} from 'react-native';
+import {View, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import styles from './styles';
@@ -43,7 +43,5 @@ const BrandList: React.FC<BrandListProps> = ({data}) => {
     </View>
   );
 };
-
-
 
 export default BrandList;

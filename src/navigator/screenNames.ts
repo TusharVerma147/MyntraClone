@@ -16,6 +16,7 @@ const ScreenNames = {
   BottomTab: 'BottomTab',
   Address: 'Address',
   Chat:'Chat',
+  Orders:'Orders'
 };
 
 export {ScreenNames};

@@ -4,9 +4,9 @@ import { vh } from '../../theme/dimensions';
 
 const styles = StyleSheet.create({
     couponItem: {
-      padding: 15,
+      padding: vh(15),
       borderBottomWidth: 1,
-      borderColor: '#ccc',
+      borderColor: colors.platinum,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
       backgroundColor: colors.white,
     },
     couponCode: { fontSize: vh(18), fontWeight: '600' },
-    couponDescription: { fontSize: 14, color: '#666' },
+    couponDescription: { fontSize: 14, color: colors.textGrey },
     couponbutton: { paddingVertical: vh(5) },
-    viewcoupon: { fontSize: vh(15), fontWeight: '600', color: colors.zeptored },
+    viewcoupon: { fontSize: vh(15), fontWeight: '600', color: colors.zeptored, },
   });
 
 export default styles;

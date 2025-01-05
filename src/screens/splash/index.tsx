@@ -9,11 +9,6 @@ import { CommonActions } from '@react-navigation/native';
 
 
 
-interface SplashProps {
-  navigation: {
-    dispatch: any;
-  };
-}
 
 const Splash= ({ navigation }:any) => {
   const opacity = useSharedValue(1); 

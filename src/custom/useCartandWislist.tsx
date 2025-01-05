@@ -6,7 +6,6 @@ import { addToBag } from '../redux/slice/bagSlice';
 import { addToWishlist } from '../redux/slice/wishListSlice';
 import Toast from 'react-native-simple-toast';
 
-// Custom hook to fetch cart and wishlist data
 const useCartAndWishlist = () => {
   const dispatch = useDispatch();
   const bagItems = useSelector((state: any) => state.bag.items);
@@ -16,13 +15,8 @@ const useCartAndWishlist = () => {
     const fetchCartAndWishlist = async () => {
       const uid = auth().currentUser?.uid;
 
-      if (!uid) {
-        Toast.show('User not logged in', Toast.SHORT);
-        return;
-      }
 
       try {
-        // Fetch Cart
         const cartSnapshot = await firestore()
           .collection('users')
           .doc(uid)
@@ -35,11 +29,11 @@ const useCartAndWishlist = () => {
         cartItems.forEach(item => {
           const alreadyExist = bagItems.some((existingItem: { id: any }) => existingItem.id === item.id);
           if (!alreadyExist) {
-            dispatch(addToBag(item)); // Add to Redux
+            dispatch(addToBag(item)); 
           }
         });
 
-        // Fetch Wishlist
+   
         const wishlistSnapshot = await firestore()
           .collection('users')
           .doc(uid)
@@ -50,7 +44,7 @@ const useCartAndWishlist = () => {
         wishlistItemsData.forEach(item => {
           const alreadyExist = wishlistItems.some((existingItem: { id: any }) => existingItem.id === item.id);
           if (!alreadyExist) {
-            dispatch(addToWishlist(item)); // Add to Redux
+            dispatch(addToWishlist(item));
           }
         });
       } catch (error) {
@@ -60,6 +54,8 @@ const useCartAndWishlist = () => {
     };
 
     fetchCartAndWishlist();
+
+    
   }, [dispatch, bagItems, wishlistItems]);
 };
 

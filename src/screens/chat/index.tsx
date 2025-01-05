@@ -7,8 +7,15 @@ import { colors } from '../../theme';
 import { Icons } from '../../assets';
 import { vh } from '../../theme/dimensions';
 
+
+interface Message {
+  id: string;
+  text: string;
+  sender: 'sender' | 'receiver';
+}
+
 const Chat: React.FC = () => {
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     { id: '1', text: 'Hello! How can I help you today?', sender: 'receiver' },
   ]);
   const [input, setInput] = useState('');
@@ -25,7 +32,7 @@ const Chat: React.FC = () => {
     }
   };
 
-  const renderMessage = (message:string|number) => (
+  const renderMessage = (message: Message) => (
     <View
       key={message.id}
       style={[
@@ -39,7 +46,7 @@ const Chat: React.FC = () => {
 
   return (
     <AppWrapper>
-      <AppHeader title='Chat' titleColor={colors.charcol} backicon={Icons.back} backHeight={vh(20)} backWidth={vh(20)}/>
+      <AppHeader title='Chat' titleColor={colors.charcol} backicon={Icons.back} backHeight={vh(20)} backWidth={vh(20)} backColor={colors.charcol}/>
       <ScrollView
         ref={scrollViewRef}
         contentContainerStyle={styles.scrollViewContent}
@@ -57,10 +64,8 @@ const Chat: React.FC = () => {
         />
         <Button title="Send" onPress={handleSend} />
       </View>
-      </AppWrapper>
+    </AppWrapper>
   );
 };
-
-
 
 export default Chat;

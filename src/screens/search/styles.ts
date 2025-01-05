@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {vh, SCREEN_WIDTH} from '../../theme/dimensions';
+import {vh} from '../../theme/dimensions';
 import {colors} from '../../theme';
 
 const styles = StyleSheet.create({
@@ -24,21 +24,6 @@ photoSearchContainer: {
     marginHorizontal: vh(20), 
     marginTop: vh(10),
   },
-  photoButton: {
-    flex: 1, 
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    paddingVertical: vh(10), 
-    borderWidth: 1.5,
-    borderColor: colors.charcol,
-    borderRadius: vh(5),
-  },
-  buttonText: {
-    fontSize: vh(15),
-    fontWeight: '600',
-    color: colors.charcol,
-  },
   photoButtonLeft: {
     marginRight: vh(10), 
   },
@@ -50,8 +35,6 @@ photoSearchContainer: {
   },
   searchResultsContainer: {
     marginTop: vh(20),
-    // backgroundColor:'red',
-    // borderWidth:1,
     paddingHorizontal:vh(20)
   },
   itemResult: {
@@ -83,6 +66,42 @@ photoSearchContainer: {
     fontSize: vh(16),
     color: colors.textGrey,
   },
+  recentItem: {
+   marginHorizontal:vh(10),
+   marginVertical:vh(20),
+  },
+recentItemImage:{
+   height:vh(50),
+   width:vh(50),
+   resizeMode:'cover',
+   borderRadius:50,
+   borderWidth:1,
+   alignSelf:'center',
+   borderColor:colors.textinput
+ 
+},
+  recentItemText: {
+    fontSize: vh(12),  
+    fontWeight: '300',  
+    color: colors.charcol,  
+    textAlign: 'center',
+    flexWrap: 'wrap',   
+    width:vh(55),  
+  },
+  crossIconContainer: {
+    position: 'absolute',
+    top:vh(20),
+    left:vh(10),
+    backgroundColor:colors.charcol,
+    borderRadius:20,
+    padding:vh(3)
+  },
+  crossIcon: {
+    width: vh(8),
+    height: vh(8),
+    tintColor:colors.white
+  },
+
 });
 
 export default styles;

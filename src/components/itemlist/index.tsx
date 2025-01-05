@@ -4,8 +4,6 @@ import {Icons} from '../../assets';
 import styles from './styles';
 import CustomButton from '../customButton';
 import {useDispatch} from 'react-redux';
-import {removeFromWishlist,} from '../../redux/slice/wishListSlice';
-import {addToBag} from '../../redux/slice/bagSlice';
 import { colors } from '../../theme';
 import {handleAddToWishlist, handleAddToBag} from '../../utils/common';
 import { NavigationProp } from '@react-navigation/native';
@@ -56,15 +54,11 @@ const ItemList: React.FC<ItemListProps> = ({
   };
 
 
-  // const handleMoveToBag = (item: CategoryItem) => {
-  //   dispatch(removeFromWishlist(item.id));
-  //   dispatch(addToBag(item));
-   
-  // };
+
 
   const handleMoveToBag = async (item: CategoryItem) => {
     await handleAddToWishlist(item, wishlistItems, dispatch);
-    await handleAddToBag(item, [], dispatch, navigation); // Pass an empty array for bagItems or the actual array if available
+    await handleAddToBag(item, [], dispatch, navigation); 
   };
 
   

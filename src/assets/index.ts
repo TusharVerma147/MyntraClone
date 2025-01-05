@@ -204,9 +204,36 @@ const Images = {
   bestbeauty3: require('./images/beastbeauty3.jpeg'),
   bestbeauty4: require('./images/beastbeauty4.jpeg'),
   bestbeauty5: require('./images/beastbeauty5.jpeg'),
+  kurta3: require('./images/kurta3.jpg'),
+  kurta1: require('./images/kurta1.jpg'),
+  kurta2: require('./images/kurta2.jpg'),
+  kurta4: require('./images/kurta4.jpg'),
+  top3: require('./images/top3.jpg'),
+  top1: require('./images/top1.jpg'),
+  top2: require('./images/top2.jpg'),
+  saree1: require('./images/saree1.jpg'),
+  saree2: require('./images/saree2.jpg'),
+  saree3: require('./images/saree3.jpg'),
+  saree4: require('./images/saree4.jpg'),
+  makeup2: require('./images/makeup2.jpg'),
+  makeup3: require('./images/makeup3.jpg'),
+  makeup4: require('./images/makeup4.jpg'),
+ skincare1:require('./images/skincare1.png'),
+ skincare2:require('./images/skincare2.png'),
+ skincare4:require('./images/skincare4.png'),
+ fragrance1:require('./images/fragrance1.png'),
+ fragrance2:require('./images/fragrance2.png'),
+ fragrance3:require('./images/fragrance3.png'),
+ fragrance4:require('./images/fragrance4.png'),
+ grooming4:require('./images/grooming4.jpg'),
+ grooming1:require('./images/grooming1.jpg'),
+ grooming2:require('./images/grooming2.jpg'),
+ grooming3:require('./images/grooming3.jpg'),
+
+
 };
 
-const videos = {
+const Videos = {
   video1: require('./videos/Video1.mp4'),
   video2: require('./videos/Video2.mp4'),
   video3: require('./videos/Video3.mp4'),
@@ -219,5 +246,5 @@ const videos = {
   video10: require('./videos/Video10.mp4'),
 };
 
-export {Icons, Images, videos};
+export {Icons, Images, Videos};
 

@@ -95,6 +95,7 @@ const Wishlist = () => {
           showWishlistIcon={false}  
           showcustombutton={true}
            showcrossicon={true}
+           navigation={navigation}
         />
       )}
     </AppWrapper>

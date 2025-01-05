@@ -6,11 +6,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { Easing, withTiming, useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import styles from './styles';
 import { CommonActions } from '@react-navigation/native';
+import AuthState from '../../config/authState';
 
 
 
 
 const Splash= ({ navigation }:any) => {
+
+  AuthState(); 
   const opacity = useSharedValue(1); 
   const scale = useSharedValue(1);   
 

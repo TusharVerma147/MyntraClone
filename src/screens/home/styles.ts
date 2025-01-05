@@ -78,7 +78,13 @@ const styles = StyleSheet.create({
   },
   hiddenInput: {
     color: 'transparent',
-  }
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.white,
+  },
 
 });
 

@@ -1,5 +1,5 @@
-import {View,Text,Image,StatusBar,TouchableOpacity,ScrollView,} from 'react-native';
-import React, {useState} from 'react';
+import {View,Text,Image,StatusBar,TouchableOpacity,ScrollView,ActivityIndicator} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import AppWrapper from '../../components/appWrapper';
 import {colors} from '../../theme';
 import {Icons, Images} from '../../assets';
@@ -30,8 +30,13 @@ const Home: React.FC<HomeProps> = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('Fashion');
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   fetchFirestore();
+
+  useEffect(()=>{
+    setTimeout(() => setIsLoading(false), 2000); 
+  },[])
 
   const WishlistPress = () => {
     handleWishlistPress(navigation);
@@ -80,7 +85,13 @@ const Home: React.FC<HomeProps> = () => {
 
   return (
     <AppWrapper backgroundColor={colors.white}>
-      <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />
+      <StatusBar backgroundColor={colors.white} barStyle={'dark-content'} />()
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={colors.zeptored} />
+        </View>
+      ) :(
+        <View>
       <View style={styles.header}>
         <View style={styles.row}>
           <TouchableOpacity style={styles.myntraview} onPress={handleMyntra}>
@@ -160,6 +171,8 @@ const Home: React.FC<HomeProps> = () => {
         <Image source={Images.shadi} style={styles.banner} />
         <BrandList data={shadi} />
       </ScrollView>
+      </View>
+      )}
     </AppWrapper>
   );
 };

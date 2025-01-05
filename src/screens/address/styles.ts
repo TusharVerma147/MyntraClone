@@ -5,7 +5,7 @@ import { colors } from '../../theme';
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: colors.transparent,
     alignItems: 'center',
     marginTop: Platform.OS === 'android' ? vh(150):vh(200) 
 
@@ -60,16 +60,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   addressText: {fontSize: vh(16), color: colors.textGrey, fontWeight: '400'},
-  loaderContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
   buttonaddress:{ paddingVertical: vh(10), marginHorizontal:vh(10) },
   buttonaddressText:{ fontSize: vh(18), color: colors.charcol },
   buttontext: {fontSize: vh(16)},

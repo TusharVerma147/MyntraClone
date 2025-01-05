@@ -16,6 +16,7 @@ import { vh, vw } from '../../theme/dimensions';
 import ItemCard from '../../components/itemCard';
 import styles from './styles';
 
+
 const Bag = ({ navigation }: any) => {
   const dispatch = useDispatch();
   const bagItems = useSelector((state: any) => state.bag.items);
@@ -189,7 +190,7 @@ const Bag = ({ navigation }: any) => {
           />
            <View style={styles.infoview}>
             <View style={styles.iconview}>
-              <Image source={Icons.original} style={styles.icon} />
+              <Image source={Icons.original1} style={styles.icon} />
               <Text style={styles.infotext}>Genuine Products</Text>
             </View>
             <View style={styles.iconview}>

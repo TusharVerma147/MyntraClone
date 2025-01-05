@@ -7,6 +7,7 @@ import { colors } from '../../theme';
 import { vh } from '../../theme/dimensions';
 import CustomButton from '../../components/customButton';
 import styles from './styles';
+import Toast from 'react-native-simple-toast'
 
 const CouponScreen = () => {
 
@@ -20,14 +21,19 @@ const CouponScreen = () => {
     { id: '7', code: 'EOSS', discount: '40', description: 'Get 40% off' },
   ];
 
+
+  const handleCouponApply = () => {
+    Toast.show('Apply on Order to get special discoun', Toast.LONG);
+  };
+
   return (
     <AppWrapper>
       <AppHeader
         title="MY COUPONS"
         backicon={Icons.back}
         backColor={colors.charcol}
-        backHeight={19}
-        backWidth={19}
+        backHeight={vh(20)}
+        backWidth={vh(20)}
         marginLeft={vh(10)}
         titleSize={vh(15)}
         backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
@@ -50,7 +56,7 @@ const CouponScreen = () => {
               borderWidth={1}
               backgroundColor={colors.lightpink}
               borderRadius={5}
-              onPress={() => {} }
+              onPress={handleCouponApply}
             />
           </View>
         )}

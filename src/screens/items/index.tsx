@@ -4,7 +4,7 @@ import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import { Icons } from '../../assets';
 import { colors } from '../../theme';
-import { shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser, OversizedShirts, kurtas, tops, sarees, makeup, skincare, fragrances, grooming } from '../../utils/mockdata';
+import { shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser, OversizedShirts, kurtas, tops, sarees, makeup, skincare, fragrances, grooming,appliances, decor, bedlinen, cookware, dinnerware, storage } from '../../utils/mockdata';
 import { vh } from '../../theme/dimensions';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -13,6 +13,7 @@ import ItemList from '../../components/itemlist';
 import { handleWishlistPress } from '../../utils/common';
 
 type NavigationProp = StackNavigationProp<any>;
+
 
 interface CategoryItem {
   id: string;
@@ -55,6 +56,12 @@ const Items = () => {
     RelaxedFitJeans,
     SloganTees,
     PyjamaTrouser,
+    appliances,
+    decor,
+    bedlinen,
+    cookware,
+    dinnerware,
+    storage,
 
 
   };
@@ -68,7 +75,7 @@ const Items = () => {
   } else if (categoryTitle && categoryTitle.trim().length > 0) {
     const allCategories = [
       ...shirts, ...jeans, ...shoes, ...watches, ...products,
-      ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming
+      ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
     ];
     categoryData = allCategories.filter(item =>
       item.brand.toLowerCase().includes(categoryTitle.toLowerCase()) ||

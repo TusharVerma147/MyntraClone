@@ -21,6 +21,7 @@ export default {
     palepurple:'#cbc3e3',
     aqua:'#00FFFF',
     peri:'#CCCCFF',
+    orange:'orange',
     royalblu:'	#4169E1',
     transparent:'rgba(0, 0, 0, 0.5)',
      lightpink:'#feecf1'

@@ -24,8 +24,6 @@ const LoginSign: React.FC = () => {
   const [userInitial, setUserInitial] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
- 
-
 
   useEffect(() => {
     const checkLogin = async () => {
@@ -124,6 +122,7 @@ const LoginSign: React.FC = () => {
   
           <View style={styles.shoppingSection}>
             <Text style={styles.sectionTitle}>Shopping for {userName}</Text>
+
             <View style={styles.userIcon}>
               <View style={styles.user}>
                 <Text style={styles.userInitial}>{userInitial}</Text>
@@ -133,6 +132,7 @@ const LoginSign: React.FC = () => {
               </View>
             </View>
             <Text style={styles.adminUser}>{userName}</Text>
+    
           </View>
   
           <Image source={Images.bargains} style={styles.adBanner} />
@@ -153,8 +153,6 @@ const LoginSign: React.FC = () => {
       ) : (
         <>
           <View style={styles.topview}></View>
-  
-
           <View style={styles.lowerview}>
             <View style={styles.profileview}>
               <Image source={Icons.user} style={styles.profile} />
@@ -170,7 +168,7 @@ const LoginSign: React.FC = () => {
               />
             </View>
           </View>
-  <View style={{marginVertical:vh(50)}}>
+  <View style={styles.menuspace}>
         
           {renderMenu()}
       </View>

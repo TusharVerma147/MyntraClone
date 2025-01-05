@@ -34,7 +34,6 @@ const fashionlist = [
   {id: '5', title: 'TOPS', image:  Icons.top},
   {id: '6', title: 'KURTAS', image:  Icons.kurta},
   {id: '7', title: 'SAREES', image:  Icons.saree},
-  // {id: '8', title: 'SANDALS', image:  Icons.sandals},
 ];
 
 
@@ -44,8 +43,7 @@ const fashionlist = [
   {id: '3', title: 'FRAGRANCES', image:  Icons.fragrances},
   {id: '4', title: 'HAIR CARE', image:  Icons.haircare},
   {id: '5', title: 'GROOMING', image:  Icons.grooming},
-  // {id: '6', title: 'BATH & BODY', image:  Icons.bath},
-  {id: '7', title: 'APPLIANCES', image:  Icons.appliances},
+  {id: '6', title: 'APPLIANCES', image:  Icons.appliances},
   
 
 ];
@@ -53,11 +51,10 @@ const fashionlist = [
  const homelist = [
   {id: '1', title: 'DECOR', image: Icons.decor},
   {id: '2', title: 'CURTAINS', image:  Icons.curtains},
-  {id: '3', title: 'BED LINEN', image:  Icons.bed},
+  {id: '3', title: 'BEDLINEN', image:  Icons.bed},
   {id: '4', title: 'COOKWARE', image:  Icons.cookware},
   {id: '5', title: 'DINNERWARE', image:  Icons.dinnerware},
-  {id: '6', title: 'APPLIANCES', image:  Icons.homeappliances},
-  {id: '7', title: 'STORAGE', image:  Icons.storage},
+  {id: '6', title: 'STORAGE', image:  Icons.storage},
 ];
 
 const fashionbrand=[
@@ -736,18 +733,6 @@ const products = [
     description: 'Nike Air Max sneakers designed for comfort and style. Perfect for running and casual wear.'
   },
   {
-    id: '54',
-    brand: 'Casio',
-    type: 'G-Shock Digital Watch',
-    Price: '₹6000',
-    DiscountedPrice: '₹4800',
-    rating: '4.6',
-    reviews: '4.2k',
-    image: Images.watch2,
-    off: '20% OFF!',
-    description: 'Casio G-Shock digital watch with a rugged design. Built to withstand tough conditions, perfect for outdoor adventures.'
-  },
-  {
     id: '55',
     brand: 'Bosch',
     type: 'Food Processor',
@@ -961,6 +946,259 @@ const grooming = [
     image: Images.grooming4,
     off: '23% OFF!',
     description: 'A high-quality nose trimmer that provides a safe and precise trimming experience. Ideal for trimming nose, ear, and eyebrow hair, with a washable head for easy cleaning.'
+  }
+];
+const appliances = [
+  {
+    id: '90',
+    brand: 'Philips',
+    type: 'Philips Hair Dryer',
+    Price: '₹2599',
+    DiscountedPrice: '₹1999',
+    rating: '4.6',
+    reviews: '8.1k',
+    image: Images.appliance1,
+    off: '23% OFF!',
+    description: 'A powerful hair dryer with multiple heat and speed settings, providing fast and efficient drying with a sleek design. Ideal for all hair types.'
+  },
+  {
+    id: '91',
+    brand: 'Braun',
+    type: 'Braun Hair Straightener',
+    Price: '₹2999',
+    DiscountedPrice: '₹2499',
+    rating: '4.7',
+    reviews: '4.5k',
+    image: Images.appliance2,
+    off: '17% OFF!',
+    description: 'An advanced ceramic hair straightener that provides smooth and shiny hair with minimal heat damage. Comes with adjustable temperature settings for versatile styling.'
+  },
+  {
+    id: '92',
+    brand: 'Remington',
+    type: 'Remington Beard Trimmer',
+    Price: '₹1699',
+    DiscountedPrice: '₹1299',
+    rating: '4.5',
+    reviews: '3.3k',
+    image: Images.appliance3,
+    off: '24% OFF!',
+    description: 'A precision beard trimmer with multiple length settings for a customized trim. Offers long battery life and is easy to clean, providing a comfortable grooming experience.'
+  },
+  {
+    id: '93',
+    brand: 'Vega',
+    type: 'Vega Professional Hair Straightener',
+    Price: '₹1699',
+    DiscountedPrice: '₹1299',
+    rating: '4.4',
+    reviews: '2.5k',
+    image: Images.appliance4,
+    off: '24% OFF!',
+    description: 'A professional hair straightener with ceramic plates that provide smooth and frizz-free hair. Features an adjustable temperature range and a quick heating time.'
+  }
+];
+
+const decor = [
+  {
+    id: '94',
+    brand: 'Home Centre',
+    type: 'Decorative Table Lamp',
+    Price: '₹1599',
+    DiscountedPrice: '₹1299',
+    rating: '4.6',
+    reviews: '3.2k',
+    image: Images.decor5,
+    off: '19% OFF!',
+    description: 'A stylish and elegant table lamp with a unique design that adds a touch of luxury to your living room or bedroom.'
+  },
+  {
+    id: '95',
+    brand: 'Fabindia',
+    type: 'Handmade Ceramic Vase',
+    Price: '₹999',
+    DiscountedPrice: '₹799',
+    rating: '4.7',
+    reviews: '2.8k',
+    image: Images.decor2,
+    off: '20% OFF!',
+    description: 'A handcrafted ceramic vase with a rustic finish, perfect for enhancing the aesthetic of your dining table or entryway.'
+  },
+  {
+    id: '96',
+    brand: 'Urban Ladder',
+    type: 'Abstract Wall Art',
+    Price: '₹2499',
+    DiscountedPrice: '₹1999',
+    rating: '4.8',
+    reviews: '4.1k',
+    image: Images.decor3,
+    off: '20% OFF!',
+    description: 'A beautiful abstract wall art piece that transforms any room into a modern, chic space. Comes framed and ready to hang.'
+  },
+  {
+    id: '97',
+    brand: 'The Bombay Store',
+    type: 'Woven Jute Rug',
+    Price: '₹2899',
+    DiscountedPrice: '₹2399',
+    rating: '4.5',
+    reviews: '1.6k',
+    image: Images.decor4,
+    off: '17% OFF!',
+    description: 'A soft, eco-friendly jute rug that brings warmth and texture to your living room or bedroom. Durable and easy to maintain.'
+  }
+];
+
+const bedlinen = [
+  {
+    id: '98',
+    brand: 'Florida',
+    type: 'Cotton Bed Sheet Set',
+    Price: '₹1499',
+    DiscountedPrice: '₹1299',
+    rating: '4.5',
+    reviews: '2.3k',
+    image: Images.bedlinen1,
+    off: '13% OFF!',
+    description: 'A soft and breathable cotton bed sheet set, includes 1 bed sheet and 2 pillow covers. Ideal for comfortable and cozy sleep.'
+  },
+  {
+    id: '99',
+    brand: 'Klotthe',
+    type: 'Floral Bed Sheet Set',
+    Price: '₹1999',
+    DiscountedPrice: '₹1699',
+    rating: '4.6',
+    reviews: '3.4k',
+    image: Images.bedlinen2,
+    off: '15% OFF!',
+    description: 'A beautiful floral design bed sheet set made from 100% cotton. Comes with 1 bed sheet and 2 matching pillow covers.'
+  },
+  {
+    id: '100',
+    brand: 'La Verne',
+    type: 'Print Bedspread',
+    Price: '₹2499',
+    DiscountedPrice: '₹1999',
+    rating: '4.7',
+    reviews: '1.8k',
+    image: Images.bedlinen3,
+    off: '20% OFF!',
+    description: 'A handcrafted  print bedspread made of premium cotton. Adds a rustic and traditional touch to your bedroom.'
+  },
+  {
+    id: '101',
+    brand: 'Monte Carlo',
+    type: 'Microfibre Blanket',
+    Price: '₹1799',
+    DiscountedPrice: '₹1499',
+    rating: '4.4',
+    reviews: '2.9k',
+    image: Images.bedlinen4,
+    off: '17% OFF!',
+    description: 'A lightweight yet warm microfibre blanket perfect for chilly nights. Easy to maintain and comes in multiple colors and sizes.'
+  },
+]
+
+const cookware = [
+  {
+    id: '102',
+    brand: 'Prestige',
+    type: 'Non-Stick Fry Pan',
+    Price: '₹1299',
+    DiscountedPrice: '₹999',
+    rating: '4.6',
+    reviews: '4.5k',
+    image: Images.cookware1,
+    off: '23% OFF!',
+    description: 'A durable non-stick frying pan perfect for frying, sautéing, and scrambling. Features a long-lasting, easy-to-clean surface.'
+  },
+  {
+    id: '103',
+    brand: 'Hawkins',
+    type: 'Classic Pressure Cooker',
+    Price: '₹2999',
+    DiscountedPrice: '₹2499',
+    rating: '4.7',
+    reviews: '3.8k',
+    image: Images.cookware2,
+    off: '17% OFF!',
+    description: 'A high-quality pressure cooker that provides fast and efficient cooking. Features a precision weight valve and an ergonomic handle for ease of use.'
+  },
+  {
+    id: '104',
+    brand: 'Milton',
+    type: 'Cookware Set (5-Piece)',
+    Price: '₹5999',
+    DiscountedPrice: '₹4999',
+    rating: '4.8',
+    reviews: '2.3k',
+    image: Images.cookware3,
+    off: '17% OFF!',
+    description: 'A 5-piece cookware set made of high-quality material, designed for versatile cooking. Includes 2 saucepans, a frying pan, a stockpot, and a steamer.'
+  },
+  {
+    id: '105',
+    brand: 'Ekhasa',
+    type: 'Glass Serving Handi',
+    Price: '₹1870',
+    DiscountedPrice: '₹1496',
+    rating: '4.6',
+    reviews: '1.9k',
+    image: Images.cookware4,
+    off: '20% OFF!',
+    description: 'A high-performance Borosilicate lightweight and durable handi perfect for serving food'
+  }
+];
+const dinnerware = [
+  {
+    id: '106',
+    brand: 'Corelle',
+    type: 'Dinner Plate Set (6 Pieces)',
+    Price: '₹2999',
+    DiscountedPrice: '₹2499',
+    rating: '4.8',
+    reviews: '3.2k',
+    image: Images.dinnerware1,
+    off: '17% OFF!',
+    description: 'A 6-piece dinner plate set made from break- and chip-resistant glass. Lightweight yet durable, perfect for everyday dining.'
+  },
+  {
+    id: '107',
+    brand: 'Larah By Borosil',
+    type: 'Opalware Bowl Set',
+    Price: '₹1499',
+    DiscountedPrice: '₹1199',
+    rating: '4.7',
+    reviews: '2.7k',
+    image: Images.dinnerware2,
+    off: '20% OFF!',
+    description: 'A set of 4 opalware bowls, ideal for serving soups, salads, and desserts. Microwave and dishwasher safe.'
+  },
+  {
+    id: '108',
+    brand: 'Pigeon',
+    type: 'Dinner Set (12 Pieces)',
+    Price: '₹1999',
+    DiscountedPrice: '₹1599',
+    rating: '4.5',
+    reviews: '3.1k',
+    image: Images.dinnerware3,
+    off: '20% OFF!',
+    description: 'A 12-piece dinner set including dinner plates, bowls, and small plates, made from high-quality ceramic. Elegant and durable for any occasion.'
+  },
+  {
+    id: '109',
+    brand: 'Cello',
+    type: 'Melamine Serving Set (8 Pieces)',
+    Price: '₹1599',
+    DiscountedPrice: '₹1399',
+    rating: '4.6',
+    reviews: '1.8k',
+    image: Images.dinnerware4,
+    off: '13% OFF!',
+    description: 'An 8-piece melamine serving set that includes a large serving bowl, small bowls, and spoons. Perfect for family meals and parties.'
   }
 ];
 
@@ -1281,7 +1519,59 @@ const OversizedShirts = [
   },
   
 ];
+const storage = [
+  {
+    id: '110',
+    brand: 'Ikea',
+    type: 'Storage Basket Set (3 Pieces)',
+    Price: '₹999',
+    DiscountedPrice: '₹799',
+    rating: '4.7',
+    reviews: '2.5k',
+    image: Images.storage1,
+    off: '20% OFF!',
+    description: 'A set of 3 woven storage baskets in different sizes. Ideal for organizing clothes, toys, or office supplies. Made from durable material.'
+  },
+  {
+    id: '111',
+    brand: 'Gillas',
+    type: 'Under-Bed Storage Box (Set of 2)',
+    Price: '₹1799',
+    DiscountedPrice: '₹1499',
+    rating: '4.5',
+    reviews: '3.1k',
+    image: Images.storage2,
+    off: '17% OFF!',
+    description: 'A set of 2 under-bed storage boxes with lids. Perfect for storing seasonal clothing, shoes, or extra bedding. Easy to slide under the bed.'
+  },
+  {
+    id: '112',
+    brand: 'Sterilite',
+    type: 'Storage Container Set (6 Pieces)',
+    Price: '₹2599',
+    DiscountedPrice: '₹2199',
+    rating: '4.6',
+    reviews: '1.9k',
+    image: Images.storage3,
+    off: '15% OFF!',
+    description: 'A versatile set of 6 storage containers with lids, ideal for organizing kitchen items, office supplies, or craft materials. Stackable and durable.'
+  },
+  {
+    id: '113',
+    brand: 'Prettykrafts',
+    type: 'Large Storage Bags',
+    Price: '₹799',
+    DiscountedPrice: '₹699',
+    rating: '4.8',
+    reviews: '4.2k',
+    image: Images.storage4,
+    off: '13% OFF!',
+    description: 'A pack of large, durable storage bags for clothes, blankets, or bedding. Helps maximize storage space and keep items organized.'
+  }
+];
 
 
 
-export {fashion, beauty, home,fashionlist,newbrand, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches,kurtas, sarees, tops,makeup,skincare, fragrances, grooming,products, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty}
+
+export {fashion, beauty, home,fashionlist,newbrand, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches,kurtas, sarees, tops,makeup,skincare, fragrances, grooming,
+  appliances,products,decor,bedlinen,cookware,dinnerware,storage, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty}

@@ -1,45 +1,13 @@
 import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  StatusBar,
-} from 'react-native';
-import {
-  useNavigation,
-  CommonActions,
-  useFocusEffect,
-} from '@react-navigation/native';
+import {View,Text,Image,TextInput,TouchableOpacity,FlatList,StatusBar,} from 'react-native';
+import {useNavigation,CommonActions,useFocusEffect,} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import AppWrapper from '../../components/appWrapper';
 import {Icons} from '../../assets';
 import {colors} from '../../theme';
-import {
-  handleCameraSelect,
-  handleGallerySelect,
-} from '../../custom/imagePicker';
-import {
-  saveSearchToFirestore,
-  fetchRecentSearches,
-  deleteRecentSearch,
-} from '../../custom/searchFirestore';
-import {
-  shirts,
-  jeans,
-  shoes,
-  watches,
-  products,
-  kurtas,
-  OversizedHoodies,
-  RelaxedFitJeans,
-  SloganTees,
-  PyjamaTrouser,
-  OversizedShirts,
-  skincare,
-  fragrances,
+import {handleCameraSelect,handleGallerySelect,} from '../../custom/imagePicker';
+import {saveSearchToFirestore,fetchRecentSearches,deleteRecentSearch,} from '../../custom/searchFirestore';
+import {shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser, OversizedShirts, kurtas, tops, sarees, makeup, skincare, fragrances, grooming,appliances, decor, bedlinen, cookware, dinnerware, storage 
 } from '../../utils/mockdata';
 import styles from './styles';
 import PhotoSearch from '../../components/photoSearch';
@@ -85,19 +53,8 @@ const Search = () => {
     setSearchTerm(term);
     if (term) {
       const allItems = [
-        ...shirts,
-        ...jeans,
-        ...shoes,
-        ...watches,
-        ...products,
-        ...kurtas,
-        ...OversizedHoodies,
-        ...RelaxedFitJeans,
-        ...SloganTees,
-        ...PyjamaTrouser,
-        ...OversizedShirts,
-        ...skincare,
-        ...fragrances,
+        ...shirts, ...jeans, ...shoes, ...watches, ...products,
+        ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
       ];
       const filteredItems = allItems.filter(
         item =>

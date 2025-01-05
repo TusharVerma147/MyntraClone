@@ -51,11 +51,12 @@ const styles = StyleSheet.create({
       color: colors.grey,
       fontSize: vh(14),
     },
-    priceview: { flexDirection: 'row' },
+    priceview: { flexDirection: 'row', alignItems:'center' },
     price: {
       color: colors.grey,
       textDecorationLine: 'line-through',
       fontSize: vh(13),
+      
     },
     discount: {
       color: colors.charcol,
@@ -91,7 +92,6 @@ const styles = StyleSheet.create({
     },
     custombutton:{
       paddingVertical: vh(10),
-      // marginHorizontal: vh(40),
     },
     buttontitle:{
       fontSize: vh(14),
@@ -134,19 +134,6 @@ const styles = StyleSheet.create({
       fontWeight: '400',
       letterSpacing:0.5
     },
-    questionDescription: {
-      color:colors.charcol,
-      fontSize: vh(17),
-      fontWeight: '500',
-      letterSpacing:0.5
-    },
-
-  answerDescription: {
-      color:colors.textGrey,
-      fontSize: vh(16),
-      fontWeight: '500',
-      letterSpacing:0.5
-    },
     clock: {
       height: vh(20),  
       width: vh(20),
@@ -159,7 +146,7 @@ const styles = StyleSheet.create({
     },
      daysview: {
       flexDirection: 'row',
-      backgroundColor:colors.palepurple,
+      backgroundColor:colors.orange,
       paddingHorizontal: vh(10),
       paddingVertical:vh(5),
       marginVertical:vh(5),
@@ -184,8 +171,7 @@ const styles = StyleSheet.create({
     icon: {
       height: vh(40),
       width: vh(40),
-      // tintColor: colors.zeptored,
-     backgroundColor:colors.palepurple,
+     backgroundColor:colors.orange,
      padding:vh(3),
      borderRadius:8
     },
@@ -193,11 +179,11 @@ const styles = StyleSheet.create({
       fontSize: vh(10),
       textAlign: 'center',  
       flexWrap: 'wrap',     
-      lineHeight: vh(14),   
+      lineHeight: vh(14),  
+      fontWeight:'500' 
     },
     fwd:{
       width: SCREEN_WIDTH - 20,
-      backgroundColor: 'blue',
       resizeMode: 'stretch',
       height: vh(100),
       alignSelf: 'center',

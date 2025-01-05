@@ -1,13 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {vh, vw, SCREEN_WIDTH} from '../../theme/dimensions';
+import {vh,SCREEN_WIDTH} from '../../theme/dimensions';
 import { colors } from '../../theme';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-    padding: vh(15),
-  },
+
   itemContainer: {
     flexDirection: 'row',
     paddingHorizontal: vh(10),
@@ -21,12 +17,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     resizeMode: 'contain',
     backgroundColor: colors.platinum,
-  },
-  termsText:{
-    color:colors.zeptored
-  },
-  andText:{
-    color:colors.charcol,
   },
   itemDetails: {
     flex: 1,
@@ -74,83 +64,6 @@ const styles = StyleSheet.create({
     width: vh(15),
     tintColor: colors.textGrey,
   },
-  footer: {
-    padding: vh(15),
-    borderColor: colors.grey,
-    backgroundColor: colors.white,
-  },
-  emptyContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: vh(10),
-  },
-  emptybag: {
-    height: vh(200),
-    width: vw(200),
-  },
-  emptyMessage: {
-    fontSize: vh(18),
-    fontWeight: '600',
-    color: colors.charcol,
-    textAlign: 'center',
-  },
-  emptysubMessage: {
-    fontSize: vh(12),
-    fontWeight: '400',
-    color: colors.textGrey,
-    textAlign: 'center',
-  },
-  priceDetailsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: vh(5),
-  },
-  priceDetailsText: {
-    fontSize: vh(14),
-    color: colors.charcol,
-  },
-  priceDetailsValue: {
-    fontSize: vh(14),
-    color: colors.charcol,
-  },
-  discountValue: {
-    fontSize: vh(14),
-    color: colors.zeptored,
-  },
-  freeShipping: {
-    fontSize: vh(14),
-    color: colors.green,
-  },
-  totalAmountContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: vh(10),
-    borderTopWidth: 1,
-    borderTopColor: colors.platinum,
-    paddingTop: vh(10),
-  },
-  totalText: {
-    fontSize: vh(16),
-    fontWeight: '700',
-    color: colors.charcol,
-  },
-  totalValue: {
-    fontSize: vh(16),
-    fontWeight: '700',
-    color: colors.charcol,
-  },
-  checkoutButton: {
-    marginTop: vh(10),
-    backgroundColor: colors.zeptored,
-    padding: vh(15),
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  checkoutButtonText: {
-    fontSize: vh(16),
-    color: colors.white,
-    fontWeight: '700',
-  },
 
   imageContainer: {
     position: 'relative',
@@ -179,42 +92,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  couponcontainer: {padding: vh(20), backgroundColor: colors.white,  marginVertical:vh(10)},
-  couponbutton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  
-  },
-  applycoupon: {
-    fontSize: vh(16),
-    fontWeight: '600',
-    color: colors.charcol,
-  },
-  viewcoupon: {
-    fontSize: vh(16),
-    fontWeight: '600',
-    color: colors.zeptored,
-  },
-  infoview: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: vh(20),
-  },
-  iconview: {alignItems: 'center'},
-  icon: {
-    height: vh(30),
-    width: vh(30),
-    tintColor: colors.charcol,
-  },
-  infotext: {fontSize: vh(10)},
-  taglinecont: {flexDirection: 'row', paddingHorizontal: vh(20)},
-  taglinetext: {
-    fontSize: vh(12),
-    textAlign: 'justify',
-    fontWeight: '500',
-    color: colors.charcol,
-  },
   qtyview: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -225,8 +102,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   return: {flexDirection: 'row', alignItems: 'center'},
-  button: {margin: vh(10)},
-  buttontext: {fontSize: vh(16)},
 });
 
 export default styles;

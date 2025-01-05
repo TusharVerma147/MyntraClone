@@ -65,6 +65,7 @@ const Icons = {
   secure: require('./icons/secure.png'),
   contsactless: require('./icons/contactless.png'),
   original: require('./icons/original.png'),
+  original1: require('./icons/original1.png'),
   delete: require('./icons/delete.png'),
   search: require('./icons/search.png'),
   mic: require('./icons/mic.png'),
@@ -74,6 +75,8 @@ const Icons = {
   pay: require('./icons/pay.png'),
   quality: require('./icons/quality.png'),
   location: require('./icons/location.png'),
+  
+
 };
 const Images = {
   banner1: require('./images/banner1.jpeg'),
@@ -229,6 +232,31 @@ const Images = {
  grooming1:require('./images/grooming1.jpg'),
  grooming2:require('./images/grooming2.jpg'),
  grooming3:require('./images/grooming3.jpg'),
+ appliance1:require('./images/appliance1.jpg'),
+ appliance2:require('./images/appliance2.jpg'),
+ appliance3:require('./images/appliance3.jpg'),
+ appliance4:require('./images/appliance4.jpg'),
+ decor4: require('./images/decor4.png'),
+ decor3: require('./images/decor3.png'),
+ decor5: require('./images/decor5.jpg'),
+ decor2: require('./images/decor2.jpg'),
+ bedlinen1: require('./images/bedLinen1.png'),
+ bedlinen2: require('./images/bedLinen2.png'),
+ bedlinen3: require('./images/bedLinen3.png'),
+ bedlinen4: require('./images/bedLinen4.png'),
+ cookware1: require('./images/cookware1.png'),
+ cookware2: require('./images/cookware2.png'),
+ cookware3: require('./images/cookware3.png'),
+ cookware4: require('./images/cookware4.png'),
+ dinnerware1: require('./images/dinnerware1.png'),
+ dinnerware2: require('./images/dinnerware2.png'),
+ dinnerware3: require('./images/dinnerware3.png'),
+ dinnerware4: require('./images/dinnerware4.png'),
+ storage1: require('./images/storage1.png'),
+ storage2: require('./images/storage2.png'),
+ storage3: require('./images/storage3.png'),
+ storage4: require('./images/storage4.png'),
+
 
 
 };

@@ -12,6 +12,8 @@ import styles from './styles';
 import { handleWishlistPress, handleAddToWishlist,  handleAddToBag } from '../../utils/common';
 import LocationModal from '../../components/locationModal';
 import { useLocation } from '../../custom/location';
+import ProductQuestions from '../../components/questions';
+import InfoIcon from '../../components/infoIcon';
 
 
 const Details = ({ navigation }: any) => {
@@ -39,7 +41,7 @@ const Details = ({ navigation }: any) => {
     setIsQuestionsOpened(!isQuestionsOpened);
   };
 
-  const route = useRoute();
+  const route = useRoute<any>(); 
   const { item } = route.params;
 
   const dispatch = useDispatch();
@@ -132,22 +134,10 @@ const Details = ({ navigation }: any) => {
         </View>
 
         <View style={styles.infoview}>
-          <View style={styles.iconview}>
-            <Image source={Icons.exchange} style={styles.icon} />
-            <Text style={styles.infotext}>14 Day Return & Exchange</Text>
-          </View>
-          <View style={styles.iconview}>
-            <Image source={Icons.pay} style={styles.icon} />
-            <Text style={styles.infotext}>Contactless Delivery</Text>
-          </View>
-          <View style={styles.iconview}>
-            <Image source={Icons.original} style={styles.icon} />
-            <Text style={styles.infotext}>Secure Payments</Text>
-          </View>
-          <View style={styles.iconview}>
-            <Image source={Icons.quality} style={styles.icon} />
-            <Text style={styles.infotext}>Secure Payments</Text>
-          </View>
+          <InfoIcon icon={Icons.exchange} text="14 Days Return & Exchange" />
+          <InfoIcon icon={Icons.pay} text="Pay On Delivery" />
+          <InfoIcon icon={Icons.original} text="Genuine Product" />
+          <InfoIcon icon={Icons.quality} text="Quality Checked" />
         </View>
         <TouchableOpacity onPress={handleDescription} style={styles.productview} activeOpacity={0.8}>
           <Text style={styles.producttext}>Product Description</Text>
@@ -162,27 +152,10 @@ const Details = ({ navigation }: any) => {
             <Text style={styles.productDescription}>{item.description}</Text>
           </View>
         )}
-
-        <TouchableOpacity onPress={handleQuestions} style={styles.productview} activeOpacity={0.8}>
-          <Text style={styles.producttext}>Customer Questions</Text>
-          <Image
-            source={isQuestionsOpened ? Icons.up : Icons.bottom}
-            style={styles.clock}
-          />
-        </TouchableOpacity>
-
-        {isQuestionsOpened && (
-          <View style={styles.desview}>
-            <Text style={styles.questionDescription}>Q1: What is the return policy for this product?</Text>
-            <Text style={styles.answerDescription}>A1: You can return the product within 14 days of delivery.</Text>
-            
-            <Text style={styles.questionDescription}>Q2: Does this product come with a warranty?</Text>
-            <Text style={styles.answerDescription}>A2: Yes, it comes with a one-year warranty.</Text>
-            
-            <Text style={styles.questionDescription}>Q3: Can I use this product on sensitive skin?</Text>
-            <Text style={styles.answerDescription}>A3: Yes, it's suitable for sensitive skin.</Text>
-          </View>
-        )}
+         <ProductQuestions 
+          isOpened={isQuestionsOpened} 
+          onToggle={handleQuestions} 
+        />
 
         <Image source={Images.fwdpass} style={styles.fwd} />
       </ScrollView>

@@ -17,7 +17,7 @@ const ItemCard = ({
       <TouchableOpacity
         style={[
           styles.selectButton,
-          isSelected && { backgroundColor: colors.zeptored}, // You can replace this with your color
+          isSelected && { backgroundColor: colors.zeptored}, 
         ]}
         onPress={onSelectItem}>
         {isSelected && <Text style={styles.checkmarkText}>✓</Text>}

@@ -37,9 +37,6 @@ const Bag = ({ navigation }: any) => {
     }
   };
 
-  const handleCouponModal = () =>{
-    setCouponModalVisible(false)
-  };
 
   const handleQtyModal = () =>{
     setModalVisible(false)

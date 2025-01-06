@@ -37,7 +37,7 @@ export const saveSearchToFirestore = async (term: string, type: any) => {
       image,
       timestamp: firestore.FieldValue.serverTimestamp(),
     });
-
+  console.log('term', term)
   } catch (error) {
     console.error('Error saving search term:', error);
   }

@@ -44,7 +44,7 @@ const Trends = () => {
         backHeight={vh(20)}
         backWidth={vh(20)}
         backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
-        onPressRightIcon2={()=>handleWishlistPress}
+        onPressRightIcon2={() => handleWishlistPress(navigation)}
         onPressRightIcon1={handleSearch}
       />
       <ScrollView>

@@ -74,10 +74,6 @@ const Items = () => {
   } else if (categoryDataMap[categoryTitle.toLowerCase()]) {
     categoryData = categoryDataMap[categoryTitle.toLowerCase()];
   } else if (categoryTitle && categoryTitle.trim().length > 0) {
-    // const allCategories = [
-    //   ...shirts, ...jeans, ...shoes, ...watches, ...products,
-    //   ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
-    // ];
     const allCategories = getAllItems();
     categoryData = allCategories.filter(item =>
       item.brand.toLowerCase().includes(categoryTitle.toLowerCase()) ||

@@ -97,6 +97,53 @@ const Search = () => {
   const navigateToItemScreen = (title: string) => {
     navigation.navigate('Items', { categoryTitle: title, searchTerm });
   };
+  const renderSearchItem=({ item }:any) => {
+    return (
+      <TouchableOpacity
+        style={styles.itemResult}
+        onPress={async () => {
+          await saveSearchToFirestore(item.id);
+          navigateToItemScreen(item.type);
+        }}
+      >
+        <Image style={styles.itemImage} source={item.image} />
+        <Text style={styles.itemText}>
+          {shortenText(`${item.brand} - ${item.type}`, 5)}
+        </Text>
+      </TouchableOpacity>
+    );
+  }
+
+  const renderRecentItem=({ item }:any) => {
+    const allItems = getAllItems();
+    const recentItem = allItems.find(i => i.id === item.itemId);
+
+    return (
+      <View>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => handleRecentSearchPress(item.itemId)}
+          style={styles.recentItem}
+        >
+          {recentItem && recentItem.image && (
+            <Image style={styles.recentItemImage} source={recentItem.image} />
+          )}
+          <Text style={styles.recentItemText} numberOfLines={2}>
+            {recentItem ? recentItem.type : 'Item not found'}
+          </Text>
+        </TouchableOpacity>
+        {isEditing && (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => handleDeleteRecentSearch(item.id)}
+            style={styles.crossIconContainer}
+          >
+            <Image style={styles.crossIcon} source={Icons.cross} />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  }
 
   return (
     <AppWrapper>
@@ -124,22 +171,7 @@ const Search = () => {
             <FlatList
               showsVerticalScrollIndicator={false}
               data={searchResults}
-              renderItem={({ item }) => {
-                return (
-                  <TouchableOpacity
-                    style={styles.itemResult}
-                    onPress={async () => {
-                      await saveSearchToFirestore(item.id);
-                      navigateToItemScreen(item.type);
-                    }}
-                  >
-                    <Image style={styles.itemImage} source={item.image} />
-                    <Text style={styles.itemText}>
-                      {shortenText(`${item.brand} - ${item.type}`, 5)}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              }}
+              renderItem={renderSearchItem}
               keyExtractor={item => item.id}
             />
           </View>
@@ -169,36 +201,7 @@ const Search = () => {
               horizontal
               showsHorizontalScrollIndicator={false}
               data={recentSearches}
-              renderItem={({ item }) => {
-                const allItems = getAllItems();
-                const recentItem = allItems.find(i => i.id === item.itemId);
-
-                return (
-                  <View>
-                    <TouchableOpacity
-                      activeOpacity={0.8}
-                      onPress={() => handleRecentSearchPress(item.itemId)}
-                      style={styles.recentItem}
-                    >
-                      {recentItem && recentItem.image && (
-                        <Image style={styles.recentItemImage} source={recentItem.image} />
-                      )}
-                      <Text style={styles.recentItemText} numberOfLines={2}>
-                        {recentItem ? recentItem.type : 'Item not found'}
-                      </Text>
-                    </TouchableOpacity>
-                    {isEditing && (
-                      <TouchableOpacity
-                        activeOpacity={0.8}
-                        onPress={() => handleDeleteRecentSearch(item.id)}
-                        style={styles.crossIconContainer}
-                      >
-                        <Image style={styles.crossIcon} source={Icons.cross} />
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                );
-              }}
+              renderItem={renderRecentItem}
               keyExtractor={item => item.id}
             />
           </View>

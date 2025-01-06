@@ -16,7 +16,6 @@ export const saveSearchToFirestore = async (itemId: string) => {
 
     const existingSearch = await searchRef.where('itemId', '==', itemId).get();
     if (!existingSearch.empty) {
-      console.log('Search already exists for item with id:', itemId);
       return;
     }
 
@@ -25,8 +24,6 @@ export const saveSearchToFirestore = async (itemId: string) => {
       itemId,
       timestamp: firestore.FieldValue.serverTimestamp(),
     });
-
-    console.log('Search saved with itemId:', itemId);
   } catch (error) {
     console.error('Error saving search item:', error);
   }

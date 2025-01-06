@@ -1,14 +1,13 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {View,Text,Image,TextInput,TouchableOpacity,FlatList,StatusBar,} from 'react-native';
-import {useNavigation,CommonActions,useFocusEffect,} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { View, Text, Image, TextInput, TouchableOpacity, FlatList, StatusBar } from 'react-native';
+import { useNavigation, CommonActions, useFocusEffect } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import AppWrapper from '../../components/appWrapper';
-import {Icons} from '../../assets';
-import {colors} from '../../theme';
-import {handleCameraSelect,handleGallerySelect,} from '../../custom/imagePicker';
-import {saveSearchToFirestore,fetchRecentSearches,deleteRecentSearch,} from '../../custom/searchFirestore';
-import {shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser, OversizedShirts, kurtas, tops, sarees, makeup, skincare, fragrances, grooming,appliances, decor, bedlinen, cookware, dinnerware, storage 
-} from '../../utils/mockdata';
+import { Icons } from '../../assets';
+import { colors } from '../../theme';
+import { handleCameraSelect, handleGallerySelect } from '../../custom/imagePicker';
+import { saveSearchToFirestore, fetchRecentSearches, deleteRecentSearch } from '../../custom/searchFirestore';
+import getAllItems from '../../utils/getAllItems';
 import styles from './styles';
 import PhotoSearch from '../../components/photoSearch';
 
@@ -27,7 +26,7 @@ const Search = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: 'BottomTab', params: {screen: 'Home'}}],
+        routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
       }),
     );
   };
@@ -52,10 +51,7 @@ const Search = () => {
   const handleSearch = async (term: string) => {
     setSearchTerm(term);
     if (term) {
-      const allItems = [
-        ...shirts, ...jeans, ...shoes, ...watches, ...products,
-        ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
-      ];
+      const allItems = getAllItems();
       const filteredItems = allItems.filter(
         item =>
           item.brand.toLowerCase().includes(term.toLowerCase()) ||
@@ -63,20 +59,18 @@ const Search = () => {
       );
 
       setSearchResults(filteredItems);
-      if (filteredItems.length > 0) {
-        const relevantItem = filteredItems[0];
-        await saveSearchToFirestore(
-          term,
-          relevantItem.brand || relevantItem.type,
-        );
-      }
     } else {
       setSearchResults([]);
     }
   };
 
-  const handleRecentSearchPress = (term: string, type: string) => {
-    navigation.navigate('Items', {categoryTitle: type || term});
+  const handleRecentSearchPress = async (itemId: string) => {
+    const allItems = getAllItems();
+
+    const item = allItems.find(i => i.id === itemId);
+    if (item) {
+      navigation.navigate('Items', { categoryTitle: item.type, searchTerm: item.brand });
+    }
   };
 
   const handleDeleteRecentSearch = async (id: string) => {
@@ -101,15 +95,12 @@ const Search = () => {
   };
 
   const navigateToItemScreen = (title: string) => {
-    navigation.navigate('Items', {categoryTitle: title, searchTerm});
+    navigation.navigate('Items', { categoryTitle: title, searchTerm });
   };
 
   return (
     <AppWrapper>
-      <StatusBar
-        backgroundColor={colors.screengrey}
-        barStyle={'dark-content'}
-      />
+      <StatusBar backgroundColor={colors.screengrey} barStyle={'dark-content'} />
       <View style={styles.container}>
         <TouchableOpacity onPress={handleBack}>
           <Image style={styles.backicon} source={Icons.back} />
@@ -133,11 +124,15 @@ const Search = () => {
             <FlatList
               showsVerticalScrollIndicator={false}
               data={searchResults}
-              renderItem={({item}) => {
+              renderItem={({ item }) => {
                 return (
                   <TouchableOpacity
                     style={styles.itemResult}
-                    onPress={() => navigateToItemScreen(item.type)}>
+                    onPress={async () => {
+                      await saveSearchToFirestore(item.id);
+                      navigateToItemScreen(item.type);
+                    }}
+                  >
                     <Image style={styles.itemImage} source={item.image} />
                     <Text style={styles.itemText}>
                       {shortenText(`${item.brand} - ${item.type}`, 5)}
@@ -169,36 +164,41 @@ const Search = () => {
                 </Text>
               </TouchableOpacity>
             </View>
+
             <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
               data={recentSearches}
-              renderItem={({item}) => (
-                <View>
-                  <TouchableOpacity activeOpacity={0.8}
-                    onPress={() =>
-                      handleRecentSearchPress(item.term, item.type)
-                    }
-                    style={styles.recentItem}>
-                    {item.image && (
-                      <Image
-                        style={styles.recentItemImage}
-                        source={item.image}
-                      />
-                    )}
-                    <Text style={styles.recentItemText} numberOfLines={2}>
-                      {item.type}
-                    </Text>
-                  </TouchableOpacity>
-                  {isEditing && (
-                    <TouchableOpacity activeOpacity={0.8}
-                      onPress={() => handleDeleteRecentSearch(item.id)}
-                      style={styles.crossIconContainer}>
-                      <Image style={styles.crossIcon} source={Icons.cross} />
+              renderItem={({ item }) => {
+                const allItems = getAllItems();
+                const recentItem = allItems.find(i => i.id === item.itemId);
+
+                return (
+                  <View>
+                    <TouchableOpacity
+                      activeOpacity={0.8}
+                      onPress={() => handleRecentSearchPress(item.itemId)}
+                      style={styles.recentItem}
+                    >
+                      {recentItem && recentItem.image && (
+                        <Image style={styles.recentItemImage} source={recentItem.image} />
+                      )}
+                      <Text style={styles.recentItemText} numberOfLines={2}>
+                        {recentItem ? recentItem.type : 'Item not found'}
+                      </Text>
                     </TouchableOpacity>
-                  )}
-                </View>
-              )}
+                    {isEditing && (
+                      <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => handleDeleteRecentSearch(item.id)}
+                        style={styles.crossIconContainer}
+                      >
+                        <Image style={styles.crossIcon} source={Icons.cross} />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                );
+              }}
               keyExtractor={item => item.id}
             />
           </View>
@@ -209,3 +209,4 @@ const Search = () => {
 };
 
 export default Search;
+

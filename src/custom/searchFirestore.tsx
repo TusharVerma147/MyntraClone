@@ -1,8 +1,9 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import {   shirts, jeans, shoes, watches, products, OversizedHoodies, RelaxedFitJeans, SloganTees, PyjamaTrouser, OversizedShirts, kurtas, tops, sarees, makeup, skincare, fragrances, grooming,appliances, decor, bedlinen, cookware, dinnerware, storage  } from '../utils/mockdata';
 
-export const saveSearchToFirestore = async (term: string, type: any) => {
+
+
+export const saveSearchToFirestore = async (itemId: string) => {
   try {
     const userId = auth().currentUser?.uid;
     if (!userId) return;
@@ -12,36 +13,25 @@ export const saveSearchToFirestore = async (term: string, type: any) => {
       .doc(userId)
       .collection('recentSearches');
 
-    const existingSearch = await searchRef.where('term', '==', term).get();
+
+    const existingSearch = await searchRef.where('itemId', '==', itemId).get();
     if (!existingSearch.empty) {
-      console.log('Search term already exists',term);
+      console.log('Search already exists for item with id:', itemId);
       return;
     }
 
-    const allItems = [
-      ...shirts, ...jeans, ...shoes, ...watches, ...products,
-      ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
-    ];
-
-    const item = allItems.find(
-      item =>
-        item.brand.toLowerCase().includes(term.toLowerCase()) ||
-        item.type.toLowerCase().includes(term.toLowerCase()),
-    );
-
-    const image = item ? item.image : null;
 
     await searchRef.add({
-      term,
-      type,
-      image,
+      itemId,
       timestamp: firestore.FieldValue.serverTimestamp(),
     });
-  console.log('term', term)
+
+    console.log('Search saved with itemId:', itemId);
   } catch (error) {
-    console.error('Error saving search term:', error);
+    console.error('Error saving search item:', error);
   }
 };
+
 
 
 export const fetchRecentSearches = async () => {
@@ -57,7 +47,7 @@ export const fetchRecentSearches = async () => {
     const snapshot = await searchRef.get();
     const searches = snapshot.docs.map(doc => ({
       id: doc.id,
-      ...doc.data(),
+      itemId: doc.data().itemId,
     }));
 
     return searches;

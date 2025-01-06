@@ -11,6 +11,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import ItemList from '../../components/itemlist';
 import { handleWishlistPress } from '../../utils/common';
+import getAllItems from '../../utils/getAllItems';
 
 type NavigationProp = StackNavigationProp<any>;
 
@@ -62,10 +63,10 @@ const Items = () => {
     cookware,
     dinnerware,
     storage,
-
-
   };
 
+
+  
   let categoryData: any[] = [];
 
   if (categoryTitle.toLowerCase() === 'products') {
@@ -73,10 +74,11 @@ const Items = () => {
   } else if (categoryDataMap[categoryTitle.toLowerCase()]) {
     categoryData = categoryDataMap[categoryTitle.toLowerCase()];
   } else if (categoryTitle && categoryTitle.trim().length > 0) {
-    const allCategories = [
-      ...shirts, ...jeans, ...shoes, ...watches, ...products,
-      ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
-    ];
+    // const allCategories = [
+    //   ...shirts, ...jeans, ...shoes, ...watches, ...products,
+    //   ...OversizedShirts, ...OversizedHoodies, ...RelaxedFitJeans, ...SloganTees, ...PyjamaTrouser, ...kurtas, ...makeup, ...skincare, ...fragrances, ...grooming,...appliances,...decor,...bedlinen,...cookware,...dinnerware,...storage,...sarees,...tops
+    // ];
+    const allCategories = getAllItems();
     categoryData = allCategories.filter(item =>
       item.brand.toLowerCase().includes(categoryTitle.toLowerCase()) ||
       item.type.toLowerCase().includes(categoryTitle.toLowerCase())

@@ -12,9 +12,8 @@ import { useLocation } from '../../custom/location';
 import styles from './styles';
 import RazorpayCheckout from 'react-native-razorpay';
 import { useDispatch } from 'react-redux';
-import { clearCart } from '../../redux/slice/bagSlice';
 import Toast from 'react-native-simple-toast';
-import { handleDelete, handleRemoveFromBag } from '../../utils/common';
+import {handleRemoveFromBag } from '../../utils/common';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
@@ -39,10 +38,10 @@ const Address = ({ navigation, route }: any) => {
   };
 
   const handlePlaceOrder = () => {
-    // if (!address) {
-    //   alert("Please select a delivery address!");
-    //   return;
-    // }
+    if (!address) {
+      Toast.show('Please Select the address', Toast.SHORT)
+      return;
+    }
     handlePayment();
   };
 
@@ -71,10 +70,8 @@ const Address = ({ navigation, route }: any) => {
         Toast.showWithGravity('Payment Successful', Toast.SHORT, Toast.BOTTOM, {
           backgroundColor: colors.reddish,
         });
-        // dispatch(clearCart());
         selectedItems.forEach((item: { id: string; }) => {
-          console.log('Removing item with ID:', item.id);
-          handleRemoveFromBag(item.id, dispatch); // Ensure the correct item ID is passed
+          handleRemoveFromBag(item, dispatch); 
         });
         saveOrderHistory(data, selectedItems);
 

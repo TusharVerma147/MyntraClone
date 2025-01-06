@@ -24,9 +24,11 @@ const Bag = ({ navigation }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedQty, setSelectedQty] = useState<number>(1);
   const [itemIdForModal, setItemIdForModal] = useState<string | null>(null);
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const [selectedCoupon, setSelectedCoupon] = useState<any>(null);
   const [couponModalVisible, setCouponModalVisible] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<string[]>(
+    bagItems.map((item: any) => item.id) 
+  );
 
   const handleSelectCoupon = (coupon: any) => {
     if (coupon && coupon.discount) {
@@ -36,6 +38,8 @@ const Bag = ({ navigation }: any) => {
       setSelectedCoupon(null);
     }
   };
+
+
 
 
   const handleQtyModal = () =>{

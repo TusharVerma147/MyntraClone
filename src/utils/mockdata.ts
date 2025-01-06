@@ -1571,7 +1571,66 @@ const storage = [
 ];
 
 
+const sections = [
+  {
+    title: 'Collection',
+    description: 'We value the trust you place in us and recognize the importance of secure transactions and information privacy. This Privacy Policy describes how Myntra Designs Private Limited and its affiliates (collectively "Myntra, we, our, us") collect, use, share, protect or otherwise process your personal data through Myntra website https://www.myntra.com. While you may be able to browse certain sections of the Platform without registering with us, however, please note we do not offer any product/service under this Platform outside India and your personal data will primarily be stored and processed in India. By visiting this Platform, providing your information or availing any product/service offered on the Platform, you expressly agree to be bound by the terms and conditions of this Privacy Policy, the Terms of Use and the applicable service/product terms and conditions, and agree to be governed by the laws of India including but not limited to the laws applicable to data protection and privacy. If you do not agree please do not use or access our Platform',
+  },
+  {
+    title: 'Use',
+    description: 'We use personal data to provide the services you request. To the extent we use your personal data to market to you, we will provide you the ability to opt-out of such uses. We use your personal data to assist sellers and business partners in handling and fulfilling orders; enhancing customer experience; to resolve disputes; troubleshoot problems; help promote a safe service; collect money; measure consumer interest in our products and services, inform you about online and offline offers, products, services, and updates; customise your experience; detect and protect us against error, fraud and other criminal activity; enforce our terms and conditions; conduct marketing research, analysis and surveys; and as otherwise described to you at the time of collection of information.',
+  },
+  {
+    title: 'Cookies',
+    description: 'We use data collection devices such as "cookies" on certain pages of the Platform to help analyse our web page flow, measure promotional effectiveness, and promote trust and safety. "Cookies" are small files placed on your hard drive that assist us in providing our services. Cookies do not contain any of your personal data. We offer certain features that are only available through the use of a "cookie". We also use cookies to allow you to enter your password less frequently during a session. Cookies can also help us provide information that is targeted to your interests. Most cookies are "session cookies," meaning that they are automatically deleted from your hard drive at the end of a session. You are always free to decline/delete our cookies if your browser permits, although in that case you may not be able to use certain features on the Platform and you may be required to re-enter your password more frequently during a session.',
+  },
+  {
+    title: 'Sharing',
+    description: 'We may share your personal data internally within Flipkart Group entities, our other corporate entities, and affiliates to provide you access to the services and products offered by them, including Flipkart Advanz Private Limited, Scapic Innovations Private Limited, and other Flipkart affiliates, related companies and third parties, including Credit Bureaus and business partners (such as UPI platform), for purposes of providing products and services offered by them, such as, personal loans offered by Scapic Innovations Private Limited through its lending partners, insurance, the deferred payment options, Flipkart Pay Later offered by Flipkart Advanz Private Limited through its lending partners. These entities and affiliates may market to you as a result of such sharing unless you explicitly opt-out.',
+  },
+  {
+    title: 'Links to Other Sites',
+    description: 'Our Platform links to other websites that may collect personal data about you. Myntra is not responsible for the privacy practices or the content of those linked websites.',
+  },
+  {
+    title: 'Security Precautions',
+    description: 'To protect your personal data from unauthorised access or disclosure, loss or misuse we adopt reasonable security practices and procedures, in line with international standards ISO/IEC 27001:2013 which is recognised as one of the highest information security standards. Whenever you access your account information, we offer the use of a secure server. The transmission of information is not completely secure for reasons beyond our control. We adopt industry standard security measures and keep updating our systems from time to time to protect your personal data.',
+  },
+  {
+    title: 'Choice/Opt-Out',
+    description: 'Options available for opting out of services.',
+  },
+  {
+    title: 'Advertisements',
+    description: 'Details about advertisement policies.',
+  },
+  {
+    title: 'Use of Children Information',
+    description: 'Policies regarding the use of information from minors.',
+  },
+  {
+    title: 'Data Deletion and Retention',
+    description: 'Information on how data is retained and deleted.',
+  },
+  {
+    title: 'Your Rights',
+    description: 'Your rights regarding your personal data.',
+  },
+  {
+    title: 'Consent',
+    description: 'How consent is obtained and managed.',
+  },
+  {
+    title: 'Changes to this Privacy Policy',
+    description: 'Details about updates to this privacy policy.',
+  },
+  {
+    title: 'Grievance Officer',
+    description: 'Contact information for the grievance officer.',
+  },
+];
+
 
 
 export {fashion, beauty, home,fashionlist,newbrand, beautylist, homelist, shirts, jeans, fashionbrand, shoes, watches,kurtas, sarees, tops,makeup,skincare, fragrances, grooming,
-  appliances,products,decor,bedlinen,cookware,dinnerware,storage, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty}
+  appliances,products,decor,bedlinen,cookware,dinnerware,storage, PyjamaTrouser, SloganTees, RelaxedFitJeans, OversizedHoodies,OversizedShirts, winterbrand1, winterbrand2, homeessential, shadi,bestbeauty, sections}

@@ -17,6 +17,7 @@ import SelectPhotoModal from './cameraModal';
 import {handleCameraSelect,handleGallerySelect,} from '../../custom/imagePicker';
 import {handleWishlistPress} from '../../utils/common';
 import fetchFirestore from '../../custom/useCartandWislist';
+import strings from '../../utils/string';
 
 type HomeProps = {
   navigation: {
@@ -35,7 +36,7 @@ const Home: React.FC<HomeProps> = () => {
   fetchFirestore();
 
   useEffect(()=>{
-    setTimeout(() => setIsLoading(false), 2000); 
+    setTimeout(() => setIsLoading(false), 1000); 
   },[])
 
   const WishlistPress = () => {
@@ -95,14 +96,14 @@ const Home: React.FC<HomeProps> = () => {
       <View style={styles.header}>
         <View style={styles.row}>
           <TouchableOpacity style={styles.myntraview} onPress={handleMyntra}>
-            <Text style={styles.myntra}>Myntra</Text>
+            <Text style={styles.myntra}>{strings.myntra}</Text>
             <Image source={Icons.bottom} style={styles.bottom} />
           </TouchableOpacity>
           <Image source={Icons.crown} style={styles.crown} />
           <View>
-            <Text>BECOME</Text>
+            <Text>{strings.become}</Text>
             <View style={styles.row}>
-              <Text style={styles.inside}>INSIDER</Text>
+              <Text style={styles.inside}>{strings.insider}</Text>
               <Image source={Icons.forward} style={styles.forward} />
             </View>
           </View>

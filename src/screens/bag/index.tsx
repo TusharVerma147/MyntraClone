@@ -15,6 +15,7 @@ import { handleWishlistPress, handleDelete, handleRemoveFromBag } from '../../ut
 import { vh, vw } from '../../theme/dimensions';
 import ItemCard from '../../components/itemCard';
 import styles from './styles';
+import strings from '../../utils/string';
 
 
 const Bag = ({ navigation }: any) => {
@@ -86,6 +87,15 @@ const Bag = ({ navigation }: any) => {
   const totalAmount =
     totalMRP - totalDiscount - couponDiscount + platformFee + shippingFee;
 
+  const handleTerm = () =>{
+    navigation.navigate('Terms')
+  }
+
+  const handlePrivacy = () =>{
+    navigation.navigate('Privacy')
+  }
+
+
  
 
   return (
@@ -96,7 +106,7 @@ const Bag = ({ navigation }: any) => {
         backColor={colors.charcol}
         backHeight={vh(18)}
         backWidth={vh(18)}
-        marginLeft={10}
+        marginLeft={vh(10)}
         title="SHOPPING BAG"
         titleSize={vh(15)}
         titleColor={colors.charcol}
@@ -160,15 +170,15 @@ const Bag = ({ navigation }: any) => {
             ListFooterComponent={
               <View style={styles.footer}>
                 <View style={styles.priceDetailsContainer}>
-                  <Text style={styles.priceDetailsText}>Total MRP</Text>
+                  <Text style={styles.priceDetailsText}>{strings.mrp}</Text>
                   <Text style={styles.priceDetailsValue}>₹{totalMRP}</Text>
                 </View>
                 <View style={styles.priceDetailsContainer}>
-                  <Text style={styles.priceDetailsText}>Discount on MRP</Text>
+                  <Text style={styles.priceDetailsText}>{strings.discount_on}</Text>
                   <Text style={styles.priceDetailsValue}>-₹{totalDiscount}</Text>
                 </View>
                 <View style={styles.priceDetailsContainer}>
-                  <Text style={styles.priceDetailsText}>Platform Fee</Text>
+                  <Text style={styles.priceDetailsText}>{strings.platform}</Text>
                   <Text style={styles.priceDetailsValue}>₹{platformFee}</Text>
                 </View>
                 <View style={styles.priceDetailsContainer}>
@@ -176,13 +186,13 @@ const Bag = ({ navigation }: any) => {
                   <Text style={styles.priceDetailsValue}>₹{shippingFee}</Text>
                 </View>
                 <View style={styles.priceDetailsContainer}>
-                  <Text style={styles.priceDetailsText}>Coupon Discount</Text>
+                  <Text style={styles.priceDetailsText}>{strings.coupon} {strings.discount}</Text>
                   <Text style={styles.priceDetailsValue}>
                     -₹{couponDiscount.toFixed(2)}
                   </Text>
                 </View>
                 <View style={styles.totalAmountContainer}>
-                  <Text style={styles.totalText}>Total Amount</Text>
+                  <Text style={styles.totalText}>{strings.total} {strings.Amount}</Text>
                   <Text style={styles.totalValue}>₹{totalAmount}</Text>
                 </View>
               </View>
@@ -191,23 +201,23 @@ const Bag = ({ navigation }: any) => {
            <View style={styles.infoview}>
             <View style={styles.iconview}>
               <Image source={Icons.original1} style={styles.icon} />
-              <Text style={styles.infotext}>Genuine Products</Text>
+              <Text style={styles.infotext}>{strings.genuine}</Text>
             </View>
             <View style={styles.iconview}>
               <Image source={Icons.contsactless} style={styles.icon} />
-              <Text style={styles.infotext}>Contactless Delivery</Text>
+              <Text style={styles.infotext}>{strings.contactless}</Text>
             </View>
             <View style={styles.iconview}>
               <Image source={Icons.secure} style={styles.icon} />
-              <Text style={styles.infotext}>Secure Payments</Text>
+              <Text style={styles.infotext}>{strings.secure}</Text>
             </View>
           </View>
           <View style={styles.taglinecont}>
             <Text style={styles.taglinetext}>
-              By placing the order, you agree to Myntra's{' '}
-              <Text style={styles.termsText}>Terms of Use </Text>
-              <Text style={styles.andText}>& </Text>
-              <Text style={styles.termsText}>Privacy Policy</Text>
+              {strings.termstag}{' '}
+              <Text style={styles.termsText} onPress={handleTerm}>{strings.terms}</Text>
+              <Text style={styles.andText}> & </Text>
+              <Text style={styles.termsText} onPress={handlePrivacy}>{strings.privacy}</Text>
             </Text>
           </View>
       

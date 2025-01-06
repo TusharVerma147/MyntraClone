@@ -17,6 +17,8 @@ import Orders from '../screens/orders';
 import { ScreenNames } from './screenNames';
 import BottomTab from './bottomtab';
 import Address from '../screens/address';
+import Terms from '../screens/terms';
+import Privacy from '../screens/privacy';
 
 
 
@@ -46,7 +48,8 @@ const RootNavigator = () => {
         <Stack.Screen name={ScreenNames.Search }  component={Search}/>
         <Stack.Screen name={ScreenNames.Chat }  component={Chat}/>
         <Stack.Screen name={ScreenNames.Orders }  component={Orders}/>
-
+        <Stack.Screen name={ScreenNames.Terms }  component={Terms}/>
+        <Stack.Screen name={ScreenNames.Privacy }  component={Privacy}/>
         <Stack.Screen
             component={BottomTab}
             name={ScreenNames.BottomTab}

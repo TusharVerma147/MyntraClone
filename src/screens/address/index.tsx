@@ -71,7 +71,11 @@ const Address = ({ navigation, route }: any) => {
         Toast.showWithGravity('Payment Successful', Toast.SHORT, Toast.BOTTOM, {
           backgroundColor: colors.reddish,
         });
-        dispatch(clearCart());
+        // dispatch(clearCart());
+        selectedItems.forEach((item: { id: string; }) => {
+          console.log('Removing item with ID:', item.id);
+          handleRemoveFromBag(item.id, dispatch); // Ensure the correct item ID is passed
+        });
         saveOrderHistory(data, selectedItems);
 
         navigation.reset({

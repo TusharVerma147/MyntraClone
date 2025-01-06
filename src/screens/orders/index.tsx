@@ -31,12 +31,8 @@ const Orders = () => {
             id: doc.id, 
             ...doc.data(), 
           }));
-          // console.log('Fetched orders data:', ordersData); 
           setOrders(ordersData);
         } 
-        // else {
-        //   // console.log('No orders found for this user');
-        // }
       } catch (error) {
         console.error('Error fetching orders:', error);
         Toast.showWithGravity('Failed to fetch orders', Toast.LONG, Toast.BOTTOM);
@@ -49,9 +45,14 @@ const Orders = () => {
   }, []);
 
   const renderOrderItem = ({ item }: any) => {
-    const orderDate = item.orderDate instanceof firestore.Timestamp
-      ? item.orderDate.toDate()
-      : new Date(item.orderDate); 
+    let orderDate = item.orderDate;
+
+    if (orderDate instanceof firestore.Timestamp) {
+      orderDate = orderDate.toDate();
+    } 
+    if (!(orderDate instanceof Date) || isNaN(orderDate.getTime())) {
+      orderDate = new Date(); 
+    }
 
     return (
       <View style={styles.orderItem}>

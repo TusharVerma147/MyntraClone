@@ -8,7 +8,7 @@ import styles from './styles';
 import AppHeader from '../../components/appHeader';
 import { Icons } from '../../assets';
 import AppWrapper from '../../components/appWrapper';
-import Toast from 'react-native-simple-toast'
+import Toast from 'react-native-simple-toast';
 
 const Orders = () => {
   const [orders, setOrders] = useState<any[]>([]);
@@ -17,29 +17,31 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       const userId = auth().currentUser?.uid;
-      if (userId) {
-        try {
-          const ordersSnapshot = await firestore()
-            .collection('users')
-            .doc(userId)
-            .collection('orders')
-            .orderBy('orderDate', 'desc')
-            .get();
+   
 
-          const ordersList = ordersSnapshot.docs.map((doc) => {
-            const orderData = doc.data();
-            const itemCount = orderData.items ? orderData.items.length : 0;
-            const brands = orderData.items.map((item: any) => item.brand).join(', ');
-
-            return { ...orderData, itemCount, brands };
-          });
-
-          setOrders(ordersList);
-        } catch (error) {
-          Toast.show('Orders could not be fetched', Toast.SHORT);
-        } finally {
-          setLoading(false);
-        }
+      try {
+        const ordersSnapshot = await firestore()
+          .collection('users')
+          .doc(userId) 
+          .collection('user_orders')
+          .get();
+        
+        if (!ordersSnapshot.empty) {
+          const ordersData = ordersSnapshot.docs.map(doc => ({
+            id: doc.id, 
+            ...doc.data(), 
+          }));
+          // console.log('Fetched orders data:', ordersData); 
+          setOrders(ordersData);
+        } 
+        // else {
+        //   // console.log('No orders found for this user');
+        // }
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+        Toast.showWithGravity('Failed to fetch orders', Toast.LONG, Toast.BOTTOM);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -47,6 +49,10 @@ const Orders = () => {
   }, []);
 
   const renderOrderItem = ({ item }: any) => {
+    const orderDate = item.orderDate instanceof firestore.Timestamp
+      ? item.orderDate.toDate()
+      : new Date(item.orderDate); 
+
     return (
       <View style={styles.orderItem}>
         <Text style={styles.orderId}>
@@ -56,13 +62,11 @@ const Orders = () => {
           PAYMENT ID:{' '}<Text style={styles.idText}>{item.paymentId || 'Not Available'}</Text>
         </Text>
         <Text style={styles.orderDate}>
-          Order Date:{' '}<Text style={styles.idText}>{item.orderDate.toDate().toLocaleDateString()}</Text>
+          Order Date:{' '}<Text style={styles.idText}>{orderDate.toLocaleDateString()}</Text>
         </Text>
-
         <Text style={styles.orderDate}>Total Amount:{' '}<Text style={styles.idText}>₹{item.totalAmount}</Text></Text>
         <Text style={styles.orderDate}>Status:{' '}<Text style={styles.idText}>{item.status}</Text></Text>
-        <Text style={styles.orderDate}>Items:{' '}<Text style={styles.idText}>{item.itemCount}</Text></Text>
-        {/* <Text style={styles.orderStatus}>Brands: {item.brands}</Text> */}
+        <Text style={styles.orderDate}>Items:{' '}<Text style={styles.idText}>{item.items.length}</Text></Text>
       </View>
     );
   };
@@ -96,3 +100,4 @@ const Orders = () => {
 };
 
 export default Orders;
+

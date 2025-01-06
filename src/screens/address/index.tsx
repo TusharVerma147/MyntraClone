@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { View, Text, } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
 import AppWrapper from '../../components/appWrapper';
 import AppHeader from '../../components/appHeader';
 import { Icons } from '../../assets';
@@ -14,8 +14,11 @@ import RazorpayCheckout from 'react-native-razorpay';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../../redux/slice/bagSlice';
 import Toast from 'react-native-simple-toast';
+import { handleDelete, handleRemoveFromBag } from '../../utils/common';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
-const Address = ({ navigation, route}: any) => {
+const Address = ({ navigation, route }: any) => {
   const {
     address,
     setAddress,
@@ -26,18 +29,15 @@ const Address = ({ navigation, route}: any) => {
     fetchNearbyPlaces,
   } = useLocation();
 
-  const { totalAmount } = route.params; 
+  const { totalAmount, selectedItems } = route.params;  
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  const dispatch = useDispatch(); 
-
-  
+  const dispatch = useDispatch();
 
   const handlePlaceSelect = (place: string) => {
     setAddress(place);
     setShowNearbyPlaces(false);
   };
 
-  
   const handlePlaceOrder = () => {
     // if (!address) {
     //   alert("Please select a delivery address!");
@@ -50,40 +50,76 @@ const Address = ({ navigation, route}: any) => {
     setIsProcessingPayment(true);
 
     const razorpayKeyId = 'rzp_test_GnpMgYfbVsmYuV'; 
-  const options = {
-    description: 'Payment for your order',
-    image: 'https://i.imgur.com/3g7nmJC.jpg',
-    currency: 'INR',
-    key: razorpayKeyId,
-    amount: totalAmount * 100, 
-    name: 'Zepto',
-    prefill: {
-      email: 'xyz@example.com',
-      contact: '9191919191',
-      name: 'Customer',
-    },
-    theme: { color: '#53a20e' },
+    const options = {
+      description: 'Payment for your order',
+      image: 'https://i.imgur.com/3g7nmJC.jpg',
+      currency: 'INR',
+      key: razorpayKeyId,
+      amount: totalAmount * 100, 
+      name: 'Zepto',
+      prefill: {
+        email: 'xyz@example.com',
+        contact: '9191919191',
+        name: 'Customer',
+      },
+      theme: { color: '#53a20e' },
+    };
+
+    RazorpayCheckout.open(options)
+      .then((data: any) => {
+        setIsProcessingPayment(false);
+        Toast.showWithGravity('Payment Successful', Toast.SHORT, Toast.BOTTOM, {
+          backgroundColor: colors.reddish,
+        });
+        dispatch(clearCart());
+        saveOrderHistory(data, selectedItems);
+
+        navigation.reset({
+          index: 0,  
+          routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
+        });
+      })
+      .catch((error: any) => {
+        setIsProcessingPayment(false);
+        console.error('Payment Error:', error); 
+        Toast.showWithGravity('Payment Failed. Try Again', Toast.LONG, Toast.BOTTOM, { backgroundColor: colors.reddish });
+      });
   };
 
-  RazorpayCheckout.open(options)
-    .then((data: any) => {
-      setIsProcessingPayment(false);
-      Toast.showWithGravity('Payment Succesfull', Toast.SHORT, Toast.BOTTOM, {
-        backgroundColor: colors.reddish,
+  const saveOrderHistory = (paymentData: any, items: any) => {
+    const user = auth().currentUser; 
+    if (!user) {
+      console.log('No authenticated user found');
+      return;
+    }
+
+    const orderId = paymentData.razorpay_payment_id;
+    const paymentId = paymentData.razorpay_payment_id;
+    const orderDate = new Date().toISOString();
+
+    const orderDetails = {
+      userId: user.uid, 
+      orderId,
+      paymentId,
+      totalAmount,
+      status: 'Success',
+      date: orderDate,
+      items, 
+    };
+
+    firestore()
+      .collection('users') 
+      .doc(user.uid)  
+      .collection('user_orders')  
+      .add(orderDetails)
+      .then(() => {
+        console.log('Order saved to Firestore under user:', user.uid);
+      })
+      .catch((error) => {
+        console.error('Error saving order to Firestore:', error);
       });
-      dispatch(clearCart()); 
-      navigation.reset({
-        index: 0,  
-        routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],  
-      });
-    })
-    .catch((error: any) => {
-      setIsProcessingPayment(false);
-      console.error('Payment Error:', error); 
-      Toast.showWithGravity('Payment Failed. Try Again', Toast.LONG, Toast.BOTTOM, { backgroundColor: colors.reddish });
-    });
-};
- 
+  };
+
   return (
     <AppWrapper>
       <AppHeader

@@ -14,24 +14,26 @@ import LocationModal from '../../components/locationModal';
 import { useLocation } from '../../custom/location';
 import ProductQuestions from '../../components/questions';
 import InfoIcon from '../../components/infoIcon';
+import Share from 'react-native-share';
 
 
 const Details = ({ navigation }: any) => {
   const [isOpened, setIsOpened] = useState(false); 
   const [isQuestionsOpened, setIsQuestionsOpened] = useState(false);
   const [address, setAddress] = useState('Appinventiv'); 
-  const {
-    setShowNearbyPlaces,
-    fetchNearbyPlaces,
-    currentLocationAddress,
-    nearbyPlaces,
-    showNearbyPlaces,
-  } = useLocation();
+  const { setShowNearbyPlaces,fetchNearbyPlaces,currentLocationAddress,nearbyPlaces,
+showNearbyPlaces,} = useLocation();
+
+ 
 
   const handlePlaceSelect = (place: string) => {
     setAddress(place);
     setShowNearbyPlaces(false);
   };
+
+  const handleLocModal = ()=>{
+    setShowNearbyPlaces(false);
+  }
 
   const handleDescription = () => {
     setIsOpened(!isOpened);
@@ -41,6 +43,23 @@ const Details = ({ navigation }: any) => {
     setIsQuestionsOpened(!isQuestionsOpened);
   };
 
+  const handleBag = () =>{
+    navigation.navigate('Bag')
+  }
+ 
+  const handleShare = async () => {
+    const shareOptions = {
+      message: `${item.brand}  ${item.type} is available for ${item.Price}. Grab it now!`,
+    };
+    try {
+      await Share.open(shareOptions);
+    } catch (error) {
+      console.log('Error sharing the product', error);
+    }
+  };
+  
+
+  
   const route = useRoute<any>(); 
   const { item } = route.params;
 
@@ -79,10 +98,12 @@ const Details = ({ navigation }: any) => {
         titleColor={colors.charcol}
         rightIcon1={Icons.wishlist}
         rightIcon2={Icons.bag}
+        rightIcon3={Icons.share}
         titleSize={vh(15)}
         backgroundColor={Platform.OS === 'android' ? colors.white : 'none'}
         onPressRightIcon1={() => handleWishlistPress(navigation)}
-        onPressRightIcon2={() => navigation.navigate('Bag')}
+        onPressRightIcon2={handleBag}
+        onPressRightIcon3={handleShare}  
         badgeCount={totalQuantity > 0 ? totalQuantity : undefined}
       />
 
@@ -125,7 +146,7 @@ const Details = ({ navigation }: any) => {
           isBottomSheet={true}
           nearbyPlaces={nearbyPlaces}
           onSelectPlace={handlePlaceSelect}
-          onClose={() => setShowNearbyPlaces(false)}
+          onClose={handleLocModal}
         />
 
         <View style={styles.daysview}>

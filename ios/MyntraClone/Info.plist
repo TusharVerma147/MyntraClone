@@ -66,6 +66,18 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+<true/>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>mailto</string>
+    <string>sms</string>
+    <string>tel</string>
+    <string>twitter</string>
+    <string>facebook</string>
+    <string>whatsapp</string>
+</array>
+
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

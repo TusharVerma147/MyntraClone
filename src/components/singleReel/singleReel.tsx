@@ -42,10 +42,7 @@ const SingleReel : React.FC <SingleReelProps> = ({
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [like, setLike] = useState<boolean>(item.isLike);
 
-  const onBuffer = (buffer:any) => {
-    Toast.show('Video will be load soon', Toast.SHORT, buffer)
-
-  };
+ 
   const onError = (error:any) => {
     Toast.show('Error playing Video', Toast.SHORT, error)
   };
@@ -83,7 +80,6 @@ const SingleReel : React.FC <SingleReelProps> = ({
             <View style={styles.details}></View>
             <Video
               ref={videoRef}
-              onBuffer={onBuffer}
               onError={onError}
               repeat
               resizeMode="cover"

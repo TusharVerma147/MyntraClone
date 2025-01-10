@@ -23,11 +23,13 @@ interface AppHeaderProps {
   iconleft?: ImageSourcePropType;
   rightIcon1?: ImageSourcePropType;
   rightIcon2?: ImageSourcePropType;
+  rightIcon3?: ImageSourcePropType;
   rightWidth?: number;
   rightHeight?: number;
   titletop?: number;
   onPressRightIcon1?: () => void;
   onPressRightIcon2?: () => void;
+  onPressRightIcon3?: () => void;
   badgeCount?: number; 
 }
 
@@ -48,12 +50,14 @@ const AppHeader: React.FC<AppHeaderProps> = ({
   backicon,
   rightIcon1,
   rightIcon2,
+  rightIcon3,
   iconleft,
   titletop,
   rightHeight = vh(25),
   rightWidth = vh(25),
   onPressRightIcon1,
   onPressRightIcon2,
+  onPressRightIcon3,
   badgeCount, 
 }) => {
   const navigation = useNavigation();
@@ -106,6 +110,16 @@ const AppHeader: React.FC<AppHeaderProps> = ({
       </View>
 
       <View style={styles.rightIconsContainer}>
+      {rightIcon3 && (
+          <TouchableOpacity
+            style={[styles.rightIcon]}
+            onPress={onPressRightIcon3}>
+            <Image
+              source={rightIcon3}
+              style={[styles.icon, {height: rightHeight, width: rightWidth}]}
+            />
+          </TouchableOpacity>
+        )}
         {rightIcon1 && (
           <TouchableOpacity
             style={[styles.rightIcon]}

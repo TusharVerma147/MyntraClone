@@ -5,7 +5,7 @@ import { vh} from '../../theme/dimensions';
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 10,
-    paddingTop: Platform.OS === 'android' ? vh(5) : vh(5),
+    paddingTop: vh(5),
     paddingBottom: 20,
     flexDirection: 'row', 
     justifyContent: 'space-between',

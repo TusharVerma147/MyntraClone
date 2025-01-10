@@ -16,6 +16,7 @@ import Toast from 'react-native-simple-toast';
 import {handleRemoveFromBag } from '../../utils/common';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+import Geolocation from '@react-native-community/geolocation';
 
 const Address = ({ navigation, route }: any) => {
   const {
@@ -44,6 +45,8 @@ const Address = ({ navigation, route }: any) => {
     }
     handlePayment();
   };
+  
+  
 
   const handlePayment = () => {
     setIsProcessingPayment(true);
@@ -55,7 +58,7 @@ const Address = ({ navigation, route }: any) => {
       currency: 'INR',
       key: razorpayKeyId,
       amount: totalAmount * 100, 
-      name: 'Zepto',
+      name: 'Myntra',
       prefill: {
         email: 'xyz@example.com',
         contact: '9191919191',

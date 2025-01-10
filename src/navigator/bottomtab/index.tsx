@@ -9,15 +9,17 @@ import Bag from '../../screens/bag';
 import Minis from '../../screens/minis';
 import Trends from '../../screens/trends';
 import {vh} from '../../theme/dimensions';
-import { useSelector, } from 'react-redux';
+import {useSelector} from 'react-redux';
 import styles from './styles';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTab = () => {
-
   const bagItems = useSelector((state: any) => state.bag.items);
-  const totalQuantity = bagItems.reduce((total: number, item: any) => total + item.quantity, 0);
+  const totalQuantity = bagItems.reduce(
+    (total: number, item: any) => total + item.quantity,
+    0,
+  );
 
   return (
     <Tab.Navigator
@@ -44,39 +46,36 @@ const BottomTab = () => {
           }
           return (
             <View
-              style={{
-                borderTopWidth: focused ? 2 : 0,
-                width: 120,
-                alignItems: 'center',
-                paddingVertical: vh(5),
-                borderColor:
-                  iconName == Icons.splash_img
-                    ? colors.zeptored
-                    : focused
-                    ? colors.green
-                    : colors.charcol,
-              }}>
-              <Image
-                source={iconName}
-                style={{
-                  width: 30,
-                  height: 30,
-                  resizeMode: 'contain',
-                  paddingTop: vh(5),
-                  tintColor:
+              style={[
+                styles.firsticon,
+                {borderTopWidth: focused ? 2 : 0},
+                {
+                  borderColor:
                     iconName == Icons.splash_img
-                      ? 'none'
+                      ? colors.zeptored
                       : focused
                       ? colors.green
                       : colors.charcol,
-                }}
+                },
+              ]}>
+              <Image
+                source={iconName}
+                style={[
+                  styles.iconImg,
+                  {
+                    tintColor:
+                      iconName == Icons.splash_img
+                        ? 'none'
+                        : focused
+                        ? colors.green
+                        : colors.charcol,
+                  },
+                ]}
               />
 
-{route.name === ScreenNames.Bag  &&totalQuantity > 0 &&  (
-                <View
-                  style={styles.countview}>
-                  <Text
-                    style={styles.countText}>
+              {route.name === ScreenNames.Bag && totalQuantity > 0 && (
+                <View style={styles.countview}>
+                  <Text style={styles.countText}>
                     {totalQuantity > 0 ? totalQuantity : undefined}
                   </Text>
                 </View>
@@ -107,15 +106,17 @@ const BottomTab = () => {
 
           return (
             <Text
-              style={{
-                fontSize: 12,
-                color: focused
-                  ? labelText === 'Home'
-                    ? colors.zeptored
-                    : colors.green
-                  : colors.charcol,
-                fontWeight: 'bold' as 'bold',
-              }}>
+              style={[
+                styles.iconText,
+
+                {
+                  color: focused
+                    ? labelText === 'Home'
+                      ? colors.zeptored
+                      : colors.green
+                    : colors.charcol,
+                },
+              ]}>
               {labelText}
             </Text>
           );

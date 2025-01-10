@@ -173,7 +173,6 @@ export const handleAddToBag = async (
       .doc(item)
       .delete(item.id);
       dispatch(removeFromBag(item));
-      Toast.show('Item removed from the cart.', Toast.SHORT);
     } catch (error) {
       Toast.show('Failed to remove item.', Toast.SHORT);
     }

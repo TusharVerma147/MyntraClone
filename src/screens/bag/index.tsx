@@ -52,6 +52,10 @@ const Bag = ({navigation}: any) => {
     }
   };
 
+  const handleCoupon = ()=>{
+    setCouponModalVisible(!couponModalVisible)
+  }
+
   const handleQtyModal = () => {
     setModalVisible(false);
   };
@@ -164,7 +168,7 @@ const Bag = ({navigation}: any) => {
           <View style={styles.couponcontainer}>
             <TouchableOpacity
               style={styles.couponbutton}
-              onPress={() => setCouponModalVisible(true)}>
+              onPress={handleCoupon}>
               <Text style={styles.applycoupon}>
                 {selectedCoupon ? 'Coupon Applied' : 'Apply Coupon'}
               </Text>
@@ -175,7 +179,7 @@ const Bag = ({navigation}: any) => {
           </View>
           <CouponModal
             visible={couponModalVisible}
-            onClose={() => setCouponModalVisible(false)}
+            onClose={handleCoupon}
             onSelectCoupon={handleSelectCoupon}
           />
           <FlatList
@@ -240,7 +244,7 @@ const Bag = ({navigation}: any) => {
           <View style={styles.taglinecont}>
             <Text style={styles.taglinetext}>
               {strings.termstag}{' '}
-              <Text style={styles.termsText} onPress={handleTerm}>
+              <Text style={styles.termsText} onPress={handleTerm} >
                 {strings.terms}
               </Text>
               <Text style={styles.andText}> & </Text>
